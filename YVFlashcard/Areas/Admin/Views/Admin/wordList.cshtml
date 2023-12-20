@@ -13,9 +13,10 @@
                 Lesson Lists
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item">CEFR Levels</a></li>
-                <li><a class="dropdown-item">Specialised Vocabulary</a></li>
-                <li><a class="dropdown-item">Idioms</a></li>
+                <li><a class="dropdown-item">Theme 1</a></li>
+                <li><a class="dropdown-item">Theme 2</a></li>
+                <li><a class="dropdown-item">Theme 3</a></li>
+                <li><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLesson" > Add </button></li>
             </ul>
         </div>
 
@@ -29,7 +30,7 @@
             <input class=" my-0 py-0 " style="border: 1px grey solid; width: 600px; height: 30px;" type="text" placeholder="Search" aria-label="Search">
         </div>
 
-        <button class="btn btn-primary  me-5" style="height: 30px; width: 280px;" data-bs-toggle="modal" data-bs-target="#createTheme"><i class="fa-solid fa-plus"></i> Add Vocabulary</button>
+        <button class="btn btn-primary  me-5" style="height: 30px; width: 280px;"  data-bs-toggle="modal" data-bs-target="#createVocab"><i class="fa-solid fa-plus"></i> Add Vocabulary</button>
 
 
     </div>
@@ -63,7 +64,7 @@
                             <td></td>
                             <td>
                                 <div style="display: flex;">
-                                    <button type="button" id="3" onclick="editHandle(this.id)" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#themeModal">
+                                    <button type="button" id="3" onclick="editHandle(this.id)" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editVocab">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
                                     <button class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i></button>
@@ -77,3 +78,110 @@
     </div>
 </div>
 
+
+
+<!-- ---------------------Modal Create------------------------- -->
+
+<div class="modal fade  " id="createVocab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themeModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Image</label><br />
+                <div>
+                    <img id="createImg" width="100px" height="100px" /><br />
+                </div>
+                <input type="file" id="InputImg" onchange="loadCreateImage()" multiple> <br />
+
+                <label>Vocabulary</label><br />
+                <input id="createVocab" type="text" /> <br />
+
+                <label>Pronunciation</label><br />
+                <input id="createPro" type="text" width="200px" /> <br />
+
+                <label>Part of Speech</label><br />
+                <input id="createPart" type="text" width="200px" /> <br />
+
+                <label>Definition</label><br />
+                <input id="createDef" type="text" width="200px" /> <br />
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveAddVocab()">ADD</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Edit-->
+<div class="modal fade  " id="editVocab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themeModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Image</label><br />
+                <div>
+                    <img id="modalImg" src="./img/Avt.png" width="100px" height="100px" /><br />
+                </div>
+                <input type="file" id="fileInput" onchange="loadImage()" multiple> <br />
+
+                <label>Vocabulary</label><br />
+                <input id="editVocab" type="text" /> <br />
+
+                <label>Pronunciation</label><br />
+                <input id="editPro" type="text" width="200px" /> <br />
+
+                <label>Part of Speech</label><br />
+                <input id="editPart" type="text" width="200px" /> <br />
+
+                <label>Definition</label><br />
+                <input id="editDef" type="text" width="200px" /> <br />
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveEditVocab()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------Modal Create Lesson---------->
+<div class="modal fade" id="createLesson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create a new lesson</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Lesson name:</label>
+                <input id="lessonName" type="text" style="width:300px"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveLesson()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

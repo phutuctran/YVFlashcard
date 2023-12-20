@@ -59,6 +59,11 @@ namespace YVFlashcard.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Lesson()
+        {
+            return View();
+        }
+
         public ActionResult GetAllTheme()
         {
             var allTheme = themeService.GetAll();

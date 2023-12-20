@@ -135,6 +135,7 @@
     <Compile Include="Service\UserInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\Lesson.cshtml" />
     <None Include="Areas\Admin\Views\Admin\wordList.cshtml" />
     <Content Include="Areas\Plugins\css\bootstrapad.min.css" />
     <Content Include="Areas\Plugins\css\stylead.css" />
