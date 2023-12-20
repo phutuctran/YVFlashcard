@@ -9,6 +9,7 @@ using YVFlashcard.Controllers;
 using YVFlashcard.Core.DTO;
 using YVFlashcard.Service;
 using YVFlashcard.Core.Service.Util;
+using YVFlashcard.Core.Service;
 
 namespace YVFlashcard.Areas.Admin.Controllers
 {
@@ -17,11 +18,15 @@ namespace YVFlashcard.Areas.Admin.Controllers
         // GET: Admin/Admin
         ThemeService themeService;
         DataHelper dataHelper;
+        LessionInfoService lessionInfoService;
+        WordService wordService;
 
         public AdminController()
         {
             themeService = new ThemeService();
             dataHelper = new DataHelper();
+            lessionInfoService = new LessionInfoService();
+            wordService = new WordService();
         }
         public ActionResult Index()
         {
@@ -54,9 +59,11 @@ namespace YVFlashcard.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult wordList()
+        public ActionResult wordList(int ThemeId)
         {
-            return View();
+            var allLession = lessionInfoService.GetByThemeId(ThemeId);
+            ViewBag.ThemeId = ThemeId;
+            return View(allLession);
         }
 
         public ActionResult Lesson()
@@ -90,6 +97,35 @@ namespace YVFlashcard.Areas.Admin.Controllers
             themeService.DeleteById(id);
             return View();
         }
+
+        public ActionResult GetLessionByThemeId(int key)
+        {
+            var allLession = lessionInfoService.GetByThemeId(key);
+            return Json(allLession, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public ActionResult InsertLession(LessionInfoDTO lessionInfo)
+        {
+            lessionInfoService.Insert(lessionInfo);
+            return View();
+        }
+
+        public ActionResult GetWordByLessonid(int lessonId)
+        {
+            List<WordDTO> wordDTOs = wordService.GetWordByLessonId(lessonId);
+            
+            return Json(wordDTOs, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult InsertWord(WordDTO word) 
+        {
+            wordService.Insert(word);
+            return View();
+        }
+
 
     }
 }

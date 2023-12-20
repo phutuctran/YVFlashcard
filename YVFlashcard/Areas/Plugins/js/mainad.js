@@ -117,9 +117,9 @@ function renderRow(img,name, des,id){
         <td>${des}</td>
         <td > 
             <div style="display: flex;">
-                <button type="button" id="${id}" class="btn btn-primary btn-sm me-3" onclick="editHandle(this.id)" data-bs-toggle="modal" data-bs-target="#themeModal">
+                <button type="button" id="${id}" class="btn btn-primary btn-sm me-3" onclick="editHandle(${id})" data-bs-toggle="modal" data-bs-target="#themeModal">
                 <i class="fa-solid fa-pen-to-square"></i></button>
-                <button type="button" class="btn btn-primary btn-sm me-3" onclick ="viewHandle()"> <i class="fa-solid fa-list-ul"></i></button>
+                <button type="button" class="btn btn-primary btn-sm me-3" onclick ="viewHandle(${id})"> <i class="fa-solid fa-list-ul"></i></button>
                 <button type="button" id="delete${id}" class="btn btn-primary me-3 btn-sm" onclick="deleteTheme(${id})"> <i class="fa-solid fa-trash"></i></button>
             </div>  
         </td>
@@ -129,8 +129,18 @@ function renderRow(img,name, des,id){
 
 
 
-function viewHandle() {
-    window.location.href = '/Admin/Admin/wordList';
+function viewHandle(id) {
+    var key;
+    if (TYPE == 1) {
+        key = dataCEFR[id].themeId;
+    }
+    else if (TYPE == 2) {
+        key = specialVocab[id].themeId;
+    }
+    else if (TYPE == 3) {
+        key = idioms[id].themeId;
+    }
+    window.location.href = '/Admin/Admin/wordList?ThemeId=' + key;
 }
 
 
@@ -166,8 +176,8 @@ function editHandle(buttonId){
     }
     if (TYPE == 3) {
         imgModal.src = idioms[buttonId].image;
-        name.value = specialVocab[buttonId].name;
-        des.value = specialVocab[buttonId].description;
+        name.value = idioms[buttonId].name;
+        des.value = idioms[buttonId].description;
         return;
     }
 }

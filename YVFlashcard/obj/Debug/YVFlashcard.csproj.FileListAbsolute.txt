@@ -82,6 +82,6 @@ D:\YVFlashCard\YVFlashcard\bin\EntityFramework.dll
 D:\YVFlashCard\YVFlashcard\bin\YVFlashcard.Core.pdb
 D:\YVFlashCard\YVFlashcard\bin\YVFlashcard.Core.dll.config
 D:\YVFlashCard\YVFlashcard\bin\EntityFramework.xml
+D:\YVFlashCard\YVFlashcard\bin\CKFinder.dll
 D:\YVFlashCard\YVFlashcard\bin\EntityFramework.SqlServer.dll
 D:\YVFlashCard\YVFlashcard\bin\EntityFramework.SqlServer.xml
-D:\YVFlashCard\YVFlashcard\bin\CKFinder.dll

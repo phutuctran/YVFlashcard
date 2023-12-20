@@ -1,6 +1,7 @@
-
+﻿@model List<YVFlashcard.Core.DTO.LessionInfoDTO>
 @{
     ViewBag.Title = "Word List";
+    int themeId = ViewBag.ThemeId;
 }
 
 
@@ -13,10 +14,10 @@
                 Lesson Lists
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item">Theme 1</a></li>
-                <li><a class="dropdown-item">Theme 2</a></li>
-                <li><a class="dropdown-item">Theme 3</a></li>
-                <li><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLesson" > Add </button></li>
+                @for (int i = 0; i < Model.Count; i++)
+                { <li><a class="dropdown-item" onclick="CreateLessonRows(@Model[i].lessionInfoId)">@Model[i].name</a></li>
+                }
+                <li><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLesson" "> Add </button></li>
             </ul>
         </div>
 
@@ -30,7 +31,7 @@
             <input class=" my-0 py-0 " style="border: 1px grey solid; width: 600px; height: 30px;" type="text" placeholder="Search" aria-label="Search">
         </div>
 
-        <button class="btn btn-primary  me-5" style="height: 30px; width: 280px;"  data-bs-toggle="modal" data-bs-target="#createVocab"><i class="fa-solid fa-plus"></i> Add Vocabulary</button>
+        <button class="btn btn-primary  me-5" style="height: 30px; width: 280px;"  data-bs-toggle="modal" data-bs-target="#createVocab2"><i class="fa-solid fa-plus"></i> Add Vocabulary</button>
 
 
     </div>
@@ -47,6 +48,7 @@
                     <thead>
                         <tr class="text-dark">
                             <th scope="col" style="width: 30px;">No</th>
+                            <th style="width: 600px;"> Image</th>
                             <th scope="col" style="width: 190px;">Vocabulary</th>
                             <th scope="col" style="width:150px;">Pronunciation</th>
                             <th scope="col">Parts of Speech</th>
@@ -55,22 +57,8 @@
 
                         </tr>
                     </thead>
-                    <tbody id="theme-table">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div style="display: flex;">
-                                    <button type="button" id="3" onclick="editHandle(this.id)" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editVocab">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                </div>
-                        </tr>
-
+                    <tbody id="word-table">
+ 
                     </tbody>
                 </table>
             </div>
@@ -82,7 +70,7 @@
 
 <!-- ---------------------Modal Create------------------------- -->
 
-<div class="modal fade  " id="createVocab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade  " id="createVocab2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -94,9 +82,10 @@
             <div class="modal-body">
                 <label>Image</label><br />
                 <div>
-                    <img id="createImg" width="100px" height="100px" /><br />
+                    <img id="WordImg" src="" width="100px" height="100px" /><br />
+                    <input id="inpWordImage" type="hidden" name="Image" value="" />
                 </div>
-                <input type="file" id="InputImg" onchange="loadCreateImage()" multiple> <br />
+                <button type="button" class="btn btn-success btn-sm" onclick="loadWordImage()">Upload</button><br />
 
                 <label>Vocabulary</label><br />
                 <input id="createVocab" type="text" /> <br />
@@ -185,3 +174,26 @@
         </div>
     </div>
 </div>
+
+<script src="~/Areas/Plugins/js/wordListad.js"></script>
+
+<script>
+    function saveLesson() {
+        let lessonName = document.getElementById("lessonName").value;
+        let data = {
+            name: lessonName,
+            themeId: @themeId,
+        }
+        $.ajax({
+            url: '/Admin/Admin/InsertLession',
+            type: 'POST', // Phương thức HTTP
+            data: data,
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+</script>

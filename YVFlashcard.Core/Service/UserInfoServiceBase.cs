@@ -17,9 +17,9 @@ namespace YVFlashcard.Core.Service
 
         public List<UserInfoDTO> GetAll()
         {
-            using (var context = new YVFlashCardEntities())
+            using (var context = new YVFlashCardEntities1())
             {
-                return context.UserInfo
+                return context.UserInfoes
                     .Select(x => new UserInfoDTO()
                     {
                         username = x.username,
@@ -32,9 +32,9 @@ namespace YVFlashcard.Core.Service
 
         public UserInfoDTO GetById(string key)
         {
-            using (var context = new YVFlashCardEntities())
+            using (var context = new YVFlashCardEntities1())
             {
-                return context.UserInfo
+                return context.UserInfoes
                     .Where(x => x.username == key)
                     .Select(x => new UserInfoDTO()
                     {

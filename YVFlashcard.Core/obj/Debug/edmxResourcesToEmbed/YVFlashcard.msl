@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="YVFlashCardModelStoreContainer" CdmEntityContainer="YVFlashCardEntities">
+  <EntityContainerMapping StorageEntityContainer="YVFlashCardModelStoreContainer" CdmEntityContainer="YVFlashCardEntities1">
     <EntitySetMapping Name="C__MigrationHistory">
       <EntityTypeMapping TypeName="YVFlashCardModel.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -11,9 +11,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Category">
-      <EntityTypeMapping TypeName="YVFlashCardModel.Category">
-        <MappingFragment StoreEntitySet="Category">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="YVFlashCardModel.Categories">
+        <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -23,9 +23,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LessionInfo">
-      <EntityTypeMapping TypeName="YVFlashCardModel.LessionInfo">
-        <MappingFragment StoreEntitySet="LessionInfo">
+    <EntitySetMapping Name="LessionInfoes">
+      <EntityTypeMapping TypeName="YVFlashCardModel.LessionInfoes">
+        <MappingFragment StoreEntitySet="LessionInfoes">
           <ScalarProperty Name="lessionInfoId" ColumnName="lessionInfoId" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -34,18 +34,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LessionWord">
-      <EntityTypeMapping TypeName="YVFlashCardModel.LessionWord">
-        <MappingFragment StoreEntitySet="LessionWord">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="LessionInfoId" ColumnName="LessionInfoId" />
-          <ScalarProperty Name="WordId" ColumnName="WordId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="StudyHistory">
-      <EntityTypeMapping TypeName="YVFlashCardModel.StudyHistory">
-        <MappingFragment StoreEntitySet="StudyHistory">
+    <EntitySetMapping Name="StudyHistories">
+      <EntityTypeMapping TypeName="YVFlashCardModel.StudyHistories">
+        <MappingFragment StoreEntitySet="StudyHistories">
           <ScalarProperty Name="studyHisId" ColumnName="studyHisId" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="username" ColumnName="username" />
@@ -65,9 +56,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Theme">
-      <EntityTypeMapping TypeName="YVFlashCardModel.Theme">
-        <MappingFragment StoreEntitySet="Theme">
+    <EntitySetMapping Name="Themes">
+      <EntityTypeMapping TypeName="YVFlashCardModel.Themes">
+        <MappingFragment StoreEntitySet="Themes">
           <ScalarProperty Name="themeId" ColumnName="themeId" />
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -77,9 +68,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserInfo">
-      <EntityTypeMapping TypeName="YVFlashCardModel.UserInfo">
-        <MappingFragment StoreEntitySet="UserInfo">
+    <EntitySetMapping Name="UserInfoes">
+      <EntityTypeMapping TypeName="YVFlashCardModel.UserInfoes">
+        <MappingFragment StoreEntitySet="UserInfoes">
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="fullName" ColumnName="fullName" />
@@ -92,9 +83,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserLessionInfo">
-      <EntityTypeMapping TypeName="YVFlashCardModel.UserLessionInfo">
-        <MappingFragment StoreEntitySet="UserLessionInfo">
+    <EntitySetMapping Name="UserLessionInfoes">
+      <EntityTypeMapping TypeName="YVFlashCardModel.UserLessionInfoes">
+        <MappingFragment StoreEntitySet="UserLessionInfoes">
           <ScalarProperty Name="lessionInfoId" ColumnName="lessionInfoId" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -102,18 +93,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserLessionWord">
-      <EntityTypeMapping TypeName="YVFlashCardModel.UserLessionWord">
-        <MappingFragment StoreEntitySet="UserLessionWord">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="wordId" ColumnName="wordId" />
-          <ScalarProperty Name="lessionInfoId" ColumnName="lessionInfoId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserStudyHistory">
-      <EntityTypeMapping TypeName="YVFlashCardModel.UserStudyHistory">
-        <MappingFragment StoreEntitySet="UserStudyHistory">
+    <EntitySetMapping Name="UserStudyHistories">
+      <EntityTypeMapping TypeName="YVFlashCardModel.UserStudyHistories">
+        <MappingFragment StoreEntitySet="UserStudyHistories">
           <ScalarProperty Name="studyHistoryId" ColumnName="studyHistoryId" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="username" ColumnName="username" />
@@ -122,9 +104,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserWord">
-      <EntityTypeMapping TypeName="YVFlashCardModel.UserWord">
-        <MappingFragment StoreEntitySet="UserWord">
+    <EntitySetMapping Name="UserWords">
+      <EntityTypeMapping TypeName="YVFlashCardModel.UserWords">
+        <MappingFragment StoreEntitySet="UserWords">
           <ScalarProperty Name="wordId" ColumnName="wordId" />
           <ScalarProperty Name="word" ColumnName="word" />
           <ScalarProperty Name="pronunciation" ColumnName="pronunciation" />
@@ -134,15 +116,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Word">
-      <EntityTypeMapping TypeName="YVFlashCardModel.Word">
-        <MappingFragment StoreEntitySet="Word">
+    <EntitySetMapping Name="Words">
+      <EntityTypeMapping TypeName="YVFlashCardModel.Words">
+        <MappingFragment StoreEntitySet="Words">
           <ScalarProperty Name="wordId" ColumnName="wordId" />
-          <ScalarProperty Name="word1" ColumnName="word" />
+          <ScalarProperty Name="word1" ColumnName="word1" />
           <ScalarProperty Name="pronunciation" ColumnName="pronunciation" />
           <ScalarProperty Name="definition" ColumnName="definition" />
           <ScalarProperty Name="partOfSpeech" ColumnName="partOfSpeech" />
           <ScalarProperty Name="imageOrSynomyn" ColumnName="imageOrSynomyn" />
+          <ScalarProperty Name="lessionId" ColumnName="lessionId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

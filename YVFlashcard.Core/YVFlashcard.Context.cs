@@ -15,9 +15,9 @@ namespace YVFlashcard.Core
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class YVFlashCardEntities : DbContext
+    public partial class YVFlashCardEntities1 : DbContext
     {
-        public YVFlashCardEntities()
+        public YVFlashCardEntities1()
             : base("data source=.\\SQLEXPRESS;initial catalog=YVFlashCard;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
@@ -27,17 +27,16 @@ namespace YVFlashcard.Core
         {
             //throw new UnintentionalCodeFirstException();
         }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<LessionInfo> LessionInfo { get; set; }
-        public virtual DbSet<LessionWord> LessionWord { get; set; }
-        public virtual DbSet<StudyHistory> StudyHistory { get; set; }
-        public virtual DbSet<Theme> Theme { get; set; }
-        public virtual DbSet<UserInfo> UserInfo { get; set; }
-        public virtual DbSet<UserLessionInfo> UserLessionInfo { get; set; }
-        public virtual DbSet<UserLessionWord> UserLessionWord { get; set; }
-        public virtual DbSet<UserStudyHistory> UserStudyHistory { get; set; }
-        public virtual DbSet<UserWord> UserWord { get; set; }
-        public virtual DbSet<Word> Word { get; set; }
+    
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<LessionInfoes> LessionInfoes { get; set; }
+        public virtual DbSet<StudyHistories> StudyHistories { get; set; }
+        public virtual DbSet<Themes> Themes { get; set; }
+        public virtual DbSet<UserInfoes> UserInfoes { get; set; }
+        public virtual DbSet<UserLessionInfoes> UserLessionInfoes { get; set; }
+        public virtual DbSet<UserStudyHistories> UserStudyHistories { get; set; }
+        public virtual DbSet<UserWords> UserWords { get; set; }
+        public virtual DbSet<Words> Words { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -94,7 +93,7 @@ namespace YVFlashcard.Core
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
-       
+    
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
             var diagramnameParameter = diagramname != null ?

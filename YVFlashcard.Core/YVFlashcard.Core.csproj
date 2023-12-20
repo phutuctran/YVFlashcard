@@ -53,44 +53,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.cs">
+    <Compile Include="Categories.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\LessionInfoDTO.cs" />
     <Compile Include="DTO\ThemeDTO.cs" />
     <Compile Include="DTO\UserInfoDTO.cs" />
-    <Compile Include="LessionInfo.cs">
-      <DependentUpon>YVFlashcard.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LessionWord.cs">
+    <Compile Include="DTO\WordDTO.cs" />
+    <Compile Include="LessionInfoes.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Interface\IServiceBase.cs" />
+    <Compile Include="Service\LessionInfoServiceBase.cs" />
     <Compile Include="Service\ThemeServiceBase.cs" />
     <Compile Include="Service\UserInfoServiceBase.cs" />
     <Compile Include="Service\Util\DataHelper.cs" />
-    <Compile Include="StudyHistory.cs">
+    <Compile Include="Service\WordServiceBase.cs" />
+    <Compile Include="StudyHistories.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
-    <Compile Include="Theme.cs">
+    <Compile Include="Themes.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo.cs">
+    <Compile Include="UserInfoes.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserLessionInfo.cs">
+    <Compile Include="UserLessionInfoes.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserLessionWord.cs">
+    <Compile Include="UserStudyHistories.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserStudyHistory.cs">
+    <Compile Include="UserWords.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserWord.cs">
-      <DependentUpon>YVFlashcard.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Word.cs">
+    <Compile Include="Words.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
     <Compile Include="YVFlashcard.Context.cs">

@@ -15,7 +15,7 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Category">
+        <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="categoryId" />
           </Key>
@@ -26,7 +26,7 @@
           <Property Name="typeOfCategory" Type="nvarchar(max)" />
           <Property Name="image" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="LessionInfo">
+        <EntityType Name="LessionInfoes">
           <Key>
             <PropertyRef Name="lessionInfoId" />
           </Key>
@@ -36,21 +36,13 @@
           <Property Name="totalWord" Type="int" />
           <Property Name="themeId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="LessionWord">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LessionInfoId" Type="int" Nullable="false" />
-          <Property Name="WordId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="StudyHistory">
+        <EntityType Name="StudyHistories">
           <Key>
             <PropertyRef Name="studyHisId" />
           </Key>
           <Property Name="studyHisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar(max)" />
-          <Property Name="username" Type="nchar" MaxLength="20" />
+          <Property Name="username" Type="nvarchar" MaxLength="128" />
           <Property Name="lessionInfoId" Type="int" />
           <Property Name="numLearnedWord" Type="int" />
         </EntityType>
@@ -64,7 +56,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Theme">
+        <EntityType Name="Themes">
           <Key>
             <PropertyRef Name="themeId" />
           </Key>
@@ -73,23 +65,23 @@
           <Property Name="name" Type="nvarchar(max)" />
           <Property Name="description" Type="nvarchar(max)" />
           <Property Name="totalLession" Type="int" />
-          <Property Name="image" Type="nchar" MaxLength="10" />
+          <Property Name="image" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="UserInfo">
+        <EntityType Name="UserInfoes">
           <Key>
             <PropertyRef Name="username" />
           </Key>
-          <Property Name="username" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" />
           <Property Name="fullName" Type="nvarchar(max)" />
-          <Property Name="dob" Type="smalldatetime" />
-          <Property Name="phone" Type="nchar" MaxLength="10" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="dob" Type="datetime" />
+          <Property Name="phone" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
           <Property Name="address" Type="nvarchar(max)" />
           <Property Name="avatar" Type="nvarchar(max)" />
-          <Property Name="gender" Type="nchar" MaxLength="10" />
+          <Property Name="gender" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="UserLessionInfo">
+        <EntityType Name="UserLessionInfoes">
           <Key>
             <PropertyRef Name="lessionInfoId" />
           </Key>
@@ -98,25 +90,17 @@
           <Property Name="description" Type="nvarchar(max)" />
           <Property Name="totalWord" Type="int" />
         </EntityType>
-        <EntityType Name="UserLessionWord">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="wordId" Type="int" Nullable="false" />
-          <Property Name="lessionInfoId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserStudyHistory">
+        <EntityType Name="UserStudyHistories">
           <Key>
             <PropertyRef Name="studyHistoryId" />
           </Key>
           <Property Name="studyHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar(max)" />
-          <Property Name="username" Type="nchar" MaxLength="20" />
+          <Property Name="username" Type="nvarchar" MaxLength="128" />
           <Property Name="lessionInfoId" Type="int" Nullable="false" />
           <Property Name="numberlearnedWord" Type="int" />
         </EntityType>
-        <EntityType Name="UserWord">
+        <EntityType Name="UserWords">
           <Key>
             <PropertyRef Name="wordId" />
           </Key>
@@ -127,133 +111,90 @@
           <Property Name="partOfSpeech" Type="nvarchar(max)" />
           <Property Name="imageOrSynomyn" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Word">
+        <EntityType Name="Words">
           <Key>
             <PropertyRef Name="wordId" />
           </Key>
           <Property Name="wordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="word" Type="nvarchar(max)" />
+          <Property Name="word1" Type="nvarchar(max)" />
           <Property Name="pronunciation" Type="nvarchar(max)" />
           <Property Name="definition" Type="nvarchar(max)" />
-          <Property Name="partOfSpeech" Type="nvarchar" MaxLength="50" />
+          <Property Name="partOfSpeech" Type="nvarchar(max)" />
           <Property Name="imageOrSynomyn" Type="nvarchar(max)" />
+          <Property Name="lessionId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_LessionInfo_Theme">
-          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
-          <End Role="LessionInfo" Type="Self.LessionInfo" Multiplicity="*" />
+        <Association Name="FK_dbo_LessionInfoes_dbo_Themes_themeId">
+          <End Role="Themes" Type="Self.Themes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LessionInfoes" Type="Self.LessionInfoes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Theme">
+            <Principal Role="Themes">
               <PropertyRef Name="themeId" />
             </Principal>
-            <Dependent Role="LessionInfo">
+            <Dependent Role="LessionInfoes">
               <PropertyRef Name="themeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LessionWord_LessionInfo">
-          <End Role="LessionInfo" Type="Self.LessionInfo" Multiplicity="1" />
-          <End Role="LessionWord" Type="Self.LessionWord" Multiplicity="*" />
+        <Association Name="FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId">
+          <End Role="LessionInfoes" Type="Self.LessionInfoes" Multiplicity="0..1" />
+          <End Role="StudyHistories" Type="Self.StudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LessionInfo">
+            <Principal Role="LessionInfoes">
               <PropertyRef Name="lessionInfoId" />
             </Principal>
-            <Dependent Role="LessionWord">
-              <PropertyRef Name="LessionInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LessionWord_WORD">
-          <End Role="Word" Type="Self.Word" Multiplicity="1" />
-          <End Role="LessionWord" Type="Self.LessionWord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Word">
-              <PropertyRef Name="wordId" />
-            </Principal>
-            <Dependent Role="LessionWord">
-              <PropertyRef Name="WordId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudyHistory_LessionInfo">
-          <End Role="LessionInfo" Type="Self.LessionInfo" Multiplicity="0..1" />
-          <End Role="StudyHistory" Type="Self.StudyHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LessionInfo">
-              <PropertyRef Name="lessionInfoId" />
-            </Principal>
-            <Dependent Role="StudyHistory">
+            <Dependent Role="StudyHistories">
               <PropertyRef Name="lessionInfoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudyHistory_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="StudyHistory" Type="Self.StudyHistory" Multiplicity="*" />
+        <Association Name="FK_dbo_StudyHistories_dbo_UserInfoes_username">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="0..1" />
+          <End Role="StudyHistories" Type="Self.StudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserInfo">
+            <Principal Role="UserInfoes">
               <PropertyRef Name="username" />
             </Principal>
-            <Dependent Role="StudyHistory">
+            <Dependent Role="StudyHistories">
               <PropertyRef Name="username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Theme_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Theme" Type="Self.Theme" Multiplicity="*" />
+        <Association Name="FK_dbo_Themes_dbo_Categories_categoryId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Themes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Categories">
               <PropertyRef Name="categoryId" />
             </Principal>
-            <Dependent Role="Theme">
+            <Dependent Role="Themes">
               <PropertyRef Name="categoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserLessionWord_UserLessionInfo">
-          <End Role="UserLessionInfo" Type="Self.UserLessionInfo" Multiplicity="1" />
-          <End Role="UserLessionWord" Type="Self.UserLessionWord" Multiplicity="*" />
+        <Association Name="FK_dbo_UserStudyHistories_dbo_UserInfoes_username">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="0..1" />
+          <End Role="UserStudyHistories" Type="Self.UserStudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserLessionInfo">
-              <PropertyRef Name="lessionInfoId" />
-            </Principal>
-            <Dependent Role="UserLessionWord">
-              <PropertyRef Name="lessionInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserLessionWord_UserWord">
-          <End Role="UserWord" Type="Self.UserWord" Multiplicity="1" />
-          <End Role="UserLessionWord" Type="Self.UserLessionWord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserWord">
-              <PropertyRef Name="wordId" />
-            </Principal>
-            <Dependent Role="UserLessionWord">
-              <PropertyRef Name="wordId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserStudyHistory_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="UserStudyHistory" Type="Self.UserStudyHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
+            <Principal Role="UserInfoes">
               <PropertyRef Name="username" />
             </Principal>
-            <Dependent Role="UserStudyHistory">
+            <Dependent Role="UserStudyHistories">
               <PropertyRef Name="username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserStudyHistory_UserStudyHistory">
-          <End Role="UserLessionInfo" Type="Self.UserLessionInfo" Multiplicity="1" />
-          <End Role="UserStudyHistory" Type="Self.UserStudyHistory" Multiplicity="*" />
+        <Association Name="FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId">
+          <End Role="UserLessionInfoes" Type="Self.UserLessionInfoes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserStudyHistories" Type="Self.UserStudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserLessionInfo">
+            <Principal Role="UserLessionInfoes">
               <PropertyRef Name="lessionInfoId" />
             </Principal>
-            <Dependent Role="UserStudyHistory">
+            <Dependent Role="UserStudyHistories">
               <PropertyRef Name="lessionInfoId" />
             </Dependent>
           </ReferentialConstraint>
@@ -291,57 +232,39 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="YVFlashCardModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LessionInfo" EntityType="Self.LessionInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LessionWord" EntityType="Self.LessionWord" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StudyHistory" EntityType="Self.StudyHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LessionInfoes" EntityType="Self.LessionInfoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyHistories" EntityType="Self.StudyHistories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Theme" EntityType="Self.Theme" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserLessionInfo" EntityType="Self.UserLessionInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserLessionWord" EntityType="Self.UserLessionWord" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserStudyHistory" EntityType="Self.UserStudyHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserWord" EntityType="Self.UserWord" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_LessionInfo_Theme" Association="Self.FK_LessionInfo_Theme">
-            <End Role="Theme" EntitySet="Theme" />
-            <End Role="LessionInfo" EntitySet="LessionInfo" />
+          <EntitySet Name="Themes" EntityType="Self.Themes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLessionInfoes" EntityType="Self.UserLessionInfoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStudyHistories" EntityType="Self.UserStudyHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserWords" EntityType="Self.UserWords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_LessionInfoes_dbo_Themes_themeId" Association="Self.FK_dbo_LessionInfoes_dbo_Themes_themeId">
+            <End Role="Themes" EntitySet="Themes" />
+            <End Role="LessionInfoes" EntitySet="LessionInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_LessionWord_LessionInfo" Association="Self.FK_LessionWord_LessionInfo">
-            <End Role="LessionInfo" EntitySet="LessionInfo" />
-            <End Role="LessionWord" EntitySet="LessionWord" />
+          <AssociationSet Name="FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId" Association="Self.FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId">
+            <End Role="LessionInfoes" EntitySet="LessionInfoes" />
+            <End Role="StudyHistories" EntitySet="StudyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_LessionWord_WORD" Association="Self.FK_LessionWord_WORD">
-            <End Role="Word" EntitySet="Word" />
-            <End Role="LessionWord" EntitySet="LessionWord" />
+          <AssociationSet Name="FK_dbo_StudyHistories_dbo_UserInfoes_username" Association="Self.FK_dbo_StudyHistories_dbo_UserInfoes_username">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="StudyHistories" EntitySet="StudyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudyHistory_LessionInfo" Association="Self.FK_StudyHistory_LessionInfo">
-            <End Role="LessionInfo" EntitySet="LessionInfo" />
-            <End Role="StudyHistory" EntitySet="StudyHistory" />
+          <AssociationSet Name="FK_dbo_Themes_dbo_Categories_categoryId" Association="Self.FK_dbo_Themes_dbo_Categories_categoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Themes" EntitySet="Themes" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudyHistory_UserInfo" Association="Self.FK_StudyHistory_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="StudyHistory" EntitySet="StudyHistory" />
+          <AssociationSet Name="FK_dbo_UserStudyHistories_dbo_UserInfoes_username" Association="Self.FK_dbo_UserStudyHistories_dbo_UserInfoes_username">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="UserStudyHistories" EntitySet="UserStudyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Theme_Category" Association="Self.FK_Theme_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Theme" EntitySet="Theme" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserLessionWord_UserLessionInfo" Association="Self.FK_UserLessionWord_UserLessionInfo">
-            <End Role="UserLessionInfo" EntitySet="UserLessionInfo" />
-            <End Role="UserLessionWord" EntitySet="UserLessionWord" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserLessionWord_UserWord" Association="Self.FK_UserLessionWord_UserWord">
-            <End Role="UserWord" EntitySet="UserWord" />
-            <End Role="UserLessionWord" EntitySet="UserLessionWord" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserStudyHistory_UserInfo" Association="Self.FK_UserStudyHistory_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="UserStudyHistory" EntitySet="UserStudyHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserStudyHistory_UserStudyHistory" Association="Self.FK_UserStudyHistory_UserStudyHistory">
-            <End Role="UserLessionInfo" EntitySet="UserLessionInfo" />
-            <End Role="UserStudyHistory" EntitySet="UserStudyHistory" />
+          <AssociationSet Name="FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId" Association="Self.FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId">
+            <End Role="UserLessionInfoes" EntitySet="UserLessionInfoes" />
+            <End Role="UserStudyHistories" EntitySet="UserStudyHistories" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -359,7 +282,7 @@
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Category">
+        <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="categoryId" />
           </Key>
@@ -369,9 +292,9 @@
           <Property Name="totalTheme" Type="Int32" />
           <Property Name="typeOfCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Theme" Relationship="Self.FK_Theme_Category" FromRole="Category" ToRole="Theme" />
+          <NavigationProperty Name="Themes" Relationship="Self.FK_dbo_Themes_dbo_Categories_categoryId" FromRole="Categories" ToRole="Themes" />
         </EntityType>
-        <EntityType Name="LessionInfo">
+        <EntityType Name="LessionInfoes">
           <Key>
             <PropertyRef Name="lessionInfoId" />
           </Key>
@@ -380,31 +303,20 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="totalWord" Type="Int32" />
           <Property Name="themeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Theme" Relationship="Self.FK_LessionInfo_Theme" FromRole="LessionInfo" ToRole="Theme" />
-          <NavigationProperty Name="LessionWord" Relationship="Self.FK_LessionWord_LessionInfo" FromRole="LessionInfo" ToRole="LessionWord" />
-          <NavigationProperty Name="StudyHistory" Relationship="Self.FK_StudyHistory_LessionInfo" FromRole="LessionInfo" ToRole="StudyHistory" />
+          <NavigationProperty Name="Themes" Relationship="Self.FK_dbo_LessionInfoes_dbo_Themes_themeId" FromRole="LessionInfoes" ToRole="Themes" />
+          <NavigationProperty Name="StudyHistories" Relationship="Self.FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId" FromRole="LessionInfoes" ToRole="StudyHistories" />
         </EntityType>
-        <EntityType Name="LessionWord">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LessionInfoId" Type="Int32" Nullable="false" />
-          <Property Name="WordId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="LessionInfo" Relationship="Self.FK_LessionWord_LessionInfo" FromRole="LessionWord" ToRole="LessionInfo" />
-          <NavigationProperty Name="Word" Relationship="Self.FK_LessionWord_WORD" FromRole="LessionWord" ToRole="Word" />
-        </EntityType>
-        <EntityType Name="StudyHistory">
+        <EntityType Name="StudyHistories">
           <Key>
             <PropertyRef Name="studyHisId" />
           </Key>
           <Property Name="studyHisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="lessionInfoId" Type="Int32" />
           <Property Name="numLearnedWord" Type="Int32" />
-          <NavigationProperty Name="LessionInfo" Relationship="Self.FK_StudyHistory_LessionInfo" FromRole="StudyHistory" ToRole="LessionInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_StudyHistory_UserInfo" FromRole="StudyHistory" ToRole="UserInfo" />
+          <NavigationProperty Name="LessionInfoes" Relationship="Self.FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId" FromRole="StudyHistories" ToRole="LessionInfoes" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK_dbo_StudyHistories_dbo_UserInfoes_username" FromRole="StudyHistories" ToRole="UserInfoes" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -416,7 +328,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Theme">
+        <EntityType Name="Themes">
           <Key>
             <PropertyRef Name="themeId" />
           </Key>
@@ -425,27 +337,27 @@
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="totalLession" Type="Int32" />
-          <Property Name="image" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Theme_Category" FromRole="Theme" ToRole="Category" />
-          <NavigationProperty Name="LessionInfo" Relationship="Self.FK_LessionInfo_Theme" FromRole="Theme" ToRole="LessionInfo" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_dbo_Themes_dbo_Categories_categoryId" FromRole="Themes" ToRole="Categories" />
+          <NavigationProperty Name="LessionInfoes" Relationship="Self.FK_dbo_LessionInfoes_dbo_Themes_themeId" FromRole="Themes" ToRole="LessionInfoes" />
         </EntityType>
-        <EntityType Name="UserInfo">
+        <EntityType Name="UserInfoes">
           <Key>
             <PropertyRef Name="username" />
           </Key>
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="fullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="dob" Type="DateTime" Precision="0" />
-          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="3" />
+          <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="StudyHistory" Relationship="Self.FK_StudyHistory_UserInfo" FromRole="UserInfo" ToRole="StudyHistory" />
-          <NavigationProperty Name="UserStudyHistory" Relationship="Self.FK_UserStudyHistory_UserInfo" FromRole="UserInfo" ToRole="UserStudyHistory" />
+          <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StudyHistories" Relationship="Self.FK_dbo_StudyHistories_dbo_UserInfoes_username" FromRole="UserInfoes" ToRole="StudyHistories" />
+          <NavigationProperty Name="UserStudyHistories" Relationship="Self.FK_dbo_UserStudyHistories_dbo_UserInfoes_username" FromRole="UserInfoes" ToRole="UserStudyHistories" />
         </EntityType>
-        <EntityType Name="UserLessionInfo">
+        <EntityType Name="UserLessionInfoes">
           <Key>
             <PropertyRef Name="lessionInfoId" />
           </Key>
@@ -453,32 +365,21 @@
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="totalWord" Type="Int32" />
-          <NavigationProperty Name="UserLessionWord" Relationship="Self.FK_UserLessionWord_UserLessionInfo" FromRole="UserLessionInfo" ToRole="UserLessionWord" />
-          <NavigationProperty Name="UserStudyHistory" Relationship="Self.FK_UserStudyHistory_UserStudyHistory" FromRole="UserLessionInfo" ToRole="UserStudyHistory" />
+          <NavigationProperty Name="UserStudyHistories" Relationship="Self.FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId" FromRole="UserLessionInfoes" ToRole="UserStudyHistories" />
         </EntityType>
-        <EntityType Name="UserLessionWord">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="wordId" Type="Int32" Nullable="false" />
-          <Property Name="lessionInfoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserLessionInfo" Relationship="Self.FK_UserLessionWord_UserLessionInfo" FromRole="UserLessionWord" ToRole="UserLessionInfo" />
-          <NavigationProperty Name="UserWord" Relationship="Self.FK_UserLessionWord_UserWord" FromRole="UserLessionWord" ToRole="UserWord" />
-        </EntityType>
-        <EntityType Name="UserStudyHistory">
+        <EntityType Name="UserStudyHistories">
           <Key>
             <PropertyRef Name="studyHistoryId" />
           </Key>
           <Property Name="studyHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="lessionInfoId" Type="Int32" Nullable="false" />
           <Property Name="numberlearnedWord" Type="Int32" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserStudyHistory_UserInfo" FromRole="UserStudyHistory" ToRole="UserInfo" />
-          <NavigationProperty Name="UserLessionInfo" Relationship="Self.FK_UserStudyHistory_UserStudyHistory" FromRole="UserStudyHistory" ToRole="UserLessionInfo" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK_dbo_UserStudyHistories_dbo_UserInfoes_username" FromRole="UserStudyHistories" ToRole="UserInfoes" />
+          <NavigationProperty Name="UserLessionInfoes" Relationship="Self.FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId" FromRole="UserStudyHistories" ToRole="UserLessionInfoes" />
         </EntityType>
-        <EntityType Name="UserWord">
+        <EntityType Name="UserWords">
           <Key>
             <PropertyRef Name="wordId" />
           </Key>
@@ -488,9 +389,8 @@
           <Property Name="definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="partOfSpeech" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="imageOrSynomyn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserLessionWord" Relationship="Self.FK_UserLessionWord_UserWord" FromRole="UserWord" ToRole="UserLessionWord" />
         </EntityType>
-        <EntityType Name="Word">
+        <EntityType Name="Words">
           <Key>
             <PropertyRef Name="wordId" />
           </Key>
@@ -498,183 +398,121 @@
           <Property Name="word1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="pronunciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="partOfSpeech" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="partOfSpeech" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="imageOrSynomyn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LessionWord" Relationship="Self.FK_LessionWord_WORD" FromRole="Word" ToRole="LessionWord" />
+          <Property Name="lessionId" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Theme_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Theme" Type="Self.Theme" Multiplicity="*" />
+        <Association Name="FK_dbo_Themes_dbo_Categories_categoryId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Themes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Categories">
               <PropertyRef Name="categoryId" />
             </Principal>
-            <Dependent Role="Theme">
+            <Dependent Role="Themes">
               <PropertyRef Name="categoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LessionInfo_Theme">
-          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
-          <End Role="LessionInfo" Type="Self.LessionInfo" Multiplicity="*" />
+        <Association Name="FK_dbo_LessionInfoes_dbo_Themes_themeId">
+          <End Role="Themes" Type="Self.Themes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LessionInfoes" Type="Self.LessionInfoes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Theme">
+            <Principal Role="Themes">
               <PropertyRef Name="themeId" />
             </Principal>
-            <Dependent Role="LessionInfo">
+            <Dependent Role="LessionInfoes">
               <PropertyRef Name="themeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LessionWord_LessionInfo">
-          <End Role="LessionInfo" Type="Self.LessionInfo" Multiplicity="1" />
-          <End Role="LessionWord" Type="Self.LessionWord" Multiplicity="*" />
+        <Association Name="FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId">
+          <End Role="LessionInfoes" Type="Self.LessionInfoes" Multiplicity="0..1" />
+          <End Role="StudyHistories" Type="Self.StudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LessionInfo">
+            <Principal Role="LessionInfoes">
               <PropertyRef Name="lessionInfoId" />
             </Principal>
-            <Dependent Role="LessionWord">
-              <PropertyRef Name="LessionInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudyHistory_LessionInfo">
-          <End Role="LessionInfo" Type="Self.LessionInfo" Multiplicity="0..1" />
-          <End Role="StudyHistory" Type="Self.StudyHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LessionInfo">
-              <PropertyRef Name="lessionInfoId" />
-            </Principal>
-            <Dependent Role="StudyHistory">
+            <Dependent Role="StudyHistories">
               <PropertyRef Name="lessionInfoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LessionWord_WORD">
-          <End Role="Word" Type="Self.Word" Multiplicity="1" />
-          <End Role="LessionWord" Type="Self.LessionWord" Multiplicity="*" />
+        <Association Name="FK_dbo_StudyHistories_dbo_UserInfoes_username">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="0..1" />
+          <End Role="StudyHistories" Type="Self.StudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Word">
-              <PropertyRef Name="wordId" />
-            </Principal>
-            <Dependent Role="LessionWord">
-              <PropertyRef Name="WordId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudyHistory_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="StudyHistory" Type="Self.StudyHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
+            <Principal Role="UserInfoes">
               <PropertyRef Name="username" />
             </Principal>
-            <Dependent Role="StudyHistory">
+            <Dependent Role="StudyHistories">
               <PropertyRef Name="username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserStudyHistory_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="UserStudyHistory" Type="Self.UserStudyHistory" Multiplicity="*" />
+        <Association Name="FK_dbo_UserStudyHistories_dbo_UserInfoes_username">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="0..1" />
+          <End Role="UserStudyHistories" Type="Self.UserStudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserInfo">
+            <Principal Role="UserInfoes">
               <PropertyRef Name="username" />
             </Principal>
-            <Dependent Role="UserStudyHistory">
+            <Dependent Role="UserStudyHistories">
               <PropertyRef Name="username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserLessionWord_UserLessionInfo">
-          <End Role="UserLessionInfo" Type="Self.UserLessionInfo" Multiplicity="1" />
-          <End Role="UserLessionWord" Type="Self.UserLessionWord" Multiplicity="*" />
+        <Association Name="FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId">
+          <End Role="UserLessionInfoes" Type="Self.UserLessionInfoes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserStudyHistories" Type="Self.UserStudyHistories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserLessionInfo">
+            <Principal Role="UserLessionInfoes">
               <PropertyRef Name="lessionInfoId" />
             </Principal>
-            <Dependent Role="UserLessionWord">
+            <Dependent Role="UserStudyHistories">
               <PropertyRef Name="lessionInfoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserStudyHistory_UserStudyHistory">
-          <End Role="UserLessionInfo" Type="Self.UserLessionInfo" Multiplicity="1" />
-          <End Role="UserStudyHistory" Type="Self.UserStudyHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserLessionInfo">
-              <PropertyRef Name="lessionInfoId" />
-            </Principal>
-            <Dependent Role="UserStudyHistory">
-              <PropertyRef Name="lessionInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserLessionWord_UserWord">
-          <End Role="UserWord" Type="Self.UserWord" Multiplicity="1" />
-          <End Role="UserLessionWord" Type="Self.UserLessionWord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserWord">
-              <PropertyRef Name="wordId" />
-            </Principal>
-            <Dependent Role="UserLessionWord">
-              <PropertyRef Name="wordId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="YVFlashCardEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="YVFlashCardEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="LessionInfo" EntityType="Self.LessionInfo" />
-          <EntitySet Name="LessionWord" EntityType="Self.LessionWord" />
-          <EntitySet Name="StudyHistory" EntityType="Self.StudyHistory" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="LessionInfoes" EntityType="Self.LessionInfoes" />
+          <EntitySet Name="StudyHistories" EntityType="Self.StudyHistories" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Theme" EntityType="Self.Theme" />
-          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
-          <EntitySet Name="UserLessionInfo" EntityType="Self.UserLessionInfo" />
-          <EntitySet Name="UserLessionWord" EntityType="Self.UserLessionWord" />
-          <EntitySet Name="UserStudyHistory" EntityType="Self.UserStudyHistory" />
-          <EntitySet Name="UserWord" EntityType="Self.UserWord" />
-          <EntitySet Name="Word" EntityType="Self.Word" />
-          <AssociationSet Name="FK_Theme_Category" Association="Self.FK_Theme_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Theme" EntitySet="Theme" />
+          <EntitySet Name="Themes" EntityType="Self.Themes" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfoes" />
+          <EntitySet Name="UserLessionInfoes" EntityType="Self.UserLessionInfoes" />
+          <EntitySet Name="UserStudyHistories" EntityType="Self.UserStudyHistories" />
+          <EntitySet Name="UserWords" EntityType="Self.UserWords" />
+          <EntitySet Name="Words" EntityType="Self.Words" />
+          <AssociationSet Name="FK_dbo_Themes_dbo_Categories_categoryId" Association="Self.FK_dbo_Themes_dbo_Categories_categoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Themes" EntitySet="Themes" />
           </AssociationSet>
-          <AssociationSet Name="FK_LessionInfo_Theme" Association="Self.FK_LessionInfo_Theme">
-            <End Role="Theme" EntitySet="Theme" />
-            <End Role="LessionInfo" EntitySet="LessionInfo" />
+          <AssociationSet Name="FK_dbo_LessionInfoes_dbo_Themes_themeId" Association="Self.FK_dbo_LessionInfoes_dbo_Themes_themeId">
+            <End Role="Themes" EntitySet="Themes" />
+            <End Role="LessionInfoes" EntitySet="LessionInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_LessionWord_LessionInfo" Association="Self.FK_LessionWord_LessionInfo">
-            <End Role="LessionInfo" EntitySet="LessionInfo" />
-            <End Role="LessionWord" EntitySet="LessionWord" />
+          <AssociationSet Name="FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId" Association="Self.FK_dbo_StudyHistories_dbo_LessionInfoes_lessionInfoId">
+            <End Role="LessionInfoes" EntitySet="LessionInfoes" />
+            <End Role="StudyHistories" EntitySet="StudyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudyHistory_LessionInfo" Association="Self.FK_StudyHistory_LessionInfo">
-            <End Role="LessionInfo" EntitySet="LessionInfo" />
-            <End Role="StudyHistory" EntitySet="StudyHistory" />
+          <AssociationSet Name="FK_dbo_StudyHistories_dbo_UserInfoes_username" Association="Self.FK_dbo_StudyHistories_dbo_UserInfoes_username">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="StudyHistories" EntitySet="StudyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_LessionWord_WORD" Association="Self.FK_LessionWord_WORD">
-            <End Role="Word" EntitySet="Word" />
-            <End Role="LessionWord" EntitySet="LessionWord" />
+          <AssociationSet Name="FK_dbo_UserStudyHistories_dbo_UserInfoes_username" Association="Self.FK_dbo_UserStudyHistories_dbo_UserInfoes_username">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="UserStudyHistories" EntitySet="UserStudyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudyHistory_UserInfo" Association="Self.FK_StudyHistory_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="StudyHistory" EntitySet="StudyHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserStudyHistory_UserInfo" Association="Self.FK_UserStudyHistory_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="UserStudyHistory" EntitySet="UserStudyHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserLessionWord_UserLessionInfo" Association="Self.FK_UserLessionWord_UserLessionInfo">
-            <End Role="UserLessionInfo" EntitySet="UserLessionInfo" />
-            <End Role="UserLessionWord" EntitySet="UserLessionWord" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserStudyHistory_UserStudyHistory" Association="Self.FK_UserStudyHistory_UserStudyHistory">
-            <End Role="UserLessionInfo" EntitySet="UserLessionInfo" />
-            <End Role="UserStudyHistory" EntitySet="UserStudyHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserLessionWord_UserWord" Association="Self.FK_UserLessionWord_UserWord">
-            <End Role="UserWord" EntitySet="UserWord" />
-            <End Role="UserLessionWord" EntitySet="UserLessionWord" />
+          <AssociationSet Name="FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId" Association="Self.FK_dbo_UserStudyHistories_dbo_UserLessionInfoes_lessionInfoId">
+            <End Role="UserLessionInfoes" EntitySet="UserLessionInfoes" />
+            <End Role="UserStudyHistories" EntitySet="UserStudyHistories" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -723,7 +561,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="YVFlashCardModelStoreContainer" CdmEntityContainer="YVFlashCardEntities">
+        <EntityContainerMapping StorageEntityContainer="YVFlashCardModelStoreContainer" CdmEntityContainer="YVFlashCardEntities1">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="YVFlashCardModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -734,9 +572,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="YVFlashCardModel.Category">
-              <MappingFragment StoreEntitySet="Category">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="YVFlashCardModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -746,9 +584,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LessionInfo">
-            <EntityTypeMapping TypeName="YVFlashCardModel.LessionInfo">
-              <MappingFragment StoreEntitySet="LessionInfo">
+          <EntitySetMapping Name="LessionInfoes">
+            <EntityTypeMapping TypeName="YVFlashCardModel.LessionInfoes">
+              <MappingFragment StoreEntitySet="LessionInfoes">
                 <ScalarProperty Name="lessionInfoId" ColumnName="lessionInfoId" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -757,18 +595,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LessionWord">
-            <EntityTypeMapping TypeName="YVFlashCardModel.LessionWord">
-              <MappingFragment StoreEntitySet="LessionWord">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="LessionInfoId" ColumnName="LessionInfoId" />
-                <ScalarProperty Name="WordId" ColumnName="WordId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StudyHistory">
-            <EntityTypeMapping TypeName="YVFlashCardModel.StudyHistory">
-              <MappingFragment StoreEntitySet="StudyHistory">
+          <EntitySetMapping Name="StudyHistories">
+            <EntityTypeMapping TypeName="YVFlashCardModel.StudyHistories">
+              <MappingFragment StoreEntitySet="StudyHistories">
                 <ScalarProperty Name="studyHisId" ColumnName="studyHisId" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -788,9 +617,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Theme">
-            <EntityTypeMapping TypeName="YVFlashCardModel.Theme">
-              <MappingFragment StoreEntitySet="Theme">
+          <EntitySetMapping Name="Themes">
+            <EntityTypeMapping TypeName="YVFlashCardModel.Themes">
+              <MappingFragment StoreEntitySet="Themes">
                 <ScalarProperty Name="themeId" ColumnName="themeId" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -800,9 +629,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserInfo">
-            <EntityTypeMapping TypeName="YVFlashCardModel.UserInfo">
-              <MappingFragment StoreEntitySet="UserInfo">
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="YVFlashCardModel.UserInfoes">
+              <MappingFragment StoreEntitySet="UserInfoes">
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="fullName" ColumnName="fullName" />
@@ -815,9 +644,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserLessionInfo">
-            <EntityTypeMapping TypeName="YVFlashCardModel.UserLessionInfo">
-              <MappingFragment StoreEntitySet="UserLessionInfo">
+          <EntitySetMapping Name="UserLessionInfoes">
+            <EntityTypeMapping TypeName="YVFlashCardModel.UserLessionInfoes">
+              <MappingFragment StoreEntitySet="UserLessionInfoes">
                 <ScalarProperty Name="lessionInfoId" ColumnName="lessionInfoId" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -825,18 +654,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserLessionWord">
-            <EntityTypeMapping TypeName="YVFlashCardModel.UserLessionWord">
-              <MappingFragment StoreEntitySet="UserLessionWord">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="wordId" ColumnName="wordId" />
-                <ScalarProperty Name="lessionInfoId" ColumnName="lessionInfoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserStudyHistory">
-            <EntityTypeMapping TypeName="YVFlashCardModel.UserStudyHistory">
-              <MappingFragment StoreEntitySet="UserStudyHistory">
+          <EntitySetMapping Name="UserStudyHistories">
+            <EntityTypeMapping TypeName="YVFlashCardModel.UserStudyHistories">
+              <MappingFragment StoreEntitySet="UserStudyHistories">
                 <ScalarProperty Name="studyHistoryId" ColumnName="studyHistoryId" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -845,9 +665,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserWord">
-            <EntityTypeMapping TypeName="YVFlashCardModel.UserWord">
-              <MappingFragment StoreEntitySet="UserWord">
+          <EntitySetMapping Name="UserWords">
+            <EntityTypeMapping TypeName="YVFlashCardModel.UserWords">
+              <MappingFragment StoreEntitySet="UserWords">
                 <ScalarProperty Name="wordId" ColumnName="wordId" />
                 <ScalarProperty Name="word" ColumnName="word" />
                 <ScalarProperty Name="pronunciation" ColumnName="pronunciation" />
@@ -857,15 +677,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Word">
-            <EntityTypeMapping TypeName="YVFlashCardModel.Word">
-              <MappingFragment StoreEntitySet="Word">
+          <EntitySetMapping Name="Words">
+            <EntityTypeMapping TypeName="YVFlashCardModel.Words">
+              <MappingFragment StoreEntitySet="Words">
                 <ScalarProperty Name="wordId" ColumnName="wordId" />
-                <ScalarProperty Name="word1" ColumnName="word" />
+                <ScalarProperty Name="word1" ColumnName="word1" />
                 <ScalarProperty Name="pronunciation" ColumnName="pronunciation" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="partOfSpeech" ColumnName="partOfSpeech" />
                 <ScalarProperty Name="imageOrSynomyn" ColumnName="imageOrSynomyn" />
+                <ScalarProperty Name="lessionId" ColumnName="lessionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

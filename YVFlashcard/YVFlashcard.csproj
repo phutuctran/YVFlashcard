@@ -131,11 +131,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\LessionInfoService.cs" />
     <Compile Include="Service\ThemeService.cs" />
     <Compile Include="Service\UserInfoService.cs" />
+    <Compile Include="Service\WordService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Admin\Lesson.cshtml" />
     <None Include="Areas\Admin\Views\Admin\wordList.cshtml" />
     <Content Include="Areas\Plugins\css\bootstrapad.min.css" />
     <Content Include="Areas\Plugins\css\stylead.css" />

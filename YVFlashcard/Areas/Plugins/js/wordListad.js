@@ -1,3 +1,5 @@
+﻿var DATA = [];
+var LESSIONID;
 (function ($) {
     "use strict";
 
@@ -61,36 +63,18 @@ function loadCreateImage() {
     }
 }
 
-function loadImage() {
-    var fileInput = document.getElementById('fileInput');
-    var modalImg = document.getElementById('modalImg');
+function loadWordImage() {
+    var finder = new CKFinder();
+    finder.selectActionFunction = function (fileUrl) {
 
-    // Check if a file is selected
-    if (fileInput.files && fileInput.files[0]) {
-        var reader = new FileReader();
-
-        // Set up the FileReader to read the selected file
-        reader.onload = function (e) {
-            // Set the source of the modalImg to the loaded image
-            modalImg.src = e.target.result;
-        };
-
-        // Read the selected file as a data URL
-        reader.readAsDataURL(fileInput.files[0]);
+        document.getElementById("WordImg").src = fileUrl;
+        document.getElementById("inpWordImage").value = fileUrl;
     }
+    finder.popup();
 }
 
-function saveLesson() {
-    let lessonName = document.getElementById("lessonName").value;
-}
 
-function saveAddVocab() {
-    let imgSrc = document.getElementById("InputImg").src;
-    let vocab = document.getElementById("createVocab").value;
-    let pro = document.getElementById("createPro").value;
-    let part = document.getElementById("createPart").value;
-    let def = document.getElementById("createDef").value;
-}
+
 
 function saveEditVocab() {
     let imgSrc = document.getElementById("modalImg").src;
@@ -107,4 +91,88 @@ function editHandle(buttonId) {
     let pro = document.getElementById("editPro").value;
     let part = document.getElementById("editPart").value;
     let def = document.getElementById("editDef").value;
+}
+
+function CreateLessonRows(id) {
+    DATA = [];
+    LESSIONID = id;
+    var lessonId = id;
+    document.getElementById("word-table").innerHTML = "";
+    var data = {
+        lessonId: id,
+    }
+    $.ajax({
+        url: '/Admin/Admin/GetWordByLessonid?lessonId=' + id,
+        type: 'GET',
+        success: function (_data) {
+            for (let i = 0; i < _data.length; i++) {
+                DATA.push(_data[i]);
+            }
+            
+
+        },
+        error: function (error) {
+            console.log('Error:', error);
+        }
+    });
+    console.log(DATA);
+
+    var container = document.getElementById("word-table");
+   
+    for (let i = 0; i < DATA.length; i++) {
+        var row = renderRow(i, DATA[i].word1, DATA[i].pronunciation, DATA[i].partOfSpeech, dat[i].definition, DATA[i].imageOrSynomyn, DATA[i].wordId);
+        container.appendChild(row);
+    }
+
+}
+
+function renderRow(no, word, pro, pOS, def, image, id) {
+    const row = document.createElement('tr')
+    row.innerHTML = `
+    
+    <td>${no}</td>
+    <td>${image} </td>
+    <td>${word}</td>
+    <td>${pro}</td>
+    <td>${pOS}</td>
+    <td>${def}</td>
+    <input>${id}</input>
+    <td>
+        <div style="display: flex;">
+            <button type="button" id="3" onclick="editHandleWord(${id})" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editVocab">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i></button>
+        </div>
+    
+    `
+    return row;
+}
+
+function saveAddVocab() {
+    console.log(LESSIONID);
+    let imgSrc = document.getElementById("inpWordImage").value;
+    let vocab = document.getElementById("createVocab").value;
+    let pro = document.getElementById("createPro").value;
+    let part = document.getElementById("createPart").value;
+    let def = document.getElementById("createDef").value;
+    data = {
+        word1: vocab,
+        pronunciation: pro,
+        definition: def,
+        partOfSpeech: part,
+        imageOrSynomyn: imgSrc,
+        lessionId: LESSIONID,
+    }
+    $.ajax({
+        url: '/Admin/Admin/InsertWord',
+        type: 'POST', // Phương thức HTTP
+        data: data,
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 }
