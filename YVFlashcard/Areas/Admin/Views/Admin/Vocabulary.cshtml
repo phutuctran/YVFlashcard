@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Vocabulary";
+}
+
+<div class="main-content">
+
+    <div class="sub-header mt-4 ms-5 d-flex">
+
+        <div class="dropdown me-5">
+            <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Vocabulary Word Lists
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" onclick=" cefrHandle()">CEFR Levels</a></li>
+                <li><a class="dropdown-item" onclick="specialVocabHandle()">Specialised Vocabulary</a></li>
+                <li><a class="dropdown-item" onclick="idiomHandle()">Idioms</a></li>
+            </ul>
+        </div>
+
+        <div class="input-group md-form form-sm form-1 pl-0">
+            <div class="input-group-prepend">
+                <span class="input-group-text " style="background-color: #009CFF;" id="basic-text1">
+                    <i class="fas fa-search text-white"
+                       aria-hidden="true"></i>
+                </span>
+            </div>
+            <input class=" my-0 py-0 " style="border: 1px grey solid; width: 600px; height: 30px;" type="text" placeholder="Search" aria-label="Search">
+        </div>
+
+        <button class="btn btn-primary  me-5" style="height: 30px; width: 180px;" data-bs-toggle="modal" data-bs-target="#createTheme"><i class="fa-solid fa-plus"></i> Add Theme</button>
+
+    </div>
+
+    <!-- Recent Sales Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0" id="theme-infor">Theme Information</h6>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col" style="width: 30px;">No</th>
+                            <th scope="col" style="width: 90px;">Image</th>
+                            <th scope="col" style="width:150px;">Name</th>
+                            <th scope="col">Description</th>
+                            <th style="width: 90px;"> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="theme-table">
+                        <!-- <tr>
+                              <td>1</td>
+                              <td><img src="./img/Avt.png"  width="70px" height="70px"/></td>
+                              <td>B1sdfff</td>
+                              <td>Maledg</td>
+                              <td >
+                                  <div style="display: flex;">
+                                      <button type="button" id="3" onclick="editHandle(this.id)" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#themeModal">
+                                          Edit</button>
+                                      <button class="btn btn-primary" >  View</button>
+                                  </div>
+                              </td>
+                          </tr>
+                           -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit-->
+<div class="modal fade  " id="themeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themeModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Image</label><br />
+                <div>
+                    <img id="modalImg" src="" width="100px" height="100px" /><br />
+                    <input id="inpImage" type="hidden" name="Image" value="" />
+                </div>
+                <button type="button"  class="btn btn-success btn-sm" onclick="loadImage()">Upload</button><br />
+
+
+                <label>Name</label><br />
+                <input id="modalName" type="text" /> <br />
+
+                <label>Description</label><br />
+                <input id="modalDes" type="text" width="200px" /> <br />
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveEdit()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ---------------------Modal Create------------------------- -->
+
+<div class="modal fade  " id="createTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themeModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Image</label><br />
+                <div>
+                    <img id="createImg" width="100px" height="100px" /><br />
+                    <input id="inpImageCreate" type="hidden" name="Image" value="" />
+                </div>
+                <button type="button" id="button-upload" class="btn btn-success btn-sm" onclick="loadCreateImage()">Upload</button><br />
+
+
+                <label>Name</label><br />
+                <input id="createName" type="text" /> <br />
+
+                <label>Description</label><br />
+                <input id="createDes" type="text" width="200px" /> <br />
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addRow()">ADD</button>
+            </div>
+        </div>
+    </div>
+</div>
+

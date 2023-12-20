@@ -1,0 +1,12 @@
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\YVFlashcard.Core.dll.config
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\YVFlashcard.Core.dll
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\YVFlashcard.Core.pdb
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\EntityFramework.dll
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\EntityFramework.xml
+D:\YVFlashcard\YVFlashcard.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\YVFlashcard\YVFlashcard.Core\obj\Debug\YVFlashcard.Core.csproj.AssemblyReference.cache
+D:\YVFlashcard\YVFlashcard.Core\obj\Debug\YVFlashcard.Core.csproj.CoreCompileInputs.cache
+D:\YVFlashcard\YVFlashcard.Core\obj\Debug\YVFlashcard.Core.csproj.CopyComplete
+D:\YVFlashcard\YVFlashcard.Core\obj\Debug\YVFlashcard.Core.dll
+D:\YVFlashcard\YVFlashcard.Core\obj\Debug\YVFlashcard.Core.pdb
