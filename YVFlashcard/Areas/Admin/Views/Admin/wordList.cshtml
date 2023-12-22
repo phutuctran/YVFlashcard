@@ -15,9 +15,10 @@
             </button>
             <ul class="dropdown-menu">
                 @for (int i = 0; i < Model.Count; i++)
-                { <li><a class="dropdown-item" onclick="CreateLessonRows(@Model[i].lessionInfoId)">@Model[i].name</a></li>
+                {
+                    <li><a class="dropdown-item" onclick="CreateLessonRows(@Model[i].lessionInfoId)">@Model[i].name</a></li>
                 }
-                <li><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLesson" "> Add </button></li>
+                <li><button class="btn btn-primary btn-sm" style="margin-left:10px" data-bs-toggle="modal" data-bs-target="#createLesson" > Add </button></li>
             </ul>
         </div>
 
@@ -31,7 +32,7 @@
             <input class=" my-0 py-0 " style="border: 1px grey solid; width: 600px; height: 30px;" type="text" placeholder="Search" aria-label="Search">
         </div>
 
-        <button class="btn btn-primary  me-5" style="height: 30px; width: 280px;"  data-bs-toggle="modal" data-bs-target="#createVocab2"><i class="fa-solid fa-plus"></i> Add Vocabulary</button>
+        <button class="btn btn-primary  me-5" style="height: 30px; width: 280px;" data-bs-toggle="modal" data-bs-target="#createVocab2"><i class="fa-solid fa-plus"></i> Add Vocabulary</button>
 
 
     </div>
@@ -58,7 +59,6 @@
                         </tr>
                     </thead>
                     <tbody id="word-table">
- 
                     </tbody>
                 </table>
             </div>
@@ -75,14 +75,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="themeModalLabel">Modal title</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="closeCreateWord-btn" data-bs-dismiss="modal"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <label>Image</label><br />
                 <div>
-                    <img id="WordImg" src="" width="100px" height="100px" /><br />
+                    <img id="WordImg" width="100px" height="100px" /><br />
                     <input id="inpWordImage" type="hidden" name="Image" value="" />
                 </div>
                 <button type="button" class="btn btn-success btn-sm" onclick="loadWordImage()">Upload</button><br />
@@ -91,18 +91,19 @@
                 <input id="createVocab" type="text" /> <br />
 
                 <label>Pronunciation</label><br />
-                <input id="createPro" type="text" width="200px" /> <br />
+                <input id="createPro" type="text" width="300px" /> <br />
 
                 <label>Part of Speech</label><br />
-                <input id="createPart" type="text" width="200px" /> <br />
+                <input id="createPart" type="text" width="300px" /> <br />
 
                 <label>Definition</label><br />
-                <input id="createDef" type="text" width="200px" /> <br />
+                <textarea id="createDef" style="width:450px"> </textarea>
+                @*<input id="createDef" type="text" width="max-content" /> <br />*@
 
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="saveAddVocab()">ADD</button>
             </div>
         </div>
@@ -117,31 +118,31 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="themeModalLabel">Modal title</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="close " id="closeEdit-btn" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <label>Image</label><br />
                 <div>
-                    <img id="modalImg" src="./img/Avt.png" width="100px" height="100px" /><br />
+                    <img id="modalImgWord" src="./img/Avt.png" width="100px" height="100px" /><br />
+                    <input id="inpWordImageEdit" type="hidden" name="Image" value="" />
                 </div>
-                <input type="file" id="fileInput" onchange="loadImage()" multiple> <br />
+                <button type="button" class="btn btn-success btn-sm" onclick="loadWordImageForEdit()">Upload</button><br />
 
                 <label>Vocabulary</label><br />
-                <input id="editVocab" type="text" /> <br />
+                <input id="editVocabWord" type="text" /> <br />
 
                 <label>Pronunciation</label><br />
-                <input id="editPro" type="text" width="200px" /> <br />
+                <input id="editProWord" type="text" width="300px" /> <br />
 
                 <label>Part of Speech</label><br />
-                <input id="editPart" type="text" width="200px" /> <br />
+                <input id="editPartWord" type="text" width="300px" /> <br />
 
                 <label>Definition</label><br />
-                <input id="editDef" type="text" width="200px" /> <br />
-
-
-
+                <textarea id="editDefWord" style="width:450px"> </textarea>
+                <input id="wordIdEdit" type="hidden" />
+                <input id="lessonIdEdit" type="hidden" />
 
 
             </div>
@@ -159,13 +160,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create a new lesson</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" id="closeCreateLesson-btn" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <label>Lesson name:</label>
-                <input id="lessonName" type="text" style="width:300px"/>
+                <input id="lessonName" type="text" style="width:300px" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -174,8 +175,12 @@
         </div>
     </div>
 </div>
+<
 
-<script src="~/Areas/Plugins/js/wordListad.js"></script>
+
+
+
+
 
 <script>
     function saveLesson() {
@@ -195,5 +200,6 @@
                 console.log(error);
             }
         });
+        document.getElementById("closeCreateLesson-btn").click();
     }
 </script>

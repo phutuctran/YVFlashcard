@@ -126,6 +126,13 @@ namespace YVFlashcard.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult UpdateWord(WordDTO word)
+        {
+            wordService.Update(word.wordId, word);
+            return View();
+        }
+
 
     }
 }

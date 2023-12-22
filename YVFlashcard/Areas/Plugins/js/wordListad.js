@@ -35,12 +35,7 @@ var LESSIONID;
     });
 
 
-    // Progress Bar
-    $('.pg-bar').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
-        });
-    }, {offset: '80%'});
+   
 
 })(jQuery);
 
@@ -73,27 +68,62 @@ function loadWordImage() {
     finder.popup();
 }
 
+function loadWordImageForEdit() {
+    var finder = new CKFinder();
+    finder.selectActionFunction = function (fileUrl) {
+
+        document.getElementById("modalImgWord").src = fileUrl;
+        document.getElementById("inpWordImageEdit").value = fileUrl;
+    }
+    finder.popup();
+}
 
 
+function clearTableWord() {
+    const container = document.getElementById("word-table");
+    container.innerHTML = "";
+}
 
 function saveEditVocab() {
-    let imgSrc = document.getElementById("modalImg").src;
-    let vocab = document.getElementById("editVocab").value;
-    let pro = document.getElementById("editPro").value;
-    let part = document.getElementById("editPart").value;
-    let def = document.getElementById("editDef").value;
+    clearTableWord();
+    let imgSrc = document.getElementById("inpWordImageEdit").value;
+    let vocab = document.getElementById("editVocabWord").value;
+    let pro = document.getElementById("editProWord").value;
+    let part = document.getElementById("editPartWord").value;
+    let def = document.getElementById("editDefWord").value;
+    let id = document.getElementById("wordIdEdit").value;
+    let lessonId = document.getElementById("lessonIdEdit").value;
+    tmpdata = {
+        wordId: id,
+        word1: vocab,
+        pronunciation: pro,
+        definition: def,
+        partOfSpeech: part,
+        imageOrSynomyn: imgSrc,
+        lessionId: lessonId,
+    }
+    $.ajax({
+        url: '/Admin/Admin/UpdateWord',
+        type: 'POST', // Phương thức HTTP
+        data: tmpdata,
+        success: function (result) {
+            console.log("OK" + result);
+            /*CreateLessonRows(lessonId);*/
+        },
+        error: function (error) {
+            console.log(error);
+            CreateLessonRows(lessonId);
+        }
+        
+    });
+    var button = document.getElementById('closeEdit-btn');
+    button.click();
+  
 }
 
-
-function editHandle(buttonId) {
-    const imgModal = document.getElementById("modalImg");
-    let vocab = document.getElementById("editVocab").value;
-    let pro = document.getElementById("editPro").value;
-    let part = document.getElementById("editPart").value;
-    let def = document.getElementById("editDef").value;
-}
 
 function CreateLessonRows(id) {
+    clearTableWord();
     DATA = [];
     LESSIONID = id;
     var lessonId = id;
@@ -108,46 +138,68 @@ function CreateLessonRows(id) {
             for (let i = 0; i < _data.length; i++) {
                 DATA.push(_data[i]);
             }
-            
-
+            renderAllRowWord(DATA);
         },
         error: function (error) {
             console.log('Error:', error);
         }
     });
-    console.log(DATA);
-
-    var container = document.getElementById("word-table");
-   
-    for (let i = 0; i < DATA.length; i++) {
-        var row = renderRow(i, DATA[i].word1, DATA[i].pronunciation, DATA[i].partOfSpeech, dat[i].definition, DATA[i].imageOrSynomyn, DATA[i].wordId);
-        container.appendChild(row);
-    }
+    
+    
 
 }
 
-function renderRow(no, word, pro, pOS, def, image, id) {
+function renderAllRowWord(data) {
+    var container = document.getElementById("word-table");
+
+    //console.log(data.length);
+
+    for (let i = 0; i < data.length; i++) {
+        //console.log(data[i]);
+        //console.log(data[i].partOfSpeech);
+        const row = renderRowWord(i, data[i].word1, data[i].pronunciation, data[i].partOfSpeech, data[i].definition, data[i].imageOrSynomyn, data[i].wordId);
+        container.appendChild(row);
+        
+    }
+}
+
+function renderRowWord(no, word, pro, pOS, def, image, id) {
+
+    
     const row = document.createElement('tr')
     row.innerHTML = `
     
-    <td>${no}</td>
-    <td>${image} </td>
+    <td>${no + 1}</td>
+    <td><img src="${image}"  width="70px" height="70px"/> </td>
     <td>${word}</td>
     <td>${pro}</td>
     <td>${pOS}</td>
     <td>${def}</td>
-    <input>${id}</input>
     <td>
         <div style="display: flex;">
-            <button type="button" id="3" onclick="editHandleWord(${id})" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editVocab">
+            <button type="button" id="3" onclick="editHandleWord(${no})" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#editVocab">
                 <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i></button>
         </div>
+    <td>
     
     `
     return row;
 }
+
+function editHandleWord(id) {
+    //console.log(id);
+    document.getElementById("modalImgWord").src = DATA[id].imageOrSynomyn;
+    document.getElementById("inpWordImageEdit").value = DATA[id].imageOrSynomyn;
+    document.getElementById("editVocabWord").value = DATA[id].word1;
+    document.getElementById("editProWord").value = DATA[id].pronunciation;
+    document.getElementById("editPartWord").value = DATA[id].partOfSpeech;
+    document.getElementById("editDefWord").value = DATA[id].definition;
+    document.getElementById("wordIdEdit").value = DATA[id].wordId;
+    document.getElementById("lessonIdEdit").value = DATA[id].lessionId;
+}
+
 
 function saveAddVocab() {
     console.log(LESSIONID);
@@ -170,9 +222,25 @@ function saveAddVocab() {
         data: data,
         success: function (result) {
             console.log(result);
+           
         },
         error: function (error) {
             console.log(error);
+       
         }
     });
+
+    
+    document.getElementById("closeCreateWord-btn").click();
+    clearTableWord();
+    document.getElementById("inpWordImage").value = "";
+    document.getElementById("WordImg").src = "";
+    document.getElementById("createVocab").value = "";
+    document.getElementById("createPro").value = "";
+    document.getElementById("createPart").value = "";
+    document.getElementById("createDef").value = "";
+    CreateLessonRows(LESSIONID);
+    
+
 }
+

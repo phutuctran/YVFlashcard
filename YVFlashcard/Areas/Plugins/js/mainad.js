@@ -89,7 +89,7 @@ function loadImage() {
     finder.popup();
 }
 
-function loadCreateImage() {
+function loadCreateImageTheme() {
     var finder = new CKFinder();
     finder.selectActionFunction = function (fileUrl) {
         console.log(fileUrl);
@@ -159,22 +159,27 @@ let dataIndex;
 
 function editHandle(buttonId){
     const imgModal = document.getElementById("modalImg");
+   
+    var inpImg = document.getElementById("inpImageCreate");
     var name = document.getElementById("modalName");
     var des = document.getElementById("modalDes");
     dataIndex=buttonId;
     if (TYPE == 1) {
+        inpImg.value = dataCEFR[buttonId].image;
         imgModal.src = dataCEFR[buttonId].image;
         name.value = dataCEFR[buttonId].name;
         des.value = dataCEFR[buttonId].description;
         return;
     }
     if (TYPE == 2) {
+        inpImg.value = specialVocab[buttonId].image;
         imgModal.src = specialVocab[buttonId].image;
         name.value = specialVocab[buttonId].name;
         des.value = specialVocab[buttonId].description;
         return;
     }
     if (TYPE == 3) {
+        inpImg.value = idioms[buttonId].image;
         imgModal.src = idioms[buttonId].image;
         name.value = idioms[buttonId].name;
         des.value = idioms[buttonId].description;
@@ -182,28 +187,28 @@ function editHandle(buttonId){
     }
 }
 
-function clearTable(str){
+function clearTableTheme(str){
     const container = document.getElementById("theme-table");
     container.innerHTML="";
     const infor = document.getElementById("theme-infor");
     infor.innerText=str;
 }
 function cefrHandle(){
-    clearTable("CEFR LEVEL");
+    clearTableTheme("CEFR LEVEL");
 
     //console.log("here" +  dataCEFR);
-
+    
     renderAllRows(dataCEFR);
    
     TYPE=1;
 }
 function specialVocabHandle(){
-    clearTable("SPECIALIZED VOCABULARY");
+    clearTableTheme("SPECIALIZED VOCABULARY");
     renderAllRows(specialVocab);
     TYPE=2;
 }
 function idiomHandle(){
-    clearTable("IDIOMS");
+    clearTableTheme("IDIOMS");
     renderAllRows(idioms);
     TYPE=3;
 }
@@ -258,12 +263,25 @@ function saveEdit() {
         type: 'POST', // Phương thức HTTP
         data: data,
         success: function (result) {
-            console.log(result);
+            console.log(result);  
         },
         error: function (error) {
             console.log(error);
+            if (TYPE == 1) {
+                cefrHandle();
+
+            }
+            if (TYPE == 2) {
+                specialVocabHandle();
+
+            }
+            if (TYPE == 3) {
+                idiomHandle();
+
+            }
         }
     });
+    document.getElementById("closeEditTheme-btn").click(); 
 }
 function deleteTheme(id) {
     let key = -1;
