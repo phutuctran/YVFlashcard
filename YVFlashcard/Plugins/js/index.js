@@ -25,6 +25,7 @@ function GetAllThemefromDB() {
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
                 data[i].videoSrc = videoSrcs[countVideo];
+                data[i].enable = true;
                 countVideo++;
                 if (countVideo >= videoSrcs.length) {
                     countVideo = 0;
@@ -55,10 +56,12 @@ GetAllThemefromDB();
 // ------------------------render 3 types cards-----------------------
 
   // Function to create a specialized card
-  function createCard(data) {
+function createCard(data) {
+    
     const card = document.createElement("div");
     card.className = "col-3 specialised";
     card.innerHTML = `
+
       <div class="card card_theme" data-category="specialised">
         <div class="outer_card">
           <div class="pics">
