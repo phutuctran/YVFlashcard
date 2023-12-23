@@ -1,5 +1,6 @@
 
 *.vsidx
 *.vsidx
-*.dll
 *.json
+packages/Microsoft.TypeScript.MSBuild.5.3.3/tools/net45/System.IO.FileSystem.dll
+packages/Microsoft.TypeScript.MSBuild.5.3.3/tools/net45/System.IO.FileSystem.Primitives.dll
