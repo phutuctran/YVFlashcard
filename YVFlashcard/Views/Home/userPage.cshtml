@@ -14,32 +14,33 @@
                         <div class="row g-0">
 
                             <div class="col-md-4 gradient-custom text-center left-Infor " style="padding-top: 30px;">
-                                <img src="@Model.avatar" style="background-color: white; border: 1px solid grey; "
+                                <img src="@Model.avatar" id="AvtImg" style="background-color: white; border: 1px solid grey; "
                                      class="rounded-circle userAvt  mt-5" height="120" width="120" alt="Portrait of a Woman"
                                      loading="lazy" />
-                                <p class="username" style="font-size: xx-large; "></p>
-                                <div class="mt-4 ms-3">
-                                    <button class="btn btn-success ellipse-btn btn-sm" onclick='clicker()'>
-                                        <i class="fa-solid fa-camera"></i> Upload photo
-                                    </button><input type='file' id='file-btn' />
+                                <input type="hidden" id="inpAvtImage" name="Image" value="" />
+                                <div>
+                                    <button class="btn btn-outline-success ellipse-btn btn-sm mt-5" onclick="loadAvtImage()"><i class="fa-solid fa-camera"></i> Upload photo</button>
                                 </div>
+                               
+                          
                             </div>
 
                             <div class="col-md-8 right-Infor">
                                 <div class="card-body p-4">
                                     <form class="form" novalidate="">
-                                        
+
                                         <label>Username</label>
                                         <input id="userName-input" class="form-control" type="text" name="username" placeholder="Vee"
                                                value="@Model.username">
                                         <label>Email</label>
                                         <input id="emailUser-input" class="form-control" type="text" placeholder="user@example.com" value="@Model.email">
                                         <label>Current Password</label>
-                                        <input id="pass-input" class="form-control" type="password" placeholder="••••••">
+                                        <span hidden>Current password is incorrect!</span><br/>
+                                        <input  id="pass-input" class="form-control" type="password" placeholder="*****">
                                         <label>New Password</label>
-                                        <input id="newpass-input" class="form-control" type="password" placeholder="••••••">
+                                        <input id="newpass-input" class="form-control" type="password" placeholder="******">
                                         <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                        <input id="confirm-input" class="form-control" type="password" placeholder="••••••">
+                                        <input id="confirm-input" class="form-control" type="password" placeholder="******">
                                     </form>
                                 </div>
                                 <div class="col d-flex justify-content-end me-4">
@@ -54,4 +55,5 @@
         </div>
     </section>
 </div>
+<script src="~/Plugins/js/userPage.js"></script>
 

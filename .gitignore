@@ -9,3 +9,6 @@ packages/Microsoft.TypeScript.MSBuild.5.3.3/tools/net45/System.IO.FileSystem.Pri
 *.cache
 .vs/YVFlashcard/v17/.suo
 *.cache
+.vs/YVFlashcard/v17/.suo
+.vs/YVFlashcard/v17/.suo
+*.bin
