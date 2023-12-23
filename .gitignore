@@ -7,3 +7,5 @@ packages/Microsoft.TypeScript.MSBuild.5.3.3/tools/net45/System.IO.FileSystem.Pri
 *.cache
 *.cache
 *.cache
+.vs/YVFlashcard/v17/.suo
+*.cache

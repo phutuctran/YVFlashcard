@@ -29,7 +29,7 @@ namespace YVFlashcard.Controllers
             string username = Session["username"] != null ? Session["username"].ToString() : "";
             if (string.IsNullOrEmpty(username))
             {
-                return View("Index", "Home");
+                return View("Index");
             }
             var user = userInfoService.GetById(username);
             return View(user);

@@ -1,9 +1,9 @@
 @using YVFlashcard.Core.DTO;
+@model UserInfoDTO
+
 @{
     ViewBag.Title = "UserPage";
 }
-@model  YVFlashcard.Core.DTO.UserInfoDTO;
-
 <div class="profile-content">
     <section class="vh-100">
         <div class="container py-5 h-100">
@@ -14,7 +14,7 @@
                         <div class="row g-0">
 
                             <div class="col-md-4 gradient-custom text-center left-Infor " style="padding-top: 30px;">
-                                <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey; "
+                                <img src="@Model.avatar" style="background-color: white; border: 1px solid grey; "
                                      class="rounded-circle userAvt  mt-5" height="120" width="120" alt="Portrait of a Woman"
                                      loading="lazy" />
                                 <p class="username" style="font-size: xx-large; "></p>
@@ -28,12 +28,12 @@
                             <div class="col-md-8 right-Infor">
                                 <div class="card-body p-4">
                                     <form class="form" novalidate="">
-
+                                        
                                         <label>Username</label>
                                         <input id="userName-input" class="form-control" type="text" name="username" placeholder="Vee"
-                                               value="Vee">
+                                               value="@Model.username">
                                         <label>Email</label>
-                                        <input id="emailUser-input" class="form-control" type="text" placeholder="user@example.com">
+                                        <input id="emailUser-input" class="form-control" type="text" placeholder="user@example.com" value="@Model.email">
                                         <label>Current Password</label>
                                         <input id="pass-input" class="form-control" type="password" placeholder="••••••">
                                         <label>New Password</label>
@@ -55,4 +55,3 @@
     </section>
 </div>
 
-}

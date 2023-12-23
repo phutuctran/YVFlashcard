@@ -1,4 +1,5 @@
-﻿
+﻿@using YVFlashcard.Core.DTO;
+@model UserInfoDTO
     <!doctype html>
     <html lang="en">
     <head>
@@ -31,9 +32,9 @@
                             <img src="./assets/imgs/logo.png" width="150px" height="150px"><br />
                         </div>
                         <div style="height: 100px;">
-                            <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                            <img src="@Model.avatar" style="background-color: white; border: 1px solid grey;"
                                  class="rounded-circle userAvt" height="80" width="80" alt="Portrait of a Woman" loading="lazy" />
-                            <p class="username"> Vee</p>
+                            <p class="username">@Model.username</p>
                         </div>
                     </div>
                     <ul class="list-items">
