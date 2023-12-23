@@ -1,0 +1,41 @@
+/* ------------------viewListVocab page------------ */
+.sub_theme-img{
+    width: 200px;
+    border: 2px dashed #BCA37F;
+    background-color: white;
+  }
+  
+.vocab_text, .vocab_pron{
+    text-align: center;
+  }
+  .vocab_text{
+    font-weight:bold;
+  }
+  .vocab_type{
+    background-color: #0F2C59;
+    color: white;
+    width: 120px; 
+    text-align: center; 
+    border-radius: 10px;
+  }
+  .list_vocab-card{
+    width: 500px; 
+    height: 210px;
+    border-radius: 20px;
+  }
+  .vocab_img{
+    height:64px; 
+    width: 100px;
+  }
+  
+  .volume_icon :hover{
+    color: #76B39D;
+  }
+  
+  .learn-btn{
+    height:40px; 
+    width: 150px; 
+    letter-spacing: 3px; 
+    font-weight: 600; 
+    border: 1.5px solid #0F2C59;
+  }

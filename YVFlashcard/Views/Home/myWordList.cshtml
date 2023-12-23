@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link href="./assets/css/userPage.css" rel="stylesheet"/>
+        <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+        <link href="./assets/css/style.css" rel="stylesheet">
+        <link href="./assets/css/myWordList.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main >
+            
+            <div class="wrapper">
+               
+                <nav id="sidebar">
+                  <div class="title-container">
+                        <div class="logo-container" style="height: 160px;">
+                            <img src="./assets/imgs/logo.png" width="150px" height="150px"><br/>
+                        </div>
+                        <div style="height: 100px;">
+                        <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                            class="rounded-circle userAvt" height="80" width="80" alt="Portrait of a Woman" loading="lazy" />
+                            <p class="username"> Vee</p>
+                        </div>
+                  </div>
+                  <ul class="list-items">
+                    <li><a href="/userPage.html"><i class="fas fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="/myWordList.html"><i class="fas fa-solid fa-list"></i>My Lessons</a></li>
+                    <li><a href="/myGraph.html"><i class="fas fa-solid fa-chart-simple"></i>Graph</a></li>
+                    <li><a href="/signIn.html"><i class="fas fa-solid fa-right-from-bracket"></i>Sign out</a></li>                  
+                  </ul>
+                </nav>
+
+               
+
+            </div>
+            <div class="main-content ms-5 pt-5" style="padding-left: 300px;">
+                <div class="container ">
+                    <div class="row ">
+
+                        <div class="col-3"  data-bs-toggle="modal" data-bs-target="#createModalLessonU">
+                                <div class="lesson-container" id="addLesson-container"style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px; background-color: #F5F7F8;">
+                                </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="lesson-container"  style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px;">
+                                <div class="btn-container mt-2" style="float: right;">
+                                    <button class="btn btn-success ellipse-btn" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="fa-regular fa-trash-can" ></i></button>
+                                    <button class="btn btn-success ellipse-btn"  data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-regular fa-pen-to-square "></i></button>
+                                </div>
+                                <div onclick="viewAllVocab()" class="img-content " style="height: 110px; width: 100px; margin-right: auto; margin-left: auto; margin-top: 50px;" >
+                                    <img src="./assets/imgs/cat.png"  width="100px" height="100px">
+                                </div>
+                                <div class="lesson-name mt-3 ">
+                                    <p style="text-align: center; font-size: x-large;">Animal </p>         
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="lesson-container" style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px;">
+                                <div class="img-content">
+                                    <img>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="lesson-container" style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px;">
+                                <div class="img-content">
+                                    <img>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+                       
+                        
+                    </div>
+                </div>
+            </div>
+            
+        
+
+           
+
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+
+        <!-- ----------  delete modal-------------- -->
+        <div class="modal" id="delete-modal" tabindex="-1" >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" >
+                  <h5 class="modal-title" >Alert</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Do you want to delete this lesson permanently ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button " class="btn btn-danger">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- --------------  Edit Modal ------------>
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Word Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div style="padding-left:120px ;">
+                            <label>Image</label><br/>
+                            <div>
+                                <img id="LessonUserImg" src="./img/Avt.png" width="100px" height="100px" /><br />
+                                <input id="inpLessonUserImage" type="hidden" name="Image" value="" />
+                            </div>
+                            <button type="button" class="btn ms-3  mt-2 btn-success ellipse-btn btn-sm " onclick="loadWordImageLessonU()">Upload</button><br />
+                          
+
+
+                            <label>Name</label><br/>
+                            <input style="border: 1px solid grey;" id="createName" type="text" /> <br/>
+                        </div>
+                            
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success ellipse-btn">Save </button>
+                </div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- -------------------- create Modal --------------------------- -->
+        <div class="modal fade" id="createModalLessonU" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Word Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div style="padding-left:140px ;">
+                            <label>Image</label><br/>
+                            <div>
+                                <img id="LessonUserImg" src="./img/Avt.png" width="100px" height="100px" /><br />
+                                <input id="inpLessonUserImage" type="hidden" name="Image" value="" />
+                            </div>
+                            <button type="button" class="btn ms-3  mt-2 btn-success ellipse-btn btn-sm " onclick="loadWordImageLessonU()">Upload</button><br />
+                          
+
+
+                            <label>Name</label><br/>
+                            <input style="border: 1px solid grey;" id="createName" type="text" /> <br/>
+                        </div>
+                            
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success ellipse-btn">Add</button>
+                </div>
+                </div>
+            </div>
+        </div> 
+
+
+
+        <script src="./assets/js/myWordList.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

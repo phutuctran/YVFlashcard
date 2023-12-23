@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+        <link href="./assets/css/userPage.css"  rel="stylesheet"/>
+        <link href="./assets/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main>
+            <div class="wrapper">
+               
+                <nav id="sidebar">
+                  <div class="title-container">
+                        <div class="logo-container" id="backtoLanding-btn" onclick="backtoLangding()" style="height: 160px;">
+                            <img src="./assets/imgs/logo.png" width="150px" height="150px"><br/>
+                        </div>
+                        <div style="height: 100px;">
+                        <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                            class="rounded-circle userAvt" height="80" width="80" alt="Portrait of a Woman" loading="lazy" />
+                            <p class="username"> Vee</p>
+                        </div>
+                  </div>
+                  <ul class="list-items">
+                    <li><a href="/userPage.html"><i class="fas fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="/myWordList.html"><i class="fas fa-solid fa-list"></i>My Lessons</a></li>
+                    <li><a href="/myGraph.html"><i class="fas fa-solid fa-chart-simple"></i>Graph</a></li>
+                    <li><a href="signIn.html"><i class="fas fa-solid fa-right-from-bracket"></i>Sign out</a></li>                  
+                  </ul>
+                </nav>
+            </div>
+
+
+              <div class="profile-content">
+                <section class="vh-100">
+                    <div class="container py-5 h-100">
+                      <div class="row d-flex  align-items-center " style="width: 1900px; height: 800px; margin-left:330px">
+                        <div class="col col-lg-6 mb-lg-5 mb-lg-0">
+
+                          <div class="card mb-3" style="border-radius: .5rem;  border: 1px solid black;">
+                            <div class="row g-0">
+
+                              <div class="col-md-4 gradient-custom text-center left-Infor " style="padding-top: 30px;" >
+                                <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey; "
+                                class="rounded-circle userAvt  mt-5" height="120" width="120" alt="Portrait of a Woman" loading="lazy" />
+                                <p class="username" style="font-size: xx-large; "> Vee</p>
+                                <div class="mt-4 ms-3">
+                                   
+                                  <button class="btn btn-success ellipse-btn btn-sm" onclick='clicker()'> <i class="fa-solid fa-camera"></i>  Upload photo</button><input type='file' id='file-btn'/>
+                                    
+                                    </button>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-8 right-Infor">
+                                <div class="card-body p-4">
+                                    <form class="form" novalidate="">
+
+                                        <label>Username</label>
+                                        <input id="userName-input" class="form-control" type="text" name="username" placeholder="Vee" value="Vee">
+                                        <label>Email</label>
+                                        <input id="emailUser-input" class="form-control" type="text" placeholder="user@example.com">
+                                        <label>Current Password</label>
+                                        <input id="pass-input" class="form-control" type="password" placeholder="••••••">
+                                        <label>New Password</label>
+                                        <input id="newpass-input" class="form-control" type="password" placeholder="••••••">
+                                        <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                        <input id="confirm-input" class="form-control" type="password" placeholder="••••••"></div>
+                                        <div class="col d-flex justify-content-end me-4">
+                                            <button class="btn btn-outline-success ellipse-btn" type="submit">Save Changes</button>
+                                          </div>
+                                       
+                                       
+                                      </form>
+                                
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+              </div>
+
+
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="./assets/js/userPage.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+/*--------------- Sign In page --------------*/
+.sign_in-section{
+    font-family: "Poppins",
+    sans-serif;
+    color: #0F2C59;
+  }
+  .link{
+    color: #76B39D;
+    text-decoration: none;
+  }
+  
+  #sign_in-btn{
+    margin-left: 32%; 
+    height: 40px; 
+    width: 100px; 
+    line-height: 20px;
+  }
+  #sign_in-title{
+    letter-spacing: 1px; 
+    text-align: center;  
+    font-family: 'Yeseva One';
+    font-size: 60px;
+  }
+  
+  /* ---------------Sign up page---------- */
+  #sign_up-btn{
+    margin: 5px 0px 50px 35%;
+  
+  }
+  

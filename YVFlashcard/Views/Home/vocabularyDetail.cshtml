@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link href="./assets/css/vocabularyDetail.css" rel="stylesheet"/>
+        <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+        <link href="./assets/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main>
+            <main >
+            
+                <div class="wrapper">
+                   
+                    <nav id="sidebar">
+                      <div class="title-container">
+                            <div class="logo-container" style="height: 160px;">
+                                <img src="./assets/imgs/logo.png" width="150px" height="150px"><br/>
+                            </div>
+                            <div style="height: 100px;">
+                            <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                                class="rounded-circle userAvt" height="80" width="80" alt="Portrait of a Woman" loading="lazy" />
+                                <p class="username"> Vee</p>
+                            </div>
+                      </div>
+                      <ul class="list-items">
+                        <li><a href="/userPage.html"><i class="fas fa-solid fa-user"></i>Profile</a></li>
+                        <li><a href="/myWordList.html"><i class="fas fa-solid fa-list"></i>My Lessons </a></li>
+                        <li><a href="/myGraph.html"><i class="fas fa-solid fa-chart-simple"></i>Graph</a></li>
+                        <li><a href="/signIn.html"><i class="fas fa-solid fa-right-from-bracket"></i>Sign out</a></li>                  
+                      </ul>
+                    </nav>
+    
+                   
+    
+                </div>
+                <div class="main-content ms-5 pt-5" style="padding-left: 300px;">
+                    <div class="container ">
+                        <div class="d-flex ms-5 me-5">
+                            <div>
+                                 <button class="btn btn-success ellipse-btn" onclick="backHandle()"> <i class="fa-solid fa-arrow-left"></i></button>
+                            </div>
+                            <nav aria-label="breadcrumb" class="ms-5 mt-2">
+                                <ol class="breadcrumb" style="font-size: x-large;">
+                                  <li class="breadcrumb-item"><a href="./myWordList.html">My Lessons </a></li>
+                                  <li class="breadcrumb-item active" aria-current="page"> My Word List</li>
+                                </ol>
+                            </nav>
+                            <div claas="" style="margin-left: 43%;">
+                                <button class="btn btn-success ellipse-btn mt-2 btn-sm"><i class="fa-solid fa-plus"></i> Add </button>
+                            </div>
+                            <div claas="" style="margin-left: 5%;">
+                                <button class="btn btn-success ellipse-btn mt-2 btn-sm"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                            </div>
+                        </div>
+                        <div class="row mt-5 me-5 ms-5">
+                                <div class="col-6">
+                                    <div class="vocab-container" style="border: 1px solid black; width: 500px; height:330px; border-radius: 10px;">
+                                        <form class="m-4" >
+                                            <div class="d-flex">
+                                                
+
+                                                <div class="ms-3">
+                                                   
+                                                    <label>Vocabulary</label><br>
+                                                    <input type="text"  style="border: 1px solid grey">
+                                                    <label>Pronunciation</label><br>
+                                                    <input type="text"  style="border: 1px solid grey">
+                                                    <label>Part of Speech</label><br>
+                                                    <input type="text"  style="border: 1px solid grey">
+                                                    
+                                                </div>
+                                                
+                                                <div class="ms-5">
+                                                    <div class="d-flex">
+                                                        <img width="130px" height="130px"/>
+                                                        <span ><i class="fa-solid fa-trash ms-5"></i></span>
+                                                     </div>
+                                                    <input type="file"  style="font-size: small;" class="mt-2 ms-3">
+
+                                                </div>
+                                                
+                                            
+                                            </div>
+                                            <div>
+                                                <label style="margin-left: 5%;">Definition</label>
+                                                <textarea name=""  id="" cols="50" rows="4"  style="border: 1px solid grey; margin-left: 5%;"></textarea>
+                                            </div>
+
+                                        </form>
+                                        
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-6">
+                                    <div class="vocab-container" style="border: 1px solid black; width: 500px; height: 300px; border-radius:10px ;">
+                                        
+                                   
+                                </div>
+                        </div>
+
+    
+                        
+                           
+                            
+                      
+                    </div>
+                </div>
+                
+            
+    
+               
+    
+            </main>
+
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="./assets/js/vocabularyDetail.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

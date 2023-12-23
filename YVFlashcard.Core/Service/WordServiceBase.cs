@@ -15,6 +15,16 @@ namespace YVFlashcard.Core.Service.Util
             throw new NotImplementedException();
         }
 
+        public int GetTotalWordsByLesson(int lessonId)
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                return context.Words
+                    .Where(x => x.lessionId == lessonId)
+                    .ToList().Count;
+            }
+        }
+
         public List<WordDTO> GetAll()
         {
             using (var context = new YVFlashCardEntities1())
