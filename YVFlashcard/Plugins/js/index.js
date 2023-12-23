@@ -139,7 +139,7 @@ function rederCard() {
         const card = createIdiomCard(data);
         container.appendChild(card);
     });
-    filterSelection("all");
+    
     HoverCard();
     if (username != "") {
         if (needTestFirst) {
@@ -153,6 +153,7 @@ function rederCard() {
     else {
         AddEventForCardWhenNoLogin();
     }
+    filterSelection("all");
 }
 
 
