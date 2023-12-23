@@ -24,8 +24,8 @@
     <link href="~/Plugins/css/index.css " rel="stylesheet">
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
-    <input hiden value="@username" id="currentUsername" />
-    <input hiden value="@needTestFirst" id="needTestFirst" />
+    <input hidden value="@username" id="currentUsername" />
+    <input hidden value="@needTestFirst" id="needTestFirst" />
 </head>
 
 <body>
@@ -36,13 +36,17 @@
             <div class="container-flui" style="height: 80px;">
                 <nav class="navbar ">
                     <a class="navbar-brand" href="index.html">
-                        <img src="./assets/imgs/logo.png" id="logo" alt="">
+                        <img src="~/Plugins/localImgs/logo.png" id="logo" alt="">
                     </a>
                     @{
                         if (username != "")
                         {
-                                        <div>
-                                            <a>Hello, @username</a>
+                                        <div class="d-flex" onclick="NavToUserPage()">
+                                            <h5 class="mt-3 me-1" style="color:#0F2C59;">@username</h5>
+                                            <img id="avt-img" src="~/Plugins/localImgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                                                 class="rounded-circle me-5" height="80" width="80" alt="Portrait of a Woman"
+                                                 loading="lazy" />
+
                                             @if (needTestFirst)
                                             {
                                                 <button>thực hiện bài test</button>
@@ -87,19 +91,19 @@
                     <div id="carouselExampleInterval" class="carousel_slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="2000">
-                                <img src="./assets/imgs/Slider1.png" class="d-block w-100 h-100" alt=""
+                                <img src="~/Plugins/localImgs/Slider1.png" class="d-block w-100 h-100" alt=""
                                      style="padding-left: 100px;">
                             </div>
                             <div class="carousel-item" data-bs-interval="2000">
-                                <img src="./assets/imgs/Slider2.png " class="d-block w-100 h-100" alt=""
+                                <img src="~/Plugins/localImgs/Slider2.png " class="d-block w-100 h-100" alt=""
                                      style="padding-left: 100px;">
                             </div>
                             <div class="carousel-item" data-bs-interval="2000">
-                                <img src="./assets/imgs/Slider3.png" class="d-block w-100 h-100" alt=""
+                                <img src="~/Plugins/localImgs/Slider3.png" class="d-block w-100 h-100" alt=""
                                      style="padding-left: 100px;">
                             </div>
                             <div class="carousel-item" data-bs-interval="2000">
-                                <img src="./assets/imgs/Slider4.png" class="d-block w-100 h-100" alt=""
+                                <img src="~/Plugins/localImgs/Slider4.png" class="d-block w-100 h-100" alt=""
                                      style="padding-left: 100px;">
                             </div>
                         </div>

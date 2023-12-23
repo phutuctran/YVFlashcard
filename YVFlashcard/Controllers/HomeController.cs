@@ -24,6 +24,16 @@ namespace YVFlashcard.Controllers
         {
             return View();
         }
+        public ActionResult UserPage()
+        {
+            string username = Session["username"] != null ? Session["username"].ToString() : "";
+            if (string.IsNullOrEmpty(username))
+            {
+                return View("Index", "Home");
+            }
+            var user = userInfoService.GetById(username);
+            return View(user);
+        }
 
         public ActionResult signIn()
         { 
@@ -66,6 +76,12 @@ namespace YVFlashcard.Controllers
         {
             var themeDTO = themeService.GetAll();
             return Json(themeDTO, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult GetUserInforByUserName(string userName)
+        {
+            var user = userInfoService.GetById(userName);
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
     }
 }

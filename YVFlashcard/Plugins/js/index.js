@@ -8,7 +8,29 @@ var specialCardData = [];
 var cefrCardData = [];
 var idiomCardData = [];
 const videoSrcs = [
+    "/Plugins/localImgs/A.webm",
+    "/Plugins/localImgs/B.webm",
+    "/Plugins/localImgs/C.webm",
+    "/Plugins/localImgs/D.webm",
+    "/Plugins/localImgs/E.webm",
+    "/Plugins/localImgs/F.webm",
     "/Plugins/localImgs/G.webm",
+    "/Plugins/localImgs/H.webm",
+    "/Plugins/localImgs/I.webm",
+    "/Plugins/localImgs/K.webm",
+    "/Plugins/localImgs/M.webm",
+    "/Plugins/localImgs/N.webm",
+    "/Plugins/localImgs/O.webm",
+    "/Plugins/localImgs/P.webm",
+    "/Plugins/localImgs/Q.webm",
+    "/Plugins/localImgs/R.webm",
+    "/Plugins/localImgs/S.webm",
+    "/Plugins/localImgs/T.webm",
+    "/Plugins/localImgs/U.webm",
+    "/Plugins/localImgs/V.webm",
+    "/Plugins/localImgs/W.webm",
+    "/Plugins/localImgs/Y.webm",
+    "/Plugins/localImgs/Z.webm",
 ]
 
 const username = document.getElementById("currentUsername").value;
@@ -52,7 +74,9 @@ function GetAllThemefromDB() {
 GetAllThemefromDB();     
 
 
-
+function NavToUserPage() {
+    window.location.href("/Home/UserPage");
+}
 // ------------------------render 3 types cards-----------------------
 
   // Function to create a specialized card
@@ -156,7 +180,12 @@ function rederCard() {
     else {
         AddEventForCardWhenNoLogin();
     }
-    filterSelection("all");
+    filterSelection("all"); 
+    const videos = document.querySelectorAll("video");
+    videos.forEach(function (video) {
+        video.play();
+    })
+
 }
 
 
