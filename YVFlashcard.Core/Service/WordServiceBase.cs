@@ -10,6 +10,16 @@ namespace YVFlashcard.Core.Service.Util
 {
     public class WordServiceBase : IServiceBase<WordDTO, int>
     {
+
+        public int GetTotalWordsByLesson(int lessonId)
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                return context.Words
+                    .Where(x => x.lessionId == lessonId)
+                    .ToList().Count;
+            }
+        }
         public void DeleteById(int key, string userSession = null)
         {
             using (var context = new YVFlashCardEntities1())

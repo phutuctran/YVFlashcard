@@ -11,6 +11,11 @@ namespace YVFlashcard.Core.Service
 {
     public class ThemeServiceBase : IServiceBase<ThemeDTO, int>
     {
+        LessionInfoServiceBase lessionInfoService;
+        public ThemeServiceBase()
+        {
+            lessionInfoService = new LessionInfoServiceBase();
+        }
         public void DeleteById(int key, string userSession = null)
         {
             using (var context = new YVFlashCardEntities1())
@@ -30,7 +35,8 @@ namespace YVFlashcard.Core.Service
         {
             using (var context = new YVFlashCardEntities1())
             {
-                return context.Themes
+ 
+                var themes = context.Themes
                     .Select(x => new ThemeDTO()
                     {
                         themeId = x.themeId,
@@ -41,6 +47,13 @@ namespace YVFlashcard.Core.Service
                         image = x.image
                     })
                     .ToList();
+
+                for (int i = 0; i < themes.Count; i++)
+                {
+                    themes[i].totalLession = lessionInfoService.GetTotalLessonByThemeId(themes[i].themeId);
+                    themes[i].totalWords = lessionInfoService.GetTotalWordsByThemeId(themes[i].themeId);
+                }
+                return themes;
             }
         }
 
@@ -63,7 +76,7 @@ namespace YVFlashcard.Core.Service
                 context.Themes.Add(theme);
                 context.SaveChanges();
                 return entity;
-            }   
+            }
         }
 
         public void Update(int key, ThemeDTO entity)

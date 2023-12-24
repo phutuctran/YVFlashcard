@@ -76,17 +76,17 @@ function GetAllThemefromDB() {
     });
 }
 
-GetAllThemefromDB();     
+GetAllThemefromDB();
+
 
 function NavToUserPage() {
     window.location.href("/Home/UserPage");
 }
-
 // ------------------------render 3 types cards-----------------------
 
-  // Function to create a specialized card
+// Function to create a specialized card
 function createCard(data) {
-    
+
     const card = document.createElement("div");
     card.className = "col-3 specialised";
     card.innerHTML = `
@@ -105,12 +105,12 @@ function createCard(data) {
       </div>
     `;
     return card;
-  }
+}
 
-  function createCefrCard(data) {
-      const card = document.createElement("div");
-      card.className = "col-3 CEFR";
-          card.innerHTML = `
+function createCefrCard(data) {
+    const card = document.createElement("div");
+    card.className = "col-3 CEFR";
+    card.innerHTML = `
           <div class="card card_themeEnable" data-category="CEFR" id="CardId${data.themeId}">
             <div class="outer_card">
               <div class="pics">
@@ -125,14 +125,14 @@ function createCard(data) {
             </div>
           </div>
             `;
-      return card;
-     
-           
-   
-  }
+    return card;
 
 
-  function createIdiomCard(data) {
+
+}
+
+
+function createIdiomCard(data) {
     const card = document.createElement("div");
     card.className = "col-3 idioms";
     card.innerHTML = `
@@ -151,15 +151,15 @@ function createCard(data) {
       </div>
     `;
     return card;
-  }
+}
 
 function rederCard() {
 
     const container = document.getElementById("all-cards-container");
     specialCardData.forEach(data => {
-        const card = createCard(data, );
+        const card = createCard(data,);
         container.appendChild(card);
-      
+
     });
 
     // Render CEFR cards
@@ -174,19 +174,18 @@ function rederCard() {
         const card = createIdiomCard(data);
         container.appendChild(card);
     });
-    
+
     HoverCard();
     if (username != "") {
         if (needTestFirst) {
             AddEventForCardWhenLoginWithTest()
-        }  
+        }
     }
     else {
         AddEventForCardWhenNoLogin();
     }
-    filterSelection("all");
     AddEventForCard();
-
+    filterSelection("all");
     const videos = document.querySelectorAll("video");
     videos.forEach(function (video) {
         video.play();
@@ -214,24 +213,24 @@ function HoverCard() {
 //----------------------- filtering options------------
 
 
-function filterSelection(c){
+function filterSelection(c) {
     var x, i;
     x = document.getElementsByClassName("col-3");
-    if(c == "all") c="";
-     // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
-    for( i =0; i < x.length; i++){
-        removeClass(x[i],"show");
-        if(x[i].className.indexOf(c) > -1) addClass(x[i],"show")
+    if (c == "all") c = "";
+    // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+    for (i = 0; i < x.length; i++) {
+        removeClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) addClass(x[i], "show")
     }
 
 }
 // SHow filtered elements
-function addClass(element, name){
+function addClass(element, name) {
     var i, arr1, arr2;
     arr1 = element.className.split(" ");
     arr2 = name.split(" ");
-    for( i = 0; i < arr2.length; i++){
-        if(arr1.indexOf(arr2[i]) == -1){
+    for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {
             element.className += " " + arr2[i];
         }
     }
@@ -243,29 +242,29 @@ function removeClass(element, name) {
     arr1 = element.className.split(" ");
     arr2 = name.split(" ");
     for (i = 0; i < arr2.length; i++) {
-      while (arr1.indexOf(arr2[i]) > -1) {
-        arr1.splice(arr1.indexOf(arr2[i]), 1);
-      }
+        while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+        }
     }
     element.className = arr1.join(" ");
-  }
+}
 
-  // Add active class to the current button (highlight it)
+// Add active class to the current button (highlight it)
 var btnContainer = document.getElementById("myBtnContainer");
 var btns = btnContainer.getElementsByClassName("btn");
 for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[1].className = current[1].className.replace(" active", "");
-    this.className += " active";
-  });
+    btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        current[1].className = current[1].className.replace(" active", "");
+        this.className += " active";
+    });
 }
 
 //---------- Attach a click event for each card-----
 
 function AddEventForCardWhenNoLogin() {
     var cards = document.querySelectorAll('.card_themeEnable');
-    
+
     cards.forEach(function (card) {
         card.className = "card card_themeDisable";
         card.addEventListener('click', function () {
@@ -304,7 +303,7 @@ function AddEventForCardWhenLoginWithTest() {
             idiomCard.className = "card card_themeDisable";
         }
     });
- 
+
 
 }
 

@@ -8,28 +8,26 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using YVFlashcard.Core;
 using YVFlashcard.Core.DTO;
+using YVFlashcard.Service;
 
 namespace YVFlashcard.Controllers
 {
     public class HomeController : Controller
     {
         UserInfoService userInfoService;
-<<<<<<< Updated upstream
-=======
+
         ThemeService themeService;
         UserLessonInfoService userLessonInfoService;
         UserWordService userWordService;
->>>>>>> Stashed changes
         
         public HomeController()
         {
             userInfoService = new UserInfoService();
-<<<<<<< Updated upstream
-=======
+
             themeService = new ThemeService();
             userLessonInfoService = new UserLessonInfoService();
             userWordService = new UserWordService();
->>>>>>> Stashed changes
+
         }
         public ActionResult Index()
         {
@@ -42,9 +40,18 @@ namespace YVFlashcard.Controllers
             return Json(userInfoDTOs, JsonRequestBehavior.AllowGet);
         }
 
-<<<<<<< Updated upstream
+        public ActionResult UserPage()
+        {
+            string username = Session["username"] != null ? Session["username"].ToString() : "";
+            if (string.IsNullOrEmpty(username))
+            {
+                return View("Index");
+            }
 
-=======
+            var user = userInfoService.GetById(username);
+            return View(user);
+        }
+
         public ActionResult myWordList()
         {
             string username = Session["username"] != null ? Session["username"].ToString() : "";
@@ -174,6 +181,5 @@ namespace YVFlashcard.Controllers
             userLessonInfoService.DeleteById(lesson.lessionInfoId);
             return Json(true);
         }
->>>>>>> Stashed changes
     }
 }

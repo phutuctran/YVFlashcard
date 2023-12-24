@@ -1,15 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System;
 using System.Threading.Tasks;
 using YVFlashcard.Core.DTO;
 using YVFlashcard.Core.Service.Interface;
+using YVFlashcard.Core.Service.Util;
 
 namespace YVFlashcard.Core.Service
 {
     public class LessionInfoServiceBase : IServiceBase<LessionInfoDTO, int>
     {
+        WordServiceBase wordService;
+        public LessionInfoServiceBase()
+        {
+            wordService = new WordServiceBase();
+        }
+
+        public int GetTotalWordsByThemeId(int themeid)
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                var lessions = context.LessionInfoes.Where(x => x.themeId == themeid).ToList();
+                int count = 0;
+                foreach (var item in lessions)
+                {
+                    count += wordService.GetTotalWordsByLesson(item.lessionInfoId);
+                }
+                return count;
+
+            }
+        }
+
+        public int GetTotalLessonByThemeId(int themeId)
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                return context.LessionInfoes
+                    .Where(x => x.themeId == themeId)
+                    .ToList().Count;
+            }
+        }
         public void DeleteById(int key, string userSession = null)
         {
             throw new NotImplementedException();
@@ -25,7 +55,7 @@ namespace YVFlashcard.Core.Service
                         lessionInfoId = x.lessionInfoId,
                         name = x.name,
                         description = x.description,
-                        themeId = x.themeId,    
+                        themeId = x.themeId,
                     })
                     .ToList();
             }
@@ -56,9 +86,9 @@ namespace YVFlashcard.Core.Service
         {
             using (var context = new YVFlashCardEntities1())
             {
-                LessionInfoes lessionInfo = new LessionInfoes() 
+                LessionInfoes lessionInfo = new LessionInfoes()
                 {
- 
+
                     name = entity.name,
                     description = entity.description,
                     themeId = entity.themeId,
@@ -78,13 +108,13 @@ namespace YVFlashcard.Core.Service
                     LessionInfoes entityInfo = context.LessionInfoes.FirstOrDefault(x => x.lessionInfoId == key);
                     entityInfo.name = entity.name;
                     entityInfo.description = entity.description;
-                    entityInfo.themeId  = entity.themeId;
+                    entityInfo.themeId = entity.themeId;
                     context.SaveChanges();
                     trans.Commit();
                 }
             }
         }
 
-        
+
     }
 }
