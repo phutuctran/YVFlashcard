@@ -12,16 +12,24 @@ namespace YVFlashcard.Core.Service.Util
     {
         public void DeleteById(int key, string userSession = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public int GetTotalWordsByLesson(int lessonId)
-        {
             using (var context = new YVFlashCardEntities1())
             {
-                return context.Words
-                    .Where(x => x.lessionId == lessonId)
-                    .ToList().Count;
+                using (var trans = context.Database.BeginTransaction())
+                {
+                    Words word = context.Words.FirstOrDefault(x => x.wordId == key);
+                    context.Words.Remove(word);
+                    context.SaveChanges();
+                    trans.Commit();
+                }
+            }
+        }
+
+        public void DeleteAllWordByLessonId(int key)
+        {
+            var words = GetWordByLessonId(key);
+            foreach (var item in words)
+            {
+                DeleteById(item.wordId);
             }
         }
 

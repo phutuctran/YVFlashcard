@@ -5,42 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using YVFlashcard.Core.DTO;
 using YVFlashcard.Core.Service.Interface;
-using YVFlashcard.Core.Service.Util;
 
 namespace YVFlashcard.Core.Service
 {
     public class LessionInfoServiceBase : IServiceBase<LessionInfoDTO, int>
     {
-        WordServiceBase wordService;
-        public LessionInfoServiceBase()
-        {
-            wordService = new WordServiceBase();
-        }
-
-        public int GetTotalWordsByThemeId(int themeid)
-        {
-            using (var context = new YVFlashCardEntities1())
-            {
-                var lessions =  context.LessionInfoes.Where(x => x.themeId == themeid).ToList();
-                int count = 0;
-                foreach (var item in lessions)
-                {
-                    count += wordService.GetTotalWordsByLesson(item.lessionInfoId);
-                }
-                return count;
-
-            }
-        }
-
-        public int GetTotalLessonByThemeId(int themeId)
-        {
-            using (var context = new YVFlashCardEntities1())
-            {
-                return context.LessionInfoes
-                    .Where(x => x.themeId == themeId)
-                    .ToList().Count;
-            }
-        }
         public void DeleteById(int key, string userSession = null)
         {
             throw new NotImplementedException();

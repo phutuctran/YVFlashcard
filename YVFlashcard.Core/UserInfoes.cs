@@ -20,6 +20,7 @@ namespace YVFlashcard.Core
         {
             this.StudyHistories = new HashSet<StudyHistories>();
             this.UserStudyHistories = new HashSet<UserStudyHistories>();
+            this.UserLessionInfoes = new HashSet<UserLessionInfoes>();
         }
     
         [Key]public string username { get; set; }
@@ -36,5 +37,7 @@ namespace YVFlashcard.Core
         public virtual ICollection<StudyHistories> StudyHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserStudyHistories> UserStudyHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserLessionInfoes> UserLessionInfoes { get; set; }
     }
 }

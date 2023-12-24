@@ -81,21 +81,21 @@ namespace YVFlashcard.Areas.Admin.Controllers
         public ActionResult UpdateTheme(ThemeDTO theme) 
         {
             themeService.Update(theme.themeId, theme);
-            return View();
+            return Json(true);
         }
 
         [HttpPost]
         public ActionResult InsertTheme(ThemeDTO theme)
         {
             themeService.Insert(theme);
-            return View();
+            return Json(true);
         }
 
         [HttpPost]
         public ActionResult DeleteTheme(int id)
         {
             themeService.DeleteById(id);
-            return View();
+            return Json(true);
         }
 
         public ActionResult GetLessionByThemeId(int key)
@@ -109,7 +109,7 @@ namespace YVFlashcard.Areas.Admin.Controllers
         public ActionResult InsertLession(LessionInfoDTO lessionInfo)
         {
             lessionInfoService.Insert(lessionInfo);
-            return View();
+            return Json(true);
         }
 
         public ActionResult GetWordByLessonid(int lessonId)
@@ -123,14 +123,14 @@ namespace YVFlashcard.Areas.Admin.Controllers
         public ActionResult InsertWord(WordDTO word) 
         {
             wordService.Insert(word);
-            return View();
+            return Json(true);
         }
 
         [HttpPost]
         public ActionResult UpdateWord(WordDTO word)
         {
             wordService.Update(word.wordId, word);
-            return View();
+            return Json(true);
         }
 
 
