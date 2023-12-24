@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+ <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+  <link href="./assets/css/flashcardLearning.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
+  <script src="./assets/js/Bs5Utils.js"></script>
+</head>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navb">
+        <div class="container-fluid">
+          <button class="btn btn-outline-success ellipse-btn" id="back-btn"> <i class="fa-solid fa-arrow-left fa-lg"></i></button>
+            <ul class="navbar-nav ms-auto " style="padding-right: 200px;">
+                <!-- Avatar -->
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center " href="#"
+                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="m-3" style="color:  #0F2C59;">Vee</h5>
+                        <img id="avt-img" src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                            class="rounded-circle" height="50" width="50" alt="Portrait of a Woman"
+                            loading="lazy" />
+
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-user p-2"></i>
+                                My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-folder p-2"></i>
+                                Word list</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-right-from-bracket p-2"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+  <main>
+   
+    <div  class="d-flex justify-content-around">
+      <div class="wrapper mt-4 "   id="flip-card-container">
+    
+        <!-- <div class="item">
+          <div class="container learn_vocab-container ">
+            <div class="box" id="box1">
+              <div class="body"> -->
+                <!-- front side card -->
+                <!-- <div class="frontContainer">
+                  <div class="frontContainerCard">
+                    <div
+                      style="width: 100%; height: 10%; background-color: #BCA37F; border-bottom-left-radius: 50%; border-bottom-right-radius: 50%;">
+                    </div>
+                    <div class="imgContainer">
+                      <img src="./assets/imgs/hello (1).png">
+                    </div>
+                    <div class="vocab_def m-4">
+                      <p style="text-align: justify;">a word we say when we see someone and want to greet them, or
+                        when we begin to talk on the phone</p>
+                    </div>
+                    <div class="ps-5 ms-5">
+                      <button class="flip btn btn-outline-success ellipse-btn m-4  " data-boxid="box1">Flip</button>
+                    </div>
+                    <div class="ps-4 m-3">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input yes-checked" type="radio" name="inlineRadioOptions"
+                          id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Know it</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input no-checked" type="radio" name="inlineRadioOptions"
+                          id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Don't know</label>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                    <!-- back side card -->
+                <!-- <div class="content backContainer d-flex flex-column align-items-center justify-content-center">
+                  <div style="height: 50%; width: 100%; border-radius: 20px;">
+                    <h2 class="text-white fs-2 mt-2" style="text-align: center; ">hello </h2>
+                    <h5 class="card-text vocab_pron">
+                      <large class="text-muted">/heˈloʊ/</large>
+                    </h5>
+                    <button class="flip mt-5  btn btn-outline-success ellipse-btn" data-boxid="box1"
+                      style="margin-left:40% ;"> Flip</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+      </div>
+           <!-- ------Count difficult words Card ----->
+          <div class="itemm pt-4">
+            <div class="container learn_vocab-container ">
+              <div class="box" id="box8">
+                <div class="body">
+                  <div class="frontContainer">
+                    <div class="frontContainerCard">
+                      <div
+                        style="width: 100%; height: 30%; background-color:#76B39D ; border-bottom-left-radius: 50%; border-bottom-right-radius: 50%;">
+                      </div>
+                      <div class="imgContainer ">
+                        <img  src="./assets/imgs/rating.png"  >
+                      </div>
+                      <div class="mt-4" style="color: red;">
+                        <p style="text-align: center; " > <span id="dificultWords">5</span> Difficult words</p>      
+                      </div>
+                      <div class="d-grid justify-content-center">
+                      
+                          <button class="btn btn-outline-success " type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-folder-open pr-2"
+                            ></i>ADD TO WORDLIST</button>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+   
+    </div>
+
+     
+
+
+      <div class="modal fade theme-list-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <div class="list-header-container m-auto pt-4">
+                  <h5 id="list-theme-header"> Choose a wordlist</h5>
+                  <hr/>
+              </div>
+              
+              <div class="list-group ">
+                <a href="#" class="list-group-item list-group-item-action" style="color: #76B39D;"><i class="fa-solid fa-plus"></i> Add new wordlist </a>
+                <a href="#" class="list-group-item list-group-item-action" >Ielts reading part 2 </a>
+                <a href="#" class="list-group-item list-group-item-action">Animal topics</a>
+                <a href="#" class="list-group-item list-group-item-action">Books vocabulary</a>
+                <a href="#" class="list-group-item list-group-item-action">My vocabulary day 2</a>
+                <a href="#" class="list-group-item list-group-item-action">English 5</a>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+  </main>
+  <footer class=" text-center mt-5 fixed-bottom">
+    <!-- Grid container -->
+    <div class="container p-4  " style="border-top: 1px solid;">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+      </section>
+      <!-- Section: Social media -->
+
+      <section class="mb-4">
+        <h6>
+          Feel free to reach out to us with any questions, concerns, or feedback. We value your input and strive to
+          provide the best learning experience possible.
+        </h6>
+      </section>
+
+    </div>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+
+
+  <script src="./assets/js/flashcardLearning.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

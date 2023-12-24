@@ -12,6 +12,3 @@ packages/Microsoft.TypeScript.MSBuild.5.3.3/tools/net45/System.IO.FileSystem.Pri
 .vs/YVFlashcard/v17/.suo
 .vs/YVFlashcard/v17/.suo
 *.bin
-YVFlashcard.Test/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-YVFlashcard.Core/bin/Debug/YVFlashcard.Core.dll
-YVFlashcard.Core/obj/Debug/YVFlashcard.Core.dll

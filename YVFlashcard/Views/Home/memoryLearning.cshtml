@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/css/memoryLearning.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <script src="./assets/js/Bs5Utils.js"></script>
+   
+</head>
+
+
+<body >
+  <header>
+    <nav class="navbar navbar-expand-lg navb">
+        <div class="container-fluid">
+          <button class="btn btn-outline-success ellipse-btn" id="back-btn"> <i class="fa-solid fa-arrow-left fa-lg"></i></button>
+            <ul class="navbar-nav ms-auto " style="padding-right: 200px;">
+                <!-- Avatar -->
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center " href="#"
+                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="m-3" style="color:  #0F2C59;">Vee</h5>
+                        <img id="avt-img" src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                            class="rounded-circle" height="50" width="50" alt="Portrait of a Woman"
+                            loading="lazy" />
+
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-user p-2"></i>
+                                My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-folder p-2"></i>
+                                Word list</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-right-from-bracket p-2"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+  <main  >
+    <div class="carbon carbon-container" >
+      <div class="panel d-flex" style="height: 120px;">
+        <div class="carbon tabbar" >
+  
+          <div >
+            <span>{</span>
+            <h4>
+              <span class="text-screen">moves:</span>
+              <span class="counter"> 0 </span>,
+              <span class="text-screen">time elapsed:</span>
+              <span class="time">00:00</span>
+            </h4>
+            <span>}</span>
+            <button class="btn btn-outline-success ellipse-btn" id ="start-btn" onclick="startGame()">START</button> 
+          </div>
+          
+        </div>
+        <div class="panel__one circle m-3"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+        <div class="panel__two circle m-3" ><i class="fa-solid fa-minimize fa-lg"></i></div>
+        <div class="panel__three circle m-3"><i class="fa-solid fa-expand fa-lg" ></i>
+          <!--<input type="checkbox" class="toggler3"> --></div>
+      </div>
+      <!-- end of panel -->
+      <div class="container" style="margin-top: 40px;margin-left: 2%;" id="memory-box-container">
+  
+        <!-- <div class="box box1">
+          <div class="box backside">
+            <span><div class="text-container">
+              <p>Hello</p>
+            </div></span>
+          </div>
+        </div>
+  
+        <div class=" box box2">
+          <div class="box backside">
+            <img src="./assets/imgs/hello (1).png"/>
+          </div>
+        </div>
+  
+        <div class="box box3">
+          <div class="box backside">
+            <span><div class="text-container">
+              <p>Goodbye</p>
+            </div></span>
+            
+          </div>
+        </div>
+  
+        <div class="box box4">
+          <div class="box backside">
+            <img src="./assets/imgs/goodbye (2).png"/>
+          </div>
+        </div>
+  
+        <div class="box box5">
+          <div class="box backside">
+            
+            <span><div class="text-container">
+              <p>Good morning</p>
+            </div></span>
+            
+          </div>
+        </div>
+  
+        <div class="box box6">
+          <div class="box backside">
+            <img src="./assets/imgs/morning.png"/>
+          </div>
+        </div>
+  
+        <div class="box box7">
+          <div class="box backside">
+            
+            <span><div class="text-container">
+              <p>Good afternoon</p>
+            </div></span>
+            
+          </div>
+        </div>
+  
+        <div class="box box8">
+          <div class="box backside">
+            <img src="./assets/imgs/afternoon.png"/>
+          </div>
+        </div>
+  
+        <div class="box box9">
+          <div class="box backside">
+            <span><div class="text-container">
+              <p>Good evening</p>
+            </div></span>
+          
+          </div>
+        </div>
+  
+        <div class="box box10">
+          <div class="box backside">
+            <img src="./assets/imgs/evening.png"/>
+          </div>
+        </div>
+  
+        <div class="box box11">
+          <div class="box backside">
+           
+            <span><div class="text-container">
+              <p>Please</p>
+            </div></span>
+            
+          </div>
+        </div>
+  
+        <div class="box box12">
+          <div class="box backside">
+            <img src="./assets/imgs/please.png"/>
+          </div>
+        </div>
+  
+        <div class="box box13">
+          <div class="box backside">
+          
+            <span><div class="text-container">
+              <p>Welcome</p>
+            </div></span>
+            
+          </div>
+        </div>
+  
+        <div class="box box14">
+          <div class="box backside">
+            <img src="./assets/imgs/welcome.png"/>
+          </div>
+        </div>
+  
+        <div class="box box15">
+          <div class="box backside">
+         
+            <span><div class="text-container">
+              <p>Thank you</p>
+            </div></span>
+           
+          </div>
+        </div>
+  
+        <div class="box box16">
+          <div class="box backside">
+            <img src="./assets/imgs/thankyou.png"/>
+          </div>
+        </div>
+  
+        <div class="box box17">
+          <div class="box backside">
+           
+            <span><div class="text-container">
+              <p>A1</p>
+            </div></span>
+            
+          </div>
+        </div>
+        <div class="box box18">
+          <div class="box backside">
+            <img src="./assets/imgs/A1.png"/>
+          </div>
+        </div>  -->
+  
+      </div>
+    </div>
+    <!-- end of MAIN   -->
+    
+      <!-- end of MAIN   -->
+   
+
+  </main>
+  <footer class=" text-center "  >
+    <!-- Grid container -->
+    <div class="container p-4 " style="border-top: 1px solid;">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+      </section>
+      <!-- Section: Social media -->
+
+      <section class="mb-4">
+        <h6>
+          Feel free to reach out to us with any questions, concerns, or feedback. We value your input and strive to
+          provide the best learning experience possible.
+        </h6>
+      </section>
+
+    </div>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+
+  <script src="./assets/js/meomoryLearning.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="./assets/css/style.css" rel="stylesheet">
+  <link href="./assets/css/subTheme.css" rel="stylesheet">
+  <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navb">
+      <div class="container-fluid">
+        <ul class="navbar-nav ms-auto " style="padding-right: 200px;">
+          <!-- Avatar -->
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle d-flex align-items-center " href="#" id="navbarDropdownMenuLink"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <h5 class="m-3" style="color:  #0F2C59;">Vee</h5>
+              <img src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                class="rounded-circle" height="50" width="50" alt="Portrait of a Woman" loading="lazy" />
+
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-user p-2"></i>
+                  My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-folder p-2"></i>
+                  Word list</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-right-from-bracket p-2"></i>
+                  Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- theme infor section -->
+    <div class="container">
+      <div class="row px-5">
+        <div class="col-2 ">
+          <div>
+            <img src="./assets/imgs/A1.png" class="sub_theme-img">
+          </div>
+        </div>
+        <div class="col-10 p-5">
+          <div class="row">
+            <h1 class="big_title p-2">A1 Level Wordlist</h1>
+          </div>
+          <div class="row">
+            <div class="p-3">
+              <a href="./index.html" class="back_link">Home /</a>
+              <a href="./index.html" class="back_link">Cefr Levels / </a>
+              <a class="current_link">A1 Level Wordlist </a>
+            </div>
+          </div>
+          <div class="row">
+            <p style="line-height: 28px; color: #A8A196;">
+              A person with English level A1 is called a 'beginner'. A1 is the first level of English in the CEFR.
+              A student who is just beginning to learn English, or who has no prior knowledge of English, is at a pre-A1
+              level.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ----------Show sub theme section----- -->
+    <div class="container">
+      <div class="row px-5 " id="all-subTheme-container">
+
+        <!-- <div class="col-6 px-5 mt-4">
+          <div class="card sub_theme-card">
+            <h5 class="card-header sub_theme-header">   Lesson 1 - 16 Words </h5>
+            <div class="card-body ">
+              <h5 class="card-title mt-2">Hello and Goodbye</h5>
+              <div class="container">
+                <div class="row ">
+                  <div class="col pt-4 mt-4 ">
+                    <div class="row "> <span class="viewlist-btn"><i class="fa-solid fa-list-ul fa-2x ms-3 "> </span></i></div>
+                    <div class="row p-1">
+                      <p>View list </p>
+                    </div>
+                  </div>
+                  <div class="col pt-5 mt-4">
+                    <button class=" btn btn-outline-success ellipse-btn ms-5 learn-btn" type="button" data-bs-toggle="modal" data-bs-target="#myModalLearning"> <i class="fa-solid fa-calendar-check fa-lg" style="color: #3876BF;"></i> LEARN</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+       
+      </div>
+    </div>
+
+    </div>
+  </main>
+
+  <footer class=" text-center mt-5 ">
+    <!-- Grid container -->
+    <div class="container p-4 " style="border-top: 1px solid;">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+      </section>
+      <!-- Section: Social media -->
+
+      <section class="mb-4">
+        <h6>
+          Feel free to reach out to us with any questions, concerns, or feedback. We value your input and strive to
+          provide the best learning experience possible.
+        </h6>
+      </section>
+
+    </div>
+  </footer>
+
+  <div class="modal fade theme-list-modal-lg" id="myModalLearning" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="list-header-container m-auto pt-4">
+              <h5  id="list-theme-header"><i class="fa-solid fa-face-smile-wink fa-lg" style="color:#87C4FF;"></i> Learning vocabulary can be more enjoyable with one of the methods below:</h5>
+              <br/>
+          </div>
+          
+          <div class="list-group " style="font-size: x-large; text-align: justify; margin: auto; letter-spacing: 5px;">
+            <a href="./flashcardLearning.html" class="list-group-item list-group-item-action" style="color: #B3A492; border: none;"><i class="fa-regular fa-eye fa-lg me-3"></i>  Flipping Flashcards </a>
+            <a href="./spellingLearning.html" class="list-group-item list-group-item-action" style="color: #94B49F;border: none;"><i class="fa-solid fa-w fa-lg me-3"></i> Word Scramble </a>
+            <a href="./memoryLearning.html" class="list-group-item list-group-item-action" style="color: #FFCACC;border: none;"><i class="fa-solid fa-magnifying-glass fa-lg me-3"></i> Memory Game </a>
+            <a href="./quizLearning.html" class="list-group-item list-group-item-action" style="color: #DBC4F0;border: none;"><i class="fa-regular fa-circle-question fa-lg me-3"></i> Quiz game </a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="./assets/js/subTheme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

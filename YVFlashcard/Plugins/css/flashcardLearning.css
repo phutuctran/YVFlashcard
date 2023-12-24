@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.synonym-note{
+    font-size: small !important;
+}
+.synonym-container{
+    height: 90px;
+    width: 100%;;
+}
+.synonym{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    font-size: xx-large;
+}
+#back-btn{
+	width: 40px;
+	height: 40px;
+	margin-left: 30px;
+	
+ }
+#avt-img{
+    height: 50px ;
+    width: 50px;
+}
+.learn_vocab-container{
+    transform-style: preserve-3d;
+}
+
+.learn_vocab-container .box{
+    position: relative;
+    width: 300px;
+    height: 450px;
+    margin: 20px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.learn_vocab-container .box .body{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 0.9s ease;
+}
+
+
+
+.learn_vocab-container .box .body .frontContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.learn_vocab-container .box .body .frontContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+img{
+    width: 30%;
+    height: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.imgContainer{
+    margin-top: 30px;
+}
+
+
+.learn_vocab-container .box .body .backContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background:white;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+}
+
+
+
+.learn_vocab-container .box .body .backContainer div{
+    transform-style: preserve-3d;
+    padding: 20px;
+    background: linear-gradient(45deg, #000428,#004e92);
+    transform: translateZ(100px);
+}
+
+.learn_vocab-container  .box .body .content div h3{
+    letter-spacing: 1px;
+}
+
+.learn_vocab-container .box.transform .body {
+    transform: rotateY(180deg);
+}
+.frontContainerCard{
+    background-color: white; 
+    height: 100%; 
+    width: 100%; 
+    border: 1px solid #BCA37F; 
+    border-radius: 20px;
+}
+
+.vocab_def{
+    height: 22%;
+}
+
+.yes-checked:checked + .form-check-label {
+    color: green; /* Change to your desired color */
+}
+
+.yes-checked:checked {
+   background-color: green;
+}
+
+.no-checked:checked + .form-check-label {
+    color:red; /* Change to your desired color */
+}
+
+.no-checked:checked {
+   background-color: red;
+}
+
+.wrapper{
+    max-height: 550px;
+    width: 1100px;
+    display: flex;
+    overflow-x:auto;
+    overflow-y: hidden;
+
+}
+
+.wrapper .item{
+    height: 500px;
+    min-width: 300px;
+    margin-left: 60px;
+    margin-right: 50px;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #BCA37F; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #000428; 
+  }

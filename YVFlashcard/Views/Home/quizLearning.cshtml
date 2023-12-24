@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/css/memoryLearning.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <link href="./assets/css/quizLearning.css" rel="stylesheet">
+    <script src="./Bs5Utils.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navb">
+            <div class="container-fluid">
+              <button class="btn btn-outline-success ellipse-btn" id="back-btn"> <i class="fa-solid fa-arrow-left fa-lg"></i></button>
+                <ul class="navbar-nav ms-auto " style="padding-right: 200px;">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center " href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <h5 class="m-3" style="color:  #0F2C59;">Vee</h5>
+                            <img id="avt-img" src="./assets/imgs/Avt.png" style="background-color: white; border: 1px solid grey;"
+                                class="rounded-circle" height="50" width="50" alt="Portrait of a Woman"
+                                loading="lazy" />
+    
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-user p-2"></i>
+                                    My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-folder p-2"></i>
+                                    Word list</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-right-from-bracket p-2"></i>
+                                    Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+  <main>
+    <div class="quiz-screen " >
+        <div class="start_btn " ><button class="btn btn-outline-success ellipse-btn">Start Quiz</button></div>
+    </div>
+   
+    <!-- Info Box -->
+    <div class="info_box">
+        <div class="info-title"><span>Some Rules of this Quiz</span></div>
+        <div class="info-list">
+            <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
+            <div class="info">2. Once you select your answer, it can't be undone.</div>
+            <div class="info">3. You can't select any option once time goes off.</div>
+            <div class="info">4. You can't exit from the Quiz while you're playing.</div>
+            <div class="info">5. You'll get points on the basis of your correct answers.</div>
+        </div>
+        <div class="buttons">
+            <button class="quit btn btn-outline-danger ellipse-btn"> Exit Quiz</button>
+            <button class="restart btn btn-outline-success ellipse-btn">Continue</button>
+        </div>
+    </div>
+    <!-- Quiz Box -->
+    <div class="quiz_box">
+        <header>
+            <div class="title">Awesome Quiz </div>
+            <div class="timer">
+                <div class="time_left_txt">Time Left </div>
+                <div class="timer_sec">15</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section class="section-quiz">
+            <div class="que_text">
+                <!-- Here I've inserted question from JavaScript -->
+            </div>
+            <div class="option_list">
+                <!-- Here I've inserted options from JavaScript -->
+            </div>
+        </section>
+        <!-- footer of Quiz Box -->
+        <footer class="footer-quiz">
+            <div class="total_que">
+                <!-- Here I've inserted Question Count Number from JavaScript -->
+            </div>
+            <button class="next_btn btn btn-success ">Next Que</button>
+        </footer >
+    </div>
+    <!-- Result Box -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown" ></i>
+        </div>
+        <div class="complete_text">You've completed the Quiz!</div>
+        <div class="score_text">
+            <!-- Here I've inserted Score Result from JavaScript -->
+        </div>
+        <div class="buttons">
+            <button class="restart btn btn-outline-success ellipse-btn">Replay Quiz</button>
+            <button class="quit  btn btn-outline-danger ellipse-btn">Quit Quiz</button>
+        </div>
+    </div>
+   
+  </main>
+
+
+  <footer class=" text-center mt-5 fixed-bottom ">
+    <!-- Grid container -->
+    <div class="container p-4 " style="border-top: 1px solid;">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+      </section>
+      <!-- Section: Social media -->
+
+      <section class="mb-4">
+        <h6>
+          Feel free to reach out to us with any questions, concerns, or feedback. We value your input and strive to
+          provide the best learning experience possible.
+        </h6>
+      </section>
+
+    </div>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+ 
+  <script src="./assets/js/quizLearning.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
