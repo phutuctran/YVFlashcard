@@ -19,5 +19,7 @@ namespace YVFlashcard.Core.DTO
         public string address { get; set; }
         public string avatar { get; set; }
         public string gender { get; set; }
+        
+        public string oldpassword { get; set; }
     }
 }

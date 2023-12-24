@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace YVFlashcard.Core.DTO
 {
-    public class ThemeDTO
+    public class UserLessionInfoDTO
     {
-        public int themeId { get; set; }
-        public int? categoryId { get; set; }
+        public int lessionInfoId { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public int? totalLession { get; set; }
+        public int totalWord { get; set; }
+        public string username {  get; set; }
         public string image { get; set; }
     }
 }

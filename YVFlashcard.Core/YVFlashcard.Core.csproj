@@ -56,19 +56,23 @@
     <Compile Include="Categories.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\UserLessionInfoDTO.cs" />
     <Compile Include="DTO\LessionInfoDTO.cs" />
     <Compile Include="DTO\ThemeDTO.cs" />
     <Compile Include="DTO\UserInfoDTO.cs" />
+    <Compile Include="DTO\UserWordDTO.cs" />
     <Compile Include="DTO\WordDTO.cs" />
     <Compile Include="LessionInfoes.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Interface\IServiceBase.cs" />
+    <Compile Include="Service\UserLessionInfoServiceBase.cs" />
     <Compile Include="Service\LessionInfoServiceBase.cs" />
     <Compile Include="Service\ThemeServiceBase.cs" />
     <Compile Include="Service\UserInfoServiceBase.cs" />
     <Compile Include="Service\Util\DataHelper.cs" />
+    <Compile Include="Service\UserWordServiceBase.cs" />
     <Compile Include="Service\WordServiceBase.cs" />
     <Compile Include="StudyHistories.cs">
       <DependentUpon>YVFlashcard.tt</DependentUpon>

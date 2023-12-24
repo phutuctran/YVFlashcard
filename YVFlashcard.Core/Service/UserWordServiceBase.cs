@@ -8,7 +8,7 @@ using YVFlashcard.Core.Service.Interface;
 
 namespace YVFlashcard.Core.Service.Util
 {
-    public class WordServiceBase : IServiceBase<WordDTO, int>
+    public class UserWordServiceBase : IServiceBase<UserWordDTO, int>
     {
         public void DeleteById(int key, string userSession = null)
         {
@@ -16,8 +16,8 @@ namespace YVFlashcard.Core.Service.Util
             {
                 using (var trans = context.Database.BeginTransaction())
                 {
-                    Words word = context.Words.FirstOrDefault(x => x.wordId == key);
-                    context.Words.Remove(word);
+                    UserWords word = context.UserWords.FirstOrDefault(x => x.wordId == key);
+                    context.UserWords.Remove(word);
                     context.SaveChanges();
                     trans.Commit();
                 }
@@ -33,101 +33,111 @@ namespace YVFlashcard.Core.Service.Util
             }
         }
 
-        public List<WordDTO> GetAll()
+        public int GetTotalWordsByLesson(int lessonId)
         {
             using (var context = new YVFlashCardEntities1())
             {
-                return context.Words
-                    .Select(x => new WordDTO()
+                return context.UserWords
+                    .Where(x => x.LessionId == lessonId)
+                    .ToList().Count;
+            }
+        }
+
+        public List<UserWordDTO> GetAll()
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                return context.UserWords
+                    .Select(x => new UserWordDTO()
                     {
                         wordId = x.wordId,
-                        word1 = x.word1,
+                        word1 = x.word,
                         pronunciation = x.pronunciation,
                         definition = x.definition,
                         partOfSpeech = x.partOfSpeech,
                         imageOrSynomyn = x.imageOrSynomyn,
-                        lessionId = x.lessionId,
+                        lessionId = x.LessionId,
 
                     })
                     .ToList();
             }
         }
 
-        public List<WordDTO> GetWordByLessonId(int lessionId)
+        public List<UserWordDTO> GetWordByLessonId(int lessionId)
         {
             using (var context = new YVFlashCardEntities1())
             {
-                return context.Words
-                    .Where(x => x.lessionId == lessionId)
-                    .Select(x => new WordDTO()
+                return context.UserWords
+                    .Where(x => x.LessionId == lessionId)
+                    .Select(x => new UserWordDTO()
                     {
                         wordId = x.wordId,
-                        word1 = x.word1,
+                        word1 = x.word,
                         pronunciation = x.pronunciation,
                         definition = x.definition,
                         partOfSpeech = x.partOfSpeech,
                         imageOrSynomyn = x.imageOrSynomyn,
-                        lessionId = x.lessionId,
+                        lessionId = x.LessionId,
 
                     })
                     .ToList();
             }
         }
 
-        public WordDTO GetById(int key)
+        public UserWordDTO GetById(int key)
         {
             using (var context = new YVFlashCardEntities1())
             {
-                return context.Words
+                return context.UserWords
                     .Where(x => x.wordId == key)
-                    .Select(x => new WordDTO()
+                    .Select(x => new UserWordDTO()
                     {
                         wordId = x.wordId,
-                        word1 = x.word1,
+                        word1 = x.word,
                         pronunciation = x.pronunciation,
                         definition = x.definition,
                         partOfSpeech = x.partOfSpeech,
                         imageOrSynomyn = x.imageOrSynomyn,
-                        lessionId = x.lessionId
+                        lessionId = x.LessionId
 
                     })
                     .FirstOrDefault();
             }
         }
 
-        public WordDTO Insert(WordDTO entity)
+        public UserWordDTO Insert(UserWordDTO entity)
         {
             using (var context = new YVFlashCardEntities1())
             {
 
-                Words word = new Words()
+                UserWords word = new UserWords()
                 {
-                    word1 = entity.word1,
+                    word = entity.word1,
                     pronunciation = entity.pronunciation,
                     definition = entity.definition,
                     partOfSpeech = entity.partOfSpeech,
                     imageOrSynomyn = entity.imageOrSynomyn,
-                    lessionId = entity.lessionId
+                    LessionId = entity.lessionId
                 };
-                context.Words.Add(word);
+                context.UserWords.Add(word);
                 context.SaveChanges();
                 return entity;
             }
         }
 
-        public void Update(int key, WordDTO entity)
+        public void Update(int key, UserWordDTO entity)
         {
             using (var context = new YVFlashCardEntities1())
             {
                 using (var trans = context.Database.BeginTransaction())
                 {
-                    Words word = context.Words.FirstOrDefault(x => x.wordId == key);
-                    word.word1 = entity.word1;
+                    UserWords word = context.UserWords.FirstOrDefault(x => x.wordId == key);
+                    word.word = entity.word1;
                     word.pronunciation = entity.pronunciation;
                     word.definition = entity.definition;
                     word.partOfSpeech = entity.partOfSpeech;
                     word.imageOrSynomyn = entity.imageOrSynomyn;
-                    word.lessionId = entity.lessionId;
+                    word.LessionId = entity.lessionId;
                     context.SaveChanges();
                     trans.Commit();
                 }

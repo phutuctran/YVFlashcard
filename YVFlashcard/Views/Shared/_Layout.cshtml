@@ -1,9 +1,39 @@
+<<<<<<< Updated upstream
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+=======
 ﻿@using YVFlashcard.Core.DTO;
-@model UserInfoDTO
     <!doctype html>
     <html lang="en">
     <head>
-        <title>Title</title>
+        <title>@ViewBag.Title</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport"
@@ -18,6 +48,7 @@
         <link href="~/Plugins/css/userPage.css" rel="stylesheet" />
         <link href="~/Plugins/css/style.css" rel="stylesheet">
         <script src="~/Plugins/ckfinder/ckfinder.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     </head>
 
     <body>
@@ -30,38 +61,66 @@
                 <nav id="sidebar">
                     <div class="title-container">
                         <div class="logo-container" id="backtoLanding-btn" onclick="backtoLangding()" style="height: 160px;">
-                            <img src="./assets/imgs/logo.png" width="150px" height="150px"><br />
+                            <img src="/Plugins/localImgs/logo.png" width="150px" height="150px"><br />
                         </div>
                         <div style="height: 100px;">
-                            <img src="@Model.avatar" style="background-color: white; border: 1px solid grey;"
-                                 class="rounded-circle userAvt" height="80" width="80" alt="Portrait of a Woman" loading="lazy" />
-                            <p class="username">@Model.username</p>
+                            <img id="avatarImg" src="" style="background-color: white; border: 1px solid grey;"
+                                class="rounded-circle userAvt" height="80" width="80" alt="Portrait of a Woman" loading="lazy" />
+
+                            <p class="username" id="usernameLayout">@Session["username"]</p>
                         </div>
                     </div>
                     <ul class="list-items">
-                        <li><a href="/userPage.html"><i class="fas fa-solid fa-user"></i>Profile</a></li>
-                        <li><a href="/myWordList.html"><i class="fas fa-solid fa-list"></i>My Lessons</a></li>
-                        <li><a href="/myGraph.html"><i class="fas fa-solid fa-chart-simple"></i>Graph</a></li>
-                        <li><a href="signIn.html"><i class="fas fa-solid fa-right-from-bracket"></i>Sign out</a></li>
+                        <li><a href="userPage"><i class="fas fa-solid fa-user"></i>Profile</a></li>
+                        <li><a href="myWordList"><i class="fas fa-solid fa-list"></i>My Lessons</a></li>
+                        <li><a href="myGraph"><i class="fas fa-solid fa-chart-simple"></i>Graph</a></li>
+                        <li><a href="signIn"><i class="fas fa-solid fa-right-from-bracket"></i>Sign out</a></li>
                     </ul>
                 </nav>
             </div>
             @RenderBody()
 
-
-
-
-
         </main>
+>>>>>>> Stashed changes
         <footer>
-            <!-- place footer here -->
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-      
-        <script src="~/Scripts/popper.min.js"></script>
+    </div>
+
+<<<<<<< Updated upstream
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+=======
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
                 integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
                 crossorigin="anonymous"></script>
+        <script>
+            var _username = document.getElementById("usernameLayout").innerHTML;
+            data = {
+                userName: _username
+            }
+
+            $.ajax({
+                url: '/Home/GetUserInforByUserName',
+                type: 'POST',
+                data: data,
+                success: function (result) {
+                    if (result.avatar == "") {
+                        document.getElementById("avatarImg").src = "~/Plugins/localImgs/Avt.png";
+                    }
+                    else {
+                        document.getElementById("avatarImg").src = result.avatar;
+                    }
+                    
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        </script>
     </body>
+>>>>>>> Stashed changes
 </html>

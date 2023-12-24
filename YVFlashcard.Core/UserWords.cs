@@ -21,5 +21,6 @@ namespace YVFlashcard.Core
         public string definition { get; set; }
         public string partOfSpeech { get; set; }
         public string imageOrSynomyn { get; set; }
+        public int LessionId { get; set; }
     }
 }

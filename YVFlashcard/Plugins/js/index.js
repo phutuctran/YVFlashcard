@@ -75,7 +75,7 @@ GetAllThemefromDB();
 
 
 function NavToUserPage() {
-    window.location.href("/Home/UserPage");
+    window.location.href = "/Home/UserPage";
 }
 // ------------------------render 3 types cards-----------------------
 

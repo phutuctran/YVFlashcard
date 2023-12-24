@@ -1,13 +1,26 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = null;
-    string username = Session["username"] != null ? Session["username"].ToString() : "";
-    bool needTestFirst = false;
- }
+}
 
-<!DOCTYPE html>
-<html lang="en">
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    </section>
 
+<<<<<<< Updated upstream
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><button onclick="func()">hihi</button></p>
+        </section>
+=======
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,8 +57,8 @@
                                         <div class="d-flex" onclick="NavToUserPage()">
                                             <h5 class="mt-3 me-1" style="color:#0F2C59;">@username</h5>
                                             <img id="avt-img" src="~/Plugins/localImgs/Avt.png" style="background-color: white; border: 1px solid grey;"
-                                                 class="rounded-circle me-5" height="80" width="80" alt="Portrait of a Woman"
-                                                 loading="lazy" />
+                                                  class="rounded-circle me-5" height="80" width="80" alt="Portrait of a Woman"
+                                                  loading="lazy" />
 
                                             @if (needTestFirst)
                                             {
@@ -119,11 +132,27 @@
                 </div>
             </div>
         </div>
+>>>>>>> Stashed changes
     </div>
+</main>
 
-    <!-- start section -->
-    <div id="start_section">
+<script>
+    function func() {
+        $.ajax({
+            url: "/Home/AllUser",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
 
+<<<<<<< Updated upstream
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX request failed: " + status + ", " + error);
+            }
+        });
+    }
+=======
         <h2 class="highlight-font" id="start-text">
             Where do I get started?
         </h2>
@@ -235,5 +264,32 @@
                 crossorigin="anonymous"></script>
 
 </body>
-
 </html>
+<script>
+    console.log(username);
+    if (username != "") {
+        data = {
+            userName: username
+        }
+
+        $.ajax({
+            url: '/Home/GetUserInforByUserName',
+            type: 'POST',
+            data: data,
+            success: function (result) {
+                if (result.avatar == "") {
+                    document.getElementById("avt-img").src = "~/Plugins/localImgs/Avt.png";
+                }
+                else {
+                    document.getElementById("avt-img").src = result.avatar;
+                }
+
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    
+>>>>>>> Stashed changes
+</script>
