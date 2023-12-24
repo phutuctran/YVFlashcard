@@ -1,0 +1,72 @@
+@using YVFlashcard.Core.DTO;
+@model UserInfoDTO
+
+@{
+    ViewBag.Title = "UserPage";
+}
+<div class="profile-content">
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex  align-items-center " style="width: 1900px; height: 800px; margin-left:330px">
+                <div class="col col-lg-6 mb-lg-5 mb-lg-0">
+
+                    <div class="card mb-3" style="border-radius: .5rem;  border: 1px solid black;">
+                        <div class="row g-0">
+
+                            <div class="col-md-4 gradient-custom text-center left-Infor " style="padding-top: 30px;">
+
+                                @if (String.IsNullOrEmpty(Model.avatar))
+                                {
+                                    <img src="~/Plugins/localImgs/Avt.png" id="AvtImg" style="background-color: white; border: 1px solid grey; "
+                                         class="rounded-circle userAvt  mt-5" height="120" width="120" alt="Portrait of a Woman"
+                                         loading="lazy" />
+                                    <input type="hidden" id="inpAvtImage" name="Image" value="~/Plugins/localImgs/Avt.png" />
+                                }
+                                else
+                                {
+                                    <img src="@Model.avatar" id="AvtImg" style="background-color: white; border: 1px solid grey; "
+                                         class="rounded-circle userAvt  mt-5" height="120" width="120" alt="Portrait of a Woman"
+                                         loading="lazy" />
+                                    <input type="hidden" id="inpAvtImage" name="Image" value="@Model.avatar" />
+                                }
+
+                                <div>
+                                    <button class="btn btn-outline-success ellipse-btn btn-sm mt-5" onclick="loadAvtImage()"><i class="fa-solid fa-camera"></i> Upload photo</button>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-8 right-Infor">
+                                <div class="card-body p-4">
+                                    <form class="form" novalidate="">
+
+                                        <label>Username</label>
+                                        <input id="userName-input" class="form-control" type="text" name="username" readonly="true"
+                                               value="@Model.username">
+                                        <label>Email</label>
+                                        <input id="emailUser-input" class="form-control" type="text" placeholder="user@example.com" value="@Model.email">
+                                        <label>Current Password</label><br />
+                                        <span id="ErrorPassNoti" class="text-danger" hidden>Current password is incorrect!</span>
+                                        <input id="pass-input" class="form-control" type="password" placeholder="*****">
+                                        <label>New Password</label>
+                                        <input id="newpass-input" class="form-control" type="password" placeholder="******">
+                                        <label>Confirm <span class="d-none d-xl-inline">Password</span></label><br/>
+                                        <span id="ErrorConfirmPassNoti" class="text-danger" hidden>Confirm password is incorrect!</span>
+                                        <input id="confirm-input" class="form-control" type="password" placeholder="******">
+                                    </form>
+                                </div>
+                                <div class="col d-flex justify-content-end me-4">
+                                    <button class="btn btn-outline-success ellipse-btn" type="button" onclick="SaveInfo()">Save Changes</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Plugins/js/userPage.js"></script>
+

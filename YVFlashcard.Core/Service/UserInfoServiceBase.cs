@@ -59,7 +59,23 @@ namespace YVFlashcard.Core.Service
 
         public void Update(string key, UserInfoDTO entity)
         {
-            throw new NotImplementedException();
+            using (var context = new YVFlashCardEntities1())
+            {
+                using (var trans = context.Database.BeginTransaction())
+                {
+                    UserInfoes userInfoes = context.UserInfoes.FirstOrDefault(x => x.username == key);
+                    userInfoes.email = entity.email;
+                    userInfoes.address = entity.address;
+                    userInfoes.gender = entity.gender;
+                    userInfoes.password = entity.password;
+                    userInfoes.dob = entity.dob;
+                    userInfoes.phone = entity.phone;
+                    userInfoes.avatar = entity.avatar;
+                    userInfoes.fullName = entity.fullName;
+                    context.SaveChanges();
+                    trans.Commit();
+                }
+            }
         }
     }
 }

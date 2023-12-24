@@ -160,7 +160,7 @@ let dataIndex;
 function editHandle(buttonId){
     const imgModal = document.getElementById("modalImg");
    
-    var inpImg = document.getElementById("inpImageCreate");
+    var inpImg = document.getElementById("inpImage");
     var name = document.getElementById("modalName");
     var des = document.getElementById("modalDes");
     dataIndex=buttonId;
@@ -263,10 +263,6 @@ function saveEdit() {
         type: 'POST', // Phương thức HTTP
         data: data,
         success: function (result) {
-            console.log(result);  
-        },
-        error: function (error) {
-            console.log(error);
             if (TYPE == 1) {
                 cefrHandle();
 
@@ -277,11 +273,14 @@ function saveEdit() {
             }
             if (TYPE == 3) {
                 idiomHandle();
-
             }
+            document.getElementById("closeEditTheme-btn").click(); 
+        },
+        error: function (error) {
+            console.log(error);
         }
     });
-    document.getElementById("closeEditTheme-btn").click(); 
+    
 }
 function deleteTheme(id) {
     let key = -1;
@@ -303,7 +302,7 @@ function deleteTheme(id) {
             type: 'POST', // Phương thức HTTP
             data: data,
             success: function (result) {
-                console.log(result);
+                alert("Đã xóa!");
             },
             error: function (error) {
                 console.log(error);
@@ -350,22 +349,22 @@ function addRow() {
         type: 'POST', // Phương thức HTTP
         data: data,
         success: function (result) {
-            console.log(result);
+            getall();
+            if (TYPE == 1) {
+                cefrHandle();
+            }
+            else if (TYPE == 2) {
+                specialVocabHandle();
+            }
+            else if (TYPE == 3) {
+                idiomHandle();
+            }
         },
         error: function (error) {
             console.log(error);
         }
     });
-    getall();
-    if (TYPE == 1) {
-        cefrHandle();
-    }
-    else if (TYPE == 2) {
-        specialVocabHandle();
-    }
-    else if (TYPE == 3) {
-        idiomHandle();
-    }
+   
    
 }
 

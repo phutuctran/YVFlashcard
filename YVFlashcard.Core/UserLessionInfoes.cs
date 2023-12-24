@@ -22,10 +22,12 @@ namespace YVFlashcard.Core
         }
     
         [Key]public int lessionInfoId { get; set; }
+        public string username { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public Nullable<int> totalWord { get; set; }
-    
+        public string image { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserStudyHistories> UserStudyHistories { get; set; }
     }

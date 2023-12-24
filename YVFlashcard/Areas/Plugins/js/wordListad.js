@@ -108,16 +108,17 @@ function saveEditVocab() {
         data: tmpdata,
         success: function (result) {
             console.log("OK" + result);
-            /*CreateLessonRows(lessonId);*/
+            CreateLessonRows(lessonId);
+            var button = document.getElementById('closeEdit-btn');
+            button.click();
         },
         error: function (error) {
             console.log(error);
-            CreateLessonRows(lessonId);
+            
         }
         
     });
-    var button = document.getElementById('closeEdit-btn');
-    button.click();
+
   
 }
 
@@ -222,6 +223,15 @@ function saveAddVocab() {
         data: data,
         success: function (result) {
             console.log(result);
+            document.getElementById("closeCreateWord-btn").click();
+            clearTableWord();
+            document.getElementById("inpWordImage").value = "";
+            document.getElementById("WordImg").src = "";
+            document.getElementById("createVocab").value = "";
+            document.getElementById("createPro").value = "";
+            document.getElementById("createPart").value = "";
+            document.getElementById("createDef").value = "";
+            CreateLessonRows(LESSIONID);
            
         },
         error: function (error) {
@@ -229,18 +239,6 @@ function saveAddVocab() {
        
         }
     });
-
-    
-    document.getElementById("closeCreateWord-btn").click();
-    clearTableWord();
-    document.getElementById("inpWordImage").value = "";
-    document.getElementById("WordImg").src = "";
-    document.getElementById("createVocab").value = "";
-    document.getElementById("createPro").value = "";
-    document.getElementById("createPart").value = "";
-    document.getElementById("createDef").value = "";
-    CreateLessonRows(LESSIONID);
-    
 
 }
 

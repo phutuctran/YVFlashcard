@@ -1,0 +1,73 @@
+@{
+    ViewBag.Title = "vocabularyDetail";
+}
+<div class="main-content ms-5 pt-5" style="padding-left: 300px;">
+    <div class="container ">
+        <div class="d-flex ms-5 me-5">
+            <div>
+                <button class="btn btn-success ellipse-btn" onclick="backHandle()"> <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+            <nav aria-label="breadcrumb" class="ms-5 mt-2">
+                <ol class="breadcrumb" style="font-size: x-large;">
+                    <li class="breadcrumb-item"><a href="./myWordList.html">My Lessons </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> My Word List</li>
+                </ol>
+            </nav>
+            <div claas="" style="margin-left: 43%;">
+                <button class="btn btn-success ellipse-btn mt-2 btn-sm"><i class="fa-solid fa-plus"></i> Add </button>
+            </div>
+            <div claas="" style="margin-left: 5%;">
+                <button class="btn btn-success ellipse-btn mt-2 btn-sm"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            </div>
+        </div>
+        <div class="row mt-5 me-5 ms-5">
+            <div class="col-6">
+                <div class="vocab-container" style="border: 1px solid black; width: 500px; height:330px; border-radius: 10px;">
+                    <form class="m-4">
+                        <div class="d-flex">
+
+
+                            <div class="ms-3">
+
+                                <label>Vocabulary</label><br>
+                                <input type="text" style="border: 1px solid grey">
+                                <label>Pronunciation</label><br>
+                                <input type="text" style="border: 1px solid grey">
+                                <label>Part of Speech</label><br>
+                                <input type="text" style="border: 1px solid grey">
+
+                            </div>
+
+                            <div class="ms-5">
+                                <div class="d-flex">
+                                    <img width="130px" height="130px" />
+                                    <span><i class="fa-solid fa-trash ms-5"></i></span>
+                                </div>
+                                <input type="file" style="font-size: small;" class="mt-2 ms-3">
+
+                            </div>
+
+
+                        </div>
+                        <div>
+                            <label style="margin-left: 5%;">Definition</label>
+                            <textarea name="" id="" cols="50" rows="4" style="border: 1px solid grey; margin-left: 5%;"></textarea>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="vocab-container" style="border: 1px solid black; width: 500px; height: 300px; border-radius:10px ;">
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

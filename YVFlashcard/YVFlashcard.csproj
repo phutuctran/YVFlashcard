@@ -134,6 +134,8 @@
     <Compile Include="Service\LessionInfoService.cs" />
     <Compile Include="Service\ThemeService.cs" />
     <Compile Include="Service\UserInfoService.cs" />
+    <Compile Include="Service\UserLessonInfoService.cs" />
+    <Compile Include="Service\UserWordService.cs" />
     <Compile Include="Service\WordService.cs" />
   </ItemGroup>
   <ItemGroup>

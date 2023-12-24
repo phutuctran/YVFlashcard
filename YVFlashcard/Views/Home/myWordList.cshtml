@@ -1,0 +1,112 @@
+@using YVFlashcard.Core.DTO;
+@{
+    ViewBag.Title = "UserPage";
+}
+@model List<UserLessionInfoDTO>
+
+<input id="currentUsername" value="@Session["username"]" hidden />
+<div class="main-content ms-5 pt-5" style="padding-left: 300px;">
+    <div class="container ">
+        <div class="row " id="lessonU-container">
+
+            <div class="col-3 mt-5" data-bs-toggle="modal" data-bs-target="#createModalLessonU">
+                <div class="AddLesson-container" style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px; background-color: #F5F7F8; ">
+                    <img src="~/Plugins/localImgs/addLesson.png" width="100" height="100" style="margin-top:70px; margin-left:70px"/>
+                </div>
+            </div>
+
+           
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap JavaScript Libraries -->
+<!-- ----------  delete modal-------------- -->
+<div class="modal" id="delete-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Alert</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <input id="lessonIdDelete" hidden />
+            <div class="modal-body">
+                <p>Do you want to delete this lesson permanently ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="DeleteLessonU()"">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- --------------  Edit Modal ------------>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Word Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input hidden id="lessonIdEdit"/>
+                <div style="padding-left:120px ;">
+                    <label>Image</label><br />
+                    <div>
+                        <img id="LessonUserImgEdit" src="/Plugins/localImgs/Avt.png" width="100px" height="100px" /><br />
+                        <input id="inpLessonUserImageEdit" type="hidden" name="Image" value="/Plugins/localImgs/Avt.png" />
+                    </div>
+                    <button type="button" class="btn ms-3  mt-2 btn-success ellipse-btn btn-sm " onclick="loadWordImageForEditLessonU()">Upload</button><br />
+
+
+
+                    <label>Name</label><br />
+                    <input style="border: 1px solid grey;" id="editLessonNameU" type="text" /> <br />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success ellipse-btn" onclick="saveEditLessonU()">Save </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------- create Modal --------------------------- -->
+<div class="modal fade" id="createModalLessonU" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Word Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div style="padding-left:140px ;">
+                    <label>Image</label><br />
+                    <div>
+                        <img id="LessonUserImg" src="/Plugins/localImgs/Avt.png" width="100px" height="100px" /><br />
+                        <input id="inpLessonUserImage" type="hidden" name="Image" value="/Plugins/localImgs/Avt.png" />
+                    </div>
+                    <button type="button" class="btn ms-3  mt-2 btn-success ellipse-btn btn-sm " onclick="loadWordImageLessonU()">Upload</button><br />
+
+
+
+                    <label>Name</label><br />
+                    <input style="border: 1px solid grey;" id="createLessonName" type="text" /> <br />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success ellipse-btn" onclick="addLessonU()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Plugins/js/myWordList.js"></script>
+
