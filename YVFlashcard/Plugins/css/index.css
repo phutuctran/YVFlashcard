@@ -123,11 +123,21 @@
 .outer_card{
   height: 520px;
 }
-.card_theme{
+.card_themeEnable{
   width:280px; 
   height: 520px; 
   background-color: #EBDED0; 
   border-radius: 20px;
+}
+
+.card_themeDisable {
+    width: 280px;
+    height: 520px;
+    background-color: #EBDED0;
+    background-image: url(/Plugins/localImgs/padlock.png);
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
 }
 
 .card_theme :hover{
