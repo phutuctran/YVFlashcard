@@ -1,4 +1,4 @@
-﻿
+
 function scrollToStartSection(){
     document.getElementById('start_section').scrollIntoView();
 }
@@ -47,7 +47,12 @@ function GetAllThemefromDB() {
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
                 data[i].videoSrc = videoSrcs[countVideo];
-                data[i].enable = true;
+                if (i % 2 === 0) {
+                    data[i].enable = true;
+                }
+                else {
+                    data[i].enable = false;
+                }
                 countVideo++;
                 if (countVideo >= videoSrcs.length) {
                     countVideo = 0;
@@ -73,10 +78,10 @@ function GetAllThemefromDB() {
 
 GetAllThemefromDB();     
 
-
 function NavToUserPage() {
-    window.location.href = "/Home/UserPage";
+    window.location.href("/Home/UserPage");
 }
+
 // ------------------------render 3 types cards-----------------------
 
   // Function to create a specialized card
@@ -85,8 +90,7 @@ function createCard(data) {
     const card = document.createElement("div");
     card.className = "col-3 specialised";
     card.innerHTML = `
-
-      <div class="card card_theme" data-category="specialised">
+      <div class="card card_themeEnable" data-category="specialised" id="CardId${data.themeId}">
         <div class="outer_card">
           <div class="pics">
             <img src="${data.image}" class="outer_img">
@@ -104,24 +108,27 @@ function createCard(data) {
   }
 
   function createCefrCard(data) {
-    const card = document.createElement("div");
-    card.className = "col-3 CEFR";
-    card.innerHTML = `
-      <div class="card card_theme" data-category="CEFR">
-        <div class="outer_card">
-          <div class="pics">
-            <img src="${data.image}" class="outer_img">
-            <video src="${data.videoSrc}" autoplay="autoplay" muted loop class="inner_img"></video>
-            <h class="inner_txt">${data.totalLession} lessons - ${data.totalWords} words</h>
+      const card = document.createElement("div");
+      card.className = "col-3 CEFR";
+          card.innerHTML = `
+          <div class="card card_themeEnable" data-category="CEFR" id="CardId${data.themeId}">
+            <div class="outer_card">
+              <div class="pics">
+                <img src="${data.image}" class="outer_img">
+                <video src="${data.videoSrc}" autoplay="autoplay" muted loop class="inner_img"></video>
+                <h class="inner_txt">${data.totalLession} lessons - ${data.totalWords} words</h>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">${data.name}</h5>
+                <p class="card-text">${data.description}</p>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">${data.name}</h5>
-            <p class="card-text">${data.description}</p>
-          </div>
-        </div>
-      </div>
-    `;
-    return card;
+            `;
+      return card;
+     
+           
+   
   }
 
 
@@ -129,7 +136,7 @@ function createCard(data) {
     const card = document.createElement("div");
     card.className = "col-3 idioms";
     card.innerHTML = `
-      <div class="card card_theme" data-category="idioms">
+      <div class="card card_themeEnable" data-category="idioms" id="CardId${data.themeId}">
         <div class="outer_card">
           <div class="pics">
             <img src="${data.image}" class="outer_img">
@@ -150,8 +157,9 @@ function rederCard() {
 
     const container = document.getElementById("all-cards-container");
     specialCardData.forEach(data => {
-        const card = createCard(data);
+        const card = createCard(data, );
         container.appendChild(card);
+      
     });
 
     // Render CEFR cards
@@ -171,16 +179,14 @@ function rederCard() {
     if (username != "") {
         if (needTestFirst) {
             AddEventForCardWhenLoginWithTest()
-        }
-        else {
-            AddEventForCard();
-        }
-        
+        }  
     }
     else {
         AddEventForCardWhenNoLogin();
     }
-    filterSelection("all"); 
+    filterSelection("all");
+    AddEventForCard();
+
     const videos = document.querySelectorAll("video");
     videos.forEach(function (video) {
         video.play();
@@ -192,7 +198,7 @@ function rederCard() {
 //----------------------- hover card color change------------
 function HoverCard() {
     const colors = ['#3C865D', '#AD7409', '#5D7D9C', '#C65A3C',];
-    const boxes = document.querySelectorAll('.card_theme');
+    const boxes = document.querySelectorAll('.card_themeEnable');
     boxes.forEach((box, index) => {
         box.addEventListener('mouseover', () => {
             box.style.backgroundColor = colors[index % colors.length];
@@ -256,34 +262,65 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 //---------- Attach a click event for each card-----
+
+function AddEventForCardWhenNoLogin() {
+    var cards = document.querySelectorAll('.card_themeEnable');
+    
+    cards.forEach(function (card) {
+        card.className = "card card_themeDisable";
+        card.addEventListener('click', function () {
+            document.getElementById("showSignInAnnouce").click();
+        });
+    });
+}
+
+
+
+function AddEventForCardWhenLoginWithTest() {
+
+    cefrCardData.forEach(function (card) {
+        let cefrCard = document.getElementById(`CardId${card.themeId}`);
+        if (!card.enable) {
+            cefrCard.className = "card card_themeDisable"
+            cefrCard.addEventListener('click', function () {
+                document.getElementById("showTestAnnouce").click();
+            });
+        }
+    });
+
+    specialCardData.forEach(function (card) {
+        let specialCard = document.getElementById(`CardId${card.themeId}`);
+        if (!card.enable) {
+            specialCard.className = "card card_themeDisable"
+        }
+
+    });
+
+
+    idiomCardData.forEach(function (card) {
+        var idiomCard = document.getElementById(`CardId${card.themeId}`);
+        console.log(idiomCard);
+        if (!card.enable) {
+            idiomCard.className = "card card_themeDisable";
+        }
+    });
+ 
+
+}
+
 function AddEventForCard() {
-    var cards = document.querySelectorAll('.card_theme');
+    var cards = document.querySelectorAll('.card_themeEnable');
     cards.forEach(function (card) {
         card.addEventListener('click', function () {
             window.location.assign("http://127.0.0.1:5500/EnglishVocabularyFlashcard/subTheme.html");
         });
     });
-
-}
-function AddEventForCardWhenNoLogin() {
-    var cards = document.querySelectorAll('.card_theme');
-    cards.forEach(function (card) {
-        card.addEventListener('click', function () {
-            alert("Caand đăng nhập")
-        });
-    });
 }
 
-function AddEventForCardWhenLoginWithTest() {
-    var cards = document.querySelectorAll('.card_theme');
-    cards.forEach(function (card) {
-        card.addEventListener('click', function () {
-            alert("Cần phải test trước khi học!")
-        });
-    });
+function NavToTestPage() {
 
 }
 
-
+function NavToSignIn() { }
 
 
