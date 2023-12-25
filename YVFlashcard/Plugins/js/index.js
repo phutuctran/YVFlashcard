@@ -34,7 +34,6 @@ const videoSrcs = [
 ]
 
 const username = document.getElementById("currentUsername").value;
-const needTestFirst = document.getElementById("needTestFirst").value;
 function GetAllThemefromDB() {
     specialCardData = [];
     cefrCardData = [];
@@ -45,14 +44,10 @@ function GetAllThemefromDB() {
         url: '/Home/GetAllTheme',
         type: 'GET',
         success: function (data) {
+            
             for (let i = 0; i < data.length; i++) {
                 data[i].videoSrc = videoSrcs[countVideo];
-                if (i % 2 === 0) {
-                    data[i].enable = true;
-                }
-                else {
-                    data[i].enable = false;
-                }
+                
                 countVideo++;
                 if (countVideo >= videoSrcs.length) {
                     countVideo = 0;
@@ -68,6 +63,7 @@ function GetAllThemefromDB() {
                 }
             }
             //alert("hehe");
+            console.log(data);
             rederCard();
         },
         error: function (error) {
@@ -80,7 +76,7 @@ GetAllThemefromDB();
 
 
 function NavToUserPage() {
-    window.location.href("/Home/UserPage");
+    window.location.href ="/Home/UserPage";
 }
 // ------------------------render 3 types cards-----------------------
 
@@ -176,20 +172,33 @@ function rederCard() {
     });
 
     HoverCard();
-    if (username != "") {
-        if (needTestFirst) {
-            AddEventForCardWhenLoginWithTest()
+    $.ajax({
+        url: '/Home/CheckNeedToTest',
+        type: 'POST',
+        success: function (data) {
+            if (username != "") {
+                if (data == "test") {
+                    AddEventForCardWhenLoginWithTest();
+                }
+                else {
+                    AddEventForCardWhenLoginWithNoTest();
+                }
+            }
+            else {
+                AddEventForCardWhenNoLogin();
+            }
+            AddEventForCard();
+            filterSelection("all");
+            const videos = document.querySelectorAll("video");
+            videos.forEach(function (video) {
+                video.play();
+            })
+        },
+        error: function (error) {
+            console.log('Error:', error);
         }
-    }
-    else {
-        AddEventForCardWhenNoLogin();
-    }
-    AddEventForCard();
-    filterSelection("all");
-    const videos = document.querySelectorAll("video");
-    videos.forEach(function (video) {
-        video.play();
-    })
+    });
+    
 
 }
 
@@ -276,7 +285,6 @@ function AddEventForCardWhenNoLogin() {
 
 
 function AddEventForCardWhenLoginWithTest() {
-
     cefrCardData.forEach(function (card) {
         let cefrCard = document.getElementById(`CardId${card.themeId}`);
         if (!card.enable) {
@@ -287,22 +295,50 @@ function AddEventForCardWhenLoginWithTest() {
         }
     });
 
-    specialCardData.forEach(function (card) {
-        let specialCard = document.getElementById(`CardId${card.themeId}`);
-        if (!card.enable) {
-            specialCard.className = "card card_themeDisable"
-        }
+    //specialCardData.forEach(function (card) {
+    //    let specialCard = document.getElementById(`CardId${card.themeId}`);
+    //    if (!card.enable) {
+    //        specialCard.className = "card card_themeDisable"
+    //    }
 
+    //});
+
+
+    //idiomCardData.forEach(function (card) {
+    //    var idiomCard = document.getElementById(`CardId${card.themeId}`);
+    //    if (!card.enable) {
+    //        idiomCard.className = "card card_themeDisable";
+    //    }
+    //});
+
+
+}
+
+function AddEventForCardWhenLoginWithNoTest() {
+
+    cefrCardData.forEach(function (card) {
+        let cefrCard = document.getElementById(`CardId${card.themeId}`);
+        if (!card.enable) {
+            cefrCard.className = "card card_themeDisable";
+        }
     });
 
+    //specialCardData.forEach(function (card) {
+    //    let specialCard = document.getElementById(`CardId${card.themeId}`);
+    //    if (!card.enable) {
+    //        specialCard.className = "card card_themeDisable"
+    //    }
 
-    idiomCardData.forEach(function (card) {
-        var idiomCard = document.getElementById(`CardId${card.themeId}`);
-        console.log(idiomCard);
-        if (!card.enable) {
-            idiomCard.className = "card card_themeDisable";
-        }
-    });
+    //});
+
+
+    //idiomCardData.forEach(function (card) {
+    //    var idiomCard = document.getElementById(`CardId${card.themeId}`);
+    
+    //    if (!card.enable) {
+    //        idiomCard.className = "card card_themeDisable";
+    //    }
+    //});
 
 
 }
@@ -310,16 +346,20 @@ function AddEventForCardWhenLoginWithTest() {
 function AddEventForCard() {
     var cards = document.querySelectorAll('.card_themeEnable');
     cards.forEach(function (card) {
+        let themeId = card.id.replace("CardId", ""); 
         card.addEventListener('click', function () {
-            window.location.assign("http://127.0.0.1:5500/EnglishVocabularyFlashcard/subTheme.html");
+            window.location.href = "/Home/subTheme?ThemeId=" + themeId;
         });
     });
 }
 
 function NavToTestPage() {
-
+    window.location.href = "/Home/testLevell";
 }
 
-function NavToSignIn() { }
+function NavToSignIn()
+{
+    window.location.href = "/Home/SignIn";
+}
 
 

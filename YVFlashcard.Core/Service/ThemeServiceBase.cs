@@ -35,7 +35,7 @@ namespace YVFlashcard.Core.Service
         {
             using (var context = new YVFlashCardEntities1())
             {
- 
+
                 var themes = context.Themes
                     .Select(x => new ThemeDTO()
                     {
@@ -44,7 +44,8 @@ namespace YVFlashcard.Core.Service
                         name = x.name,
                         description = x.description,
                         totalLession = x.totalLession,
-                        image = x.image
+                        image = x.image,
+                        enable = true
                     })
                     .ToList();
 
@@ -59,7 +60,27 @@ namespace YVFlashcard.Core.Service
 
         public ThemeDTO GetById(int key)
         {
-            throw new NotImplementedException();
+            using (var context = new YVFlashCardEntities1())
+            {
+
+                var theme = context.Themes
+                    .Where(x => x.themeId == key)
+                    .Select(x => new ThemeDTO()
+                    {
+                        themeId = x.themeId,
+                        categoryId = x.categoryId,
+                        name = x.name,
+                        description = x.description,
+                        totalLession = x.totalLession,
+                        image = x.image,
+                        enable = true
+                    })
+                    .FirstOrDefault();
+                    theme.totalLession = lessionInfoService.GetTotalLessonByThemeId(theme.themeId);
+                    theme.totalWords = lessionInfoService.GetTotalWordsByThemeId(theme.themeId);
+                
+                return theme;
+            }
         }
 
         public ThemeDTO Insert(ThemeDTO entity)

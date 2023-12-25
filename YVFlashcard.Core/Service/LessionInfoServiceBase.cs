@@ -63,14 +63,29 @@ namespace YVFlashcard.Core.Service
 
         public LessionInfoDTO GetById(int key)
         {
-            throw new NotImplementedException();
+            using (var context = new YVFlashCardEntities1())
+            {
+                var lesson = context.LessionInfoes
+                    .Where(x => x.lessionInfoId == key)
+                    .Select(x => new LessionInfoDTO
+                    {
+                        lessionInfoId = x.lessionInfoId,
+                        name = x.name,
+                        description = x.description,
+                        themeId = x.themeId,
+                        enable = false
+                    })
+                    .FirstOrDefault();
+                lesson.totalWord = wordService.GetTotalWordsByLesson(lesson.lessionInfoId);
+                return lesson;
+            }
         }
 
         public List<LessionInfoDTO> GetByThemeId(int key)
         {
             using (var context = new YVFlashCardEntities1())
             {
-                return context.LessionInfoes
+                var lessons = context.LessionInfoes
                     .Where(x => x.themeId == key)
                     .Select(x => new LessionInfoDTO
                     {
@@ -78,8 +93,14 @@ namespace YVFlashcard.Core.Service
                         name = x.name,
                         description = x.description,
                         themeId = x.themeId,
+                        enable = false
                     })
                     .ToList();
+                foreach(var item in lessons)
+                {
+                    item.totalWord = wordService.GetTotalWordsByLesson(item.lessionInfoId);
+                }
+                return lessons;
             }
         }
         public LessionInfoDTO Insert(LessionInfoDTO entity)

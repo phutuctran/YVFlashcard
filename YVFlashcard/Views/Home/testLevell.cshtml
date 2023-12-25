@@ -1,7 +1,12 @@
+@{ 
+    Layout = null;
+    string username = Session["username"] != null ? Session["username"].ToString() : "";
+}
+
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Test Level</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -16,78 +21,75 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
+        <link href="~/Plugins/fonts/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap" rel="stylesheet">
-        <link href="./assets/css/testLevel.css" rel="stylesheet">
-        <link href="./assets/css/style.css" rel="stylesheet">
-        <link href="./assets/css/style.css" rel="stylesheet">
+        <link href="~/Plugins/css/testLevel.css" rel="stylesheet">
+        <link href="~/Plugins/css/style.css" rel="stylesheet">
+        <link href="~/Plugins/css/style.css" rel="stylesheet">
+        
     </head>
 
     <body>
-        <header >
+        <input hidden id="username" value="@username"/>
+        <header>
             <h1>Find your level </h1>
             <div class="timer-container" style="display: flex;">
                 <i style="margin-left: 70%" class="fa-regular fa-clock fa-2x"></i>
-                <p  id="countdown">  25:00</p>
-        
+                <p id="countdown">  25:00</p>
+
             </div>
-            
+
         </header>
 
-        <main >
-            <div class="question-container" >
-                    <div id="questions-container1">  
-                    </div>
-                    <div id="questions-container2">
-                    </div>
-             </div>
-             <div class="btn-container">
-                <button class="btn btn-lg btn-danger ellipse-btn reset-btn" onclick="resetHandle()"> Reset</button>
-                <button class="btn btn-lg btn-success ellipse-btn submit-btn" onclick="showRightAnswers()"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" > Submit</button>
-            </div>
-    
-                <div class="offcanvas offcanvas-top" style="height: max-content;" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-                    <div class="offcanvas-header">
-                        <div class="waviy" id="offcanvasTopLabel">
-                          
-                            <span style="--i:1">C</span>
-                            <span style="--i:2">O</span>
-                            <span style="--i:3">N</span>
-                            <span style="--i:4">G</span>
-                            <span style="--i:5">R</span>
-                            <span style="--i:6">A</span>
-                            <span style="--i:7">S</span>
-                            <span style="--i:8">!</span>
-                            <img src="./assets/imgs/celebrating.png" width="80px" height="80px">
-                        
-                        </div>
-                        
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                         <p id="yourLevel">  </p> 
-                        
-                    </div>
-                    <button class="btn btn-success ellipse-btn " id="startLearning-btn" onclick="startLearningHandle()" > START</button> 
+        <main>
+            <div class="question-container">
+                <div id="questions-container1">
                 </div>
+                <div id="questions-container2">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="btn btn-lg btn-danger ellipse-btn reset-btn" onclick="resetHandle()"> Reset</button>
+                <button class="btn btn-lg btn-success ellipse-btn submit-btn" onclick="showRightAnswers()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"> Submit</button>
+            </div>
+
+            <div class="offcanvas offcanvas-top" style="height: max-content;" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-header">
+                    <div class="waviy" id="offcanvasTopLabel">
+
+                        <span style="--i:1">C</span>
+                        <span style="--i:2">O</span>
+                        <span style="--i:3">N</span>
+                        <span style="--i:4">G</span>
+                        <span style="--i:5">R</span>
+                        <span style="--i:6">A</span>
+                        <span style="--i:7">S</span>
+                        <span style="--i:8">!</span>
+                        <img src="./assets/imgs/celebrating.png" width="80px" height="80px">
+
+                    </div>
+
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <p id="yourLevel">  </p>
+
+                </div>
+                <button class="btn btn-success ellipse-btn " id="startLearning-btn" onclick="startLearningHandle()"> START</button>
+            </div>
         </main>
         <footer>
             <!-- place footer here -->
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
-        <script src="./assets/js/testLevel.js"> </script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Plugins/js/testLevel.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+                integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+                crossorigin="anonymous"></script>
     </body>
 </html>

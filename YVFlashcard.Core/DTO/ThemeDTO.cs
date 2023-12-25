@@ -16,5 +16,6 @@ namespace YVFlashcard.Core.DTO
         public int? totalLession { get; set; }
         public int? totalWords { get; set; }
         public string image { get; set; }
+        public bool enable {  get; set; }
     }
 }

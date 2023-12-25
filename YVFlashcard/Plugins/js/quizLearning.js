@@ -1,65 +1,58 @@
-// creating an array and passing the number, questions, options, and answers
-var backBtn= document.getElementById('back-btn');
+//// creating an array and passing the number, questions, options, and answers
+//var backBtn= document.getElementById('back-btn');
 
-backBtn.addEventListener('click', function() {
-window.history.back()
-});
-let questions = [
-    {
-    numb: 1,
-    question: "a word we say to apologize for something or to say we are embarrassed",
-    answer: "sorry",
-    options: [
-      "sorry",
-      "welcome",
-      "good evening",
-      "good afternoon"
-    ]
-  },
-    {
-    numb: 2,
-    question: "used when we want to politely ask for something or politely tell a person to do something",
-    answer: "please",
-    options: [
-      "please",
-      "good evening",
-      "OK",
-      "welcome"
-    ]
-  },
-    {
-    numb: 3,
-    question: "a word that shows we agree with something or think that it is true when answering a question",
-    answer: "yes",
-    options: [
-      "sorry",
-      "yes",
-      "thank you",
-      "OK"
-    ]
-  },
-    {
-    numb: 4,
-    question: "something we say when we want to greet or say hello to someone in the morning",
-    answer: "good morning",
-    options: [
-      "good evening",
-      "goodbye",
-      "god morning",
-      "OK"
-    ]
-  },
-    {
-    numb: 5,
-    question: "a word we say when we are leaving someone or when they are leaving, or at the end of a phone call",
-    answer: "bye",
-    options: [
-      "hello",
-      "good evening",
-      "goood afternoon",
-      "bye"
-    ]
-  },
+//backBtn.addEventListener('click', function() {
+//window.history.back()
+//});
+const start_btn = document.querySelector(".start_btn button");
+start_btn.hidden = true;
+let questions = []
+var lessonId = document.getElementById("lessonId").value;
+var username = document.getElementById("username").value;
+function getData() {
+    var data = {
+        lessonId: lessonId
+    }
+    $.ajax({
+        url: '/Home/GetWordsByLessonId',
+        type: 'POST',
+        data: data,
+        success: function (result) {
+            for (let i = 0; i < result.length; i++) {
+                var arrRan = [];
+                arrRan.push(i);
+                for (let i = 1; i <= 3; i++) {
+                    var ran = Math.floor(Math.random() * result.length);
+                    while (arrRan.includes(ran)) {
+                        ran = Math.floor(Math.random() * result.length);
+                    }
+                    arrRan.push(ran);
+                }
+
+                var quesion = {
+                    numb: i + 1,
+                    question: result[i].definition,
+                    answer: result[i].word1,
+                    options: [
+                        result[arrRan[0]].word1,
+                        result[arrRan[1]].word1,
+                        result[arrRan[2]].word1,
+                        result[arrRan[3]].word1,
+                    ]
+                }
+                questions.push(quesion);
+            }
+            console.log(questions);
+            start_btn.hidden = false;
+            
+        },
+        error: function (error) {
+            console.log('Error:', error);
+        }
+    });
+}
+getData();
+
   // you can uncomment the below codes and make duplicate as more as you want to add question
   // but remember you need to give the numb value serialize like 1,2,3,5,6,7,8,9.....
 
@@ -74,11 +67,12 @@ let questions = [
   //     "option 4"
   //   ]
   // },
-];
+
 
 
 //selecting all required elements
-const start_btn = document.querySelector(".start_btn button");
+
+
 const info_box = document.querySelector(".info_box");
 const exit_btn = info_box.querySelector(".buttons .quit");
 const continue_btn = info_box.querySelector(".buttons .restart");
@@ -242,6 +236,22 @@ function showResult(){
         let scoreTag = '<span>and sorry , You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
         scoreText.innerHTML = scoreTag;
     }
+    var data = {
+        type: "quiz",
+        username: username,
+        lessionInfoId: lessonId,
+        numLearnedWord: userScore
+    }
+    $.ajax({
+        url: '/Home/SaveStudyHistory',
+        type: 'POST',
+        data: data,
+        success: function (result) {
+        },
+        error: function (error) {
+            console.log('Error:', error);
+        }
+    });
 }
 
 function startTimer(time){

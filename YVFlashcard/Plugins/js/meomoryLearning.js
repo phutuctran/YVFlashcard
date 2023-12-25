@@ -2,11 +2,43 @@
 
 
 // ---------------------------storeData--------------
-const wordData = ["hi","hello","goodbye","good morning", "good afternoon","good evening","please","welcome","thank you","A1"]
+var wordData = [];
+var imgData = [];
+let arrBoxWord = []
+let arrImgBox = []
+var box = []; 
+var cards1 = [];
+var cards2 = [];
+var cards = [];
+var lessonId = document.getElementById("lessonId").value;
+function getData() {
+	var data = {
+		lessonId: lessonId
+	}
+	$.ajax({
+		url: '/Home/GetWordsByLessonId',
+		type: 'POST',
+		data: data,
+		success: function (result) {
+			for (let i = 0; i < result.length; i++) {
+				wordData.push(result[i].word1);
+				imgData.push(result[i].imageOrSynomyn);
+			}
+			renderALlBoxes();
 
-const imgData =["*hi","./assets/imgs/hello (1).png","./assets/imgs/goodbye (2).png","./assets/imgs/morning.png","./assets/imgs/afternoon.png","./assets/imgs/evening.png",
-				"./assets/imgs/please.png","./assets/imgs/welcome.png","./assets/imgs/thankyou.png","./assets/imgs/A1.png"]
-
+			cards1 = toObject(arrBoxWord, arrImgBox);
+			cards2 = toObject(arrImgBox, arrBoxWord);
+			cards = { ...cards1, ...cards2 }
+			box = Array.from(document.querySelectorAll('.box'));
+			box.forEach(el => el.addEventListener('click', flipOnClick));
+			container.innerHTML = '';
+		},
+		error: function (error) {
+			console.log('Error:', error);
+		}
+	});
+}
+getData();
 
 // --------------------------render box----------------
 
@@ -40,8 +72,7 @@ function createImgBox(boxIdx,src){
 	return imgBox;
 }
 
-let arrBoxWord =[]
-let arrImgBox = []
+
 
 const containerBox = document.getElementById("memory-box-container");
 
@@ -70,36 +101,8 @@ function toObject(keys, values) {
 	return obj;
 	}
 
-renderALlBoxes();
 
-console.log(arrBoxWord);
-console.log(arrImgBox);
 
-let cards1 = toObject(arrBoxWord,arrImgBox);
-let cards2 = toObject(arrImgBox,arrBoxWord);
-let cards ={...cards1,...cards2}
-console.log(cards);
-
-// const cards = {
-// 	box1: 'box2',
-// 	box2: 'box1',
-// 	box3: 'box4',
-// 	box4: 'box3',
-// 	box5: 'box6',
-// 	box6: 'box5',
-// 	box7: 'box8',
-// 	box8: 'box7',
-// 	box9: 'box10',
-// 	box10: 'box9',
-// 	box11: 'box12',
-// 	box12: 'box11',
-// 	box13: 'box14',
-// 	box14: 'box13',
-// 	box15: 'box16',
-// 	box16: 'box15',
-// 	box17: 'box18',
-// 	box18: 'box17'
-// };
 
 const winAudio = new Audio('/assets/audio/GameWinning.mp3');
 
@@ -111,7 +114,6 @@ const circle1 = document.querySelector('.panel__one');
 const circle2 = document.querySelector('.panel__two');
 const circle3 = document.querySelector('.panel__three');
 const container = document.querySelector('.container');
-const box = Array.from(document.querySelectorAll('.box'));
 
 let correct_flips = 0;
 let last_flipped = [];
@@ -142,7 +144,6 @@ function compareFlipped(array) {
 	if (array.length == 2) {
 		const card1 = array[0].classList[1];
 		const card2 = array[1].classList[1];
-		 console.log(cards[card1], cards[card2]);
 		if (cards[card1] == card2 || cards[card2] == card1) {
 			// console.log('Yay its a match');
 			const c1 = document
@@ -218,7 +219,7 @@ function gameWonParty(moves) {
 	//NOTE: make a fancy celebration with canvas
 }
 
-box.forEach(el => el.addEventListener('click', flipOnClick));
+
 
 circle1.addEventListener('click', (e) => {
 	clearInterval(timer_observer);
@@ -238,8 +239,8 @@ circle3.addEventListener('click', (e) => {
 });
 
 
-var backBtn= document.getElementById('back-btn');
+//var backBtn= document.getElementById('back-btn');
 
-  backBtn.addEventListener('click', function() {
-    window.history.back()
-  });
+//  backBtn.addEventListener('click', function() {
+//    window.history.back()
+//  });

@@ -6,8 +6,7 @@ const startingMinutes=25;
 let time = startingMinutes*60;
 
 const countdownEl = document.getElementById('countdown');
-
-// setInterval(updateCountdown,1000);
+ setInterval(updateCountdown,1000);
 
 function updateCountdown(){
     const minutes = Math.floor(time / 60);
@@ -665,10 +664,46 @@ function sortLevel (rightAnswers){
 
 function showRightAnswers(){
     
-  let temp1 = countRightAnswers();
-  let temp2 = sortLevel(temp1);
-  const showResult = document.getElementById("yourLevel");
-  showResult.innerText=`You should start from ${temp2} level with ${temp1} correct answers!`;
+    let temp1 = countRightAnswers();
+    let temp2 = sortLevel(temp1);
+    const showResult = document.getElementById("yourLevel");
+    showResult.innerText = `You should start from ${temp2} level with ${temp1} correct answers!`;
+    let level = 0;
+    switch (temp2) {
+        case "A1":
+            level = 1;
+            break;
+        case "A2":
+            level = 2;
+            break;
+        case "B1":
+            level = 3;
+            break;
+        case "B2":
+            level = 4;
+            break;
+        case "C1":
+            level = 5;
+            break;
+        case "C2":
+            level = 6;
+            break;
+    }
+    var username = document.getElementById("username").value;
+    var data = {
+        index: level,
+        username: username,
+    }
+
+    $.ajax({
+        url: '/Home/SetStartCERF',
+        type: 'POST', // Phương thức HTTP
+        data: data,
+        success: function (result) {
+        },
+        error: function (error) {
+        }
+    });
 }
 
 function resetHandle(){ 
@@ -685,6 +720,6 @@ function resetHandle(){
   
 }
 
-function startLearningHandle(){
-  window.location.assign("http://127.0.0.1:5500/index.html");
+function startLearningHandle() {
+    window.location.href = "/Home/Index";
 }

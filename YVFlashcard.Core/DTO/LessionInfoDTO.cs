@@ -14,5 +14,6 @@ namespace YVFlashcard.Core.DTO
         public string description { get; set; }
         public int totalWord { get; set; }
         public int themeId { get; set; }
+        public bool enable { get; set; }
     }
 }
