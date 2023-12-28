@@ -24,11 +24,14 @@ function signUp(){
     let _pass = document.getElementById("pass_SignUp").value;
     let _confPass = document.getElementById("conf_pass_SignUp").value;
     let _email = document.getElementById("email_SignUp").value;
-    if(!(checkPassword(_pass))){
-        alert("Mật khẩu phải có ít nhất 6 ký tự và tối thiểu một ký tự viết hoa!");
+    if (!(checkPassword(_pass))) {
+        showAlert("The password must have at least 6 characters and at least one uppercase letter!");
+        closeAlert();
+        return;
     }
-    if(!(doubleCheck(_pass,_confPass))){
-        alert("Xác nhận mật khẩu chưa chính xác!");
+    if (!(doubleCheck(_pass, _confPass))) {
+        showAlert("Incorrect Password!");
+        return;
     }
     let data = {
         username: _user,
@@ -42,18 +45,23 @@ function signUp(){
         data: data,
         success: function (result) {
             if (result == true) {
-                alert("Đăng kí tài khoản thành công");
+                showAlert("Successful Sign Up!")
+                closeAlert();
                 setTimeout(function () {
                     window.location.href= "/Home/signIn";
                 }, 1000);
             }
             else
             {
-                alert("Tài khoản đã tồn tại hoặc không hợp lệ, vui lòng thử lại!");
+                showAlert("The account is either invalid or already exists.Please try again!");
+                closeAlert();
+                return;
             }
         },
         error: function (error) {
-            alert("Không thể tạo tài khoản ngay lúc này!");
+            alert("Can not Sign In right now!");
+            closeAlert();
+            return;
         }
     });
 }
@@ -73,17 +81,35 @@ function checkAccount(){
         data: data,
         success: function (result) {
             if (result == true) {
-                alert("Đăng nhập thành công!");
+                showAlert("Succuessful Sign In");
                 setTimeout(function () {
                     window.location.href = "/Home/Index";
                 }, 1000);
             }
             else {
-                alert("Tài khoản hoặc mật khẩu không đúng!");
+                showAlert("Incorrect username or password!");
+                closeAlert();
+                return;
             }
         },
         error: function (error) {
-            alert("Không thể đăng nhập ngay lúc này!");
+            showAlert("Can not Sign In right now!");
+            closeAlert();
+            return;
         }
     });
+}
+
+function showAlert(msg) {
+    let element = document.getElementById("alert-container");
+    element.classList.add("show");
+    let showMsg = document.getElementById("alert-content");
+    showMsg.innerText = msg; 
+
+}
+
+function closeAlert() {
+    setTimeout(function () {
+        document.getElementById("alert-container").classList.remove("show");
+    }, 1500);
 }

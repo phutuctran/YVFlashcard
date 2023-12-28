@@ -10,7 +10,7 @@
         <div class="container py-5 h-100">
             <div class="row d-flex  align-items-center " style="width: 1900px; height: 800px; margin-left:330px">
                 <div class="col col-lg-6 mb-lg-5 mb-lg-0">
-
+                   
                     <div class="card mb-3" style="border-radius: .5rem;  border: 1px solid black;">
                         <div class="row g-0">
 
@@ -43,7 +43,7 @@
                                     <form class="form" novalidate="">
 
                                         <label>Username</label>
-                                        <input id="userName-input" class="form-control" type="text" name="username" readonly="true"
+                                        <input id="userName-input" class="form-control" type="text" name="username" readonly
                                                value="@Model.username">
                                         <label>Email</label>
                                         <input id="emailUser-input" class="form-control" type="text" placeholder="user@example.com" value="@Model.email">
@@ -52,12 +52,13 @@
                                         <input id="pass-input" class="form-control" type="password" placeholder="*****">
                                         <label>New Password</label>
                                         <input id="newpass-input" class="form-control" type="password" placeholder="******">
-                                        <label>Confirm <span class="d-none d-xl-inline">Password</span></label><br/>
+                                        <label>Confirm <span class="d-none d-xl-inline">Password</span></label><br />
                                         <span id="ErrorConfirmPassNoti" class="text-danger" hidden>Confirm password is incorrect!</span>
                                         <input id="confirm-input" class="form-control" type="password" placeholder="******">
                                     </form>
                                 </div>
                                 <div class="col d-flex justify-content-end me-4">
+                                    <span id="save-noti" class="me-3" style="color:seagreen" hidden>Successful update!</span>
                                     <button class="btn btn-outline-success ellipse-btn" type="button" onclick="SaveInfo()">Save Changes</button>
                                 </div>
                             </div>

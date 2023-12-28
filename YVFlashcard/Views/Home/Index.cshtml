@@ -125,7 +125,7 @@
             <h5 id="user_option-text">
                 Choose one of the categories below or create your own
             </h5>
-            <button type="button" id="user_create-btn" class="btn btn-outline-success rounded-btn ">
+            <button type="button" id="user_create-btn" onclick="NavToUserPage()" class="btn btn-outline-success rounded-btn ">
                 <i class="fa-sharp fa-solid fa-plus"></i>
             </button>
         </div>
@@ -290,8 +290,8 @@
             type: 'POST',
             data: data,
             success: function (result) {
-                if (result.avatar == "") {
-                    document.getElementById("avt-img").src = "~/Plugins/localImgs/Avt.png";
+                if (result.avatar == null) {
+                    document.getElementById("avt-img").src = "/Plugins/localImgs/Avt.png";
                 }
                 else {
                     document.getElementById("avt-img").src = result.avatar;

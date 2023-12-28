@@ -26,7 +26,9 @@
         <!-- place navbar here -->
     </header>
     <main>
-
+        <div class="alert alert-danger alert-dismissible fade d-flex" id="alert-container" role="alert" style="position:fixed; top:10px; z-index:9999; margin-right:170px; width:500px;height:70px">
+            <p id="alert-content"> You should check</p>
+        </div>
         <section class="h-100 " style="background-color:#F5ECE3;">
 
             <div class="container py-md-3 h-100">
@@ -55,7 +57,7 @@
                                     </div>
 
                                     <button type="button" class="btn btn-outline-success ellipse-btn" id="sign_up-btn" onclick="signUp()">SIGN UP</button>
-
+                                   
                                     <p style="text-align: center;">Already have an account? <a href="@Url.Action("signIn", "Home" )" class="link">Sign In here</a></p>
 
                                 </form>

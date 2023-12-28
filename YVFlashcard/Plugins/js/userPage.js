@@ -26,6 +26,7 @@ function SaveInfo() {
     let confirPass = document.getElementById("confirm-input").value;
     var noti = document.getElementById("ErrorPassNoti");
     var confirmNoti = document.getElementById("ErrorConfirmPassNoti");
+    let saveNoti = document.getElementById("save-noti");
     if (!doubleCheckNewPass(newPass, confirPass)) {
         noti.hidden = true;
         confirmNoti.removeAttribute("hidden");
@@ -49,8 +50,10 @@ function SaveInfo() {
             data: data,
             success: function (result) {
                 if (result) {
-                    alert("Cập nhật thông tin thành công!")
-                    window.location.href = "/Home/UserPage";
+                    saveNoti.removeAttribute("hidden");
+                    setTimeout(function () {
+                        window.location.href = "/Home/UserPage";
+                    },2000) 
                 }
                 else {
                     noti.removeAttribute("hidden");

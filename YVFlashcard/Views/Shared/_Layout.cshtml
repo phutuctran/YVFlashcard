@@ -55,6 +55,9 @@
                 integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
                 crossorigin="anonymous"></script>
         <script>
+            function backtoLangding() {
+                window.location.href = "/Home/Index"
+            }
             var _username = document.getElementById("usernameLayout").innerHTML;
             data = {
                 userName: _username
@@ -66,8 +69,8 @@
                 data: data,
                 success: function (result) {
                    
-                    if (result.avatar == "") {
-                        document.getElementById("avatarImg").src = "~/Plugins/localImgs/Avt.png";
+                    if (result.avatar == null) {
+                        document.getElementById("avatarImg").src = "/Plugins/localImgs/Avt.png";
                     }
                     else {
                         document.getElementById("avatarImg").src = result.avatar;

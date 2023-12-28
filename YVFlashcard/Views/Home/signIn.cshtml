@@ -22,12 +22,21 @@
 </head>
 
 <body>
-
+    
     <section class="vh-100" id="sign_in-section">
+       
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6" style="padding-left:200px; padding-top: 70px; background-color:#FFFFFF;">
-
+              
+                <div class="col-sm-6" style="padding-left:200px; padding-top: 70px; height:900px; background-color:#FFFFFF;">
+                   
+                    <div class="alert alert-warning alert-dismissible fade d-flex" id="alert-container" role="alert" style="position:fixed; top:10px; z-index:9999; margin-right:170px; width:500px;height:50px">
+                      
+                            <span aria-hidden="true">&times;</span>
+                  
+                        <p id="alert-content"> You should check</p>
+                    </div>
+                    
                     <div class="px-5 ms-xl-4">
                         <img src="~/Plugins/localImgs/logo.png" style="height: 100px;  padding-left: 60px;">
 
@@ -69,7 +78,7 @@
             </div>
         </div>
     </section>
-
+  
 
     <script src="~/Plugins/js/authentication.js"></script>
     <script src="~/Scripts/popper.min.js"

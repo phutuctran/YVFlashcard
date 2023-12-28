@@ -30,7 +30,14 @@
     height: 240px;;
      border-radius: 15px;
   }
+.blockLesson {
+    background-image: url(/Plugins/localImgs/padlock.png);
+    background-position-x: right;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+}
   .sub_theme-header{
+   
     background-color: #EBDED0; 
    
   }

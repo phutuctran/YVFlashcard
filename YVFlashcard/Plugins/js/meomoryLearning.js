@@ -180,7 +180,7 @@ function startWatching(seconds, minutes) {
 		seconds_str = seconds > 9 ? `${seconds}` : `0${seconds}`;
 		minutes_str = minutes > 9 ? `${minutes}` : `0${minutes}`;
 		time.innerHTML = `${minutes_str}:${seconds_str}`;
-		if (correct_flips >= 9) {
+		if (correct_flips >= wordData.length) {
 			// audio.play();
 			clearInterval(timer_observer);
 			gameWonParty(moves);
