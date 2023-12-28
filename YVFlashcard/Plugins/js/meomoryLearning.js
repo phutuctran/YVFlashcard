@@ -11,12 +11,17 @@ var cards1 = [];
 var cards2 = [];
 var cards = [];
 var lessonId = document.getElementById("lessonId").value;
+var own = document.getElementById("lessDes").value;
 function getData() {
 	var data = {
 		lessonId: lessonId
 	}
+	var url = "/Home/GetWordsByLessonId";
+	if (own == "own") {
+		url = "/Home/GetWordsUserByLessonId"
+	}
 	$.ajax({
-		url: '/Home/GetWordsByLessonId',
+		url: url,
 		type: 'POST',
 		data: data,
 		success: function (result) {

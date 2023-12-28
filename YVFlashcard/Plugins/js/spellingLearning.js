@@ -9,12 +9,17 @@
 // -----------------------------Spelling game tab ------------------
 var words = [];
 var lessonId = document.getElementById("lessonId").value;
+var own = document.getElementById("lessDes").value;
 function getDataforSpelling() {
     data = {
         lessonId: lessonId
     }
+    var url = "/Home/GetWordsByLessonId";
+    if (own == "own" ) {
+        url = "/Home/GetWordsUserByLessonId"
+    }
     $.ajax({
-        url: '/Home/GetWordsByLessonId',
+        url: url,
         type: 'POST',
         data: data,
         success: function (result) {

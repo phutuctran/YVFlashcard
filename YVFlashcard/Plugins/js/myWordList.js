@@ -45,7 +45,7 @@ function renderLesson(imgSrc, name, Id) {
     const lessonU = document.createElement("div");
     lessonU.className = "col-3 mt-5";
     lessonU.innerHTML = `
-         <div class="lesson-container" style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px;">
+         <div class="lesson-container mt-3" style="border: 1px solid black; border-radius: 10px; width: 250px; height: 250px;">
                     <div class="btn-container mt-2" style="float: right;">
                         <button onclick="ShowDataDeleteModal(${Id})" class="btn btn-success ellipse-btn" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="fa-regular fa-trash-can"></i></button>
                         <button onclick="ShowDataEditModal(${Id})" class="btn btn-success ellipse-btn" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-regular fa-pen-to-square "></i></button>
@@ -142,7 +142,6 @@ function DeleteLessonU() {
         data: data,
         success: function (result) {
             if (result) {
-                alert("Đã xóa lesson!");
                 window.location.href = window.location.href;
             }
         },

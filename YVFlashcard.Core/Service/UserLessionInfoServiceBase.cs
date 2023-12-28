@@ -40,6 +40,25 @@ namespace YVFlashcard.Core.Service
             }
         }
 
+        public UserLessionInfoDTO GetNewestLessonByUsernameAndLessonName(string username, string lesson)
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                return context.UserLessionInfoes
+                    .Where(x => x.username == username && x.name == lesson)
+                    .Select(x => new UserLessionInfoDTO
+                    {
+                        lessionInfoId = x.lessionInfoId,
+                        name = x.name,
+                        description = x.description,
+                        username = x.username,
+                        image = x.image
+                    })
+                    .OrderByDescending(x => x.lessionInfoId)
+                    .FirstOrDefault();
+            }
+        }
+
         public List<UserLessionInfoDTO> GetAll()
         {
             using (var context = new YVFlashCardEntities1())
@@ -57,9 +76,40 @@ namespace YVFlashcard.Core.Service
             }
         }
 
+        public List<UserLessionInfoDTO> GetLessonByUsername(string username)
+        {
+            using (var context = new YVFlashCardEntities1())
+            {
+                return context.UserLessionInfoes
+                    .Where(x => x.username == username) 
+                    .Select(x => new UserLessionInfoDTO
+                    {
+                        lessionInfoId = x.lessionInfoId,
+                        name = x.name,
+                        description = x.description,
+                        username = x.username,
+                        image = x.image
+                    })
+                    .ToList();
+            }
+        }
+
         public UserLessionInfoDTO GetById(int key)
         {
-            throw new NotImplementedException();
+            using (var context = new YVFlashCardEntities1())
+            {
+                var lesson = context.UserLessionInfoes
+                    .Where(x => x.lessionInfoId == key)
+                    .Select(x => new UserLessionInfoDTO
+                    {
+                        lessionInfoId = x.lessionInfoId,
+                        name = x.name,
+                        description = x.description
+                    })
+                    .FirstOrDefault();
+                lesson.totalWord = userWordService.GetTotalWordsByLesson(lesson.lessionInfoId);
+                return lesson;
+            }
         }
 
         public UserLessionInfoDTO Insert(UserLessionInfoDTO entity)

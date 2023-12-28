@@ -9,12 +9,18 @@ start_btn.hidden = true;
 let questions = []
 var lessonId = document.getElementById("lessonId").value;
 var username = document.getElementById("username").value;
+var own = document.getElementById("lessDes").value;
 function getData() {
     var data = {
         lessonId: lessonId
     }
+    var url = "/Home/GetWordsByLessonId";
+    if (own == "own") {
+        url = "/Home/GetWordsUserByLessonId"
+    }
+    //console.log(url);
     $.ajax({
-        url: '/Home/GetWordsByLessonId',
+        url: url,
         type: 'POST',
         data: data,
         success: function (result) {
@@ -242,8 +248,12 @@ function showResult(){
         lessionInfoId: lessonId,
         numLearnedWord: userScore
     }
+    var url = "/Home/SaveStudyHistory";
+    if (own == "own") {
+        url = "/Home/SaveUserStudyHistory";
+    }
     $.ajax({
-        url: '/Home/SaveStudyHistory',
+        url: url,
         type: 'POST',
         data: data,
         success: function (result) {

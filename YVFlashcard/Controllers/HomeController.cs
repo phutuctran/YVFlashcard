@@ -22,6 +22,7 @@ namespace YVFlashcard.Controllers
         UserWordService userWordService;
         StudyHistoryService studyHistoryService;
         LessionInfoService lessionInfoService;
+        UserStudyHistoryService userStudyHistoryService;
         
         public HomeController()
         {
@@ -32,6 +33,7 @@ namespace YVFlashcard.Controllers
             userLessonInfoService = new UserLessonInfoService();
             userWordService = new UserWordService();
             studyHistoryService = new StudyHistoryService();
+            userStudyHistoryService = new UserStudyHistoryService();
 
         }
         public ActionResult Index()
@@ -93,7 +95,9 @@ namespace YVFlashcard.Controllers
             var lesson = lessionInfoService.GetById(lessonId);
             return View(lesson);
         }
-        public ActionResult spellingLearning(int lessonId)
+
+
+        public ActionResult spellingLearning(int lessonId, bool own = false)
         {
             string username = Session["username"] != null ? Session["username"].ToString() : "";
             if (string.IsNullOrEmpty(username))
@@ -102,10 +106,14 @@ namespace YVFlashcard.Controllers
             }
 
             var lesson = lessionInfoService.GetById(lessonId);
+            if (own)
+            {
+                lesson.description = "own";
+            }
             return View(lesson);
         }
 
-        public ActionResult memoryLearning(int lessonId)
+        public ActionResult memoryLearning(int lessonId, bool own = false)
         {
             string username = Session["username"] != null ? Session["username"].ToString() : "";
             if (string.IsNullOrEmpty(username))
@@ -114,10 +122,14 @@ namespace YVFlashcard.Controllers
             }
 
             var lesson = lessionInfoService.GetById(lessonId);
+            if (own)
+            {
+                lesson.description = "own";
+            }
             return View(lesson);
         }
 
-        public ActionResult quizLearning(int lessonId)
+        public ActionResult quizLearning(int lessonId, bool own = false)
         {
             string username = Session["username"] != null ? Session["username"].ToString() : "";
             if (string.IsNullOrEmpty(username))
@@ -126,6 +138,26 @@ namespace YVFlashcard.Controllers
             }
 
             var lesson = lessionInfoService.GetById(lessonId);
+            if (own)
+            {
+                lesson.description = "own";
+            }
+            return View(lesson);
+        }
+
+        public ActionResult flashcardLearning(int lessonId, bool own = false)
+        {
+            string username = Session["username"] != null ? Session["username"].ToString() : "";
+            if (string.IsNullOrEmpty(username))
+            {
+                return View("Index");
+            }
+            var lesson = lessionInfoService.GetById(lessonId);
+            if (own)
+            {
+                lesson.description = "own";
+            }
+            
             return View(lesson);
         }
 
@@ -149,8 +181,25 @@ namespace YVFlashcard.Controllers
                 return View("Index");
             }
 
-            var words = userWordService.GetWordByLessonId(Id);
-            return View(words);
+            var lesson = userLessonInfoService.GetById(Id);
+            return View(lesson);
+        }
+
+        [HttpPost]
+        public ActionResult InsertListUserWord(List<UserWordDTO> wordDTOs)
+        {
+            foreach(var item in wordDTOs)
+            {
+                userWordService.Insert(item);
+            }
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult InsertUserWord(UserWordDTO wordDTOs)
+        {
+            userWordService.Insert(wordDTOs);
+            return Json(true);
         }
 
         public ActionResult myGraph()
@@ -283,10 +332,32 @@ namespace YVFlashcard.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetUserLessonByUsername(string username)
+        {
+            var lessons = userLessonInfoService.GetLessonByUsername(username);
+            return Json(lessons, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult InsertUserLessonInfo(UserLessionInfoDTO userLessionInfoDTO)
         {
             userLessonInfoService.Insert(userLessionInfoDTO);
             return Json(true);
+        }
+
+
+        [HttpPost]
+        public ActionResult GetNewUserLesson(string username, string lessonname)
+        {
+            var lesson = userLessonInfoService.GetNewestLessonByUsernameAndLessonName(username, lessonname);
+            return Json(lesson, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetWordsUserByLessonId(int lessonId)
+        {
+            var words = userWordService.GetWordByLessonId(lessonId);
+            return Json(words, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -392,6 +463,20 @@ namespace YVFlashcard.Controllers
         public ActionResult SaveStudyHistory(StudyHistoryDTO studyHistory)
         {
             studyHistoryService.Insert(studyHistory);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult SaveUserStudyHistory(UserStudyHistoryDTO userStudyHistory)
+        {
+            userStudyHistoryService.Insert(userStudyHistory);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAllWordsByLessonId(int lessonId)
+        {
+            userWordService.DeleteAllWordByLessonId(lessonId);
             return Json(true);
         }
     }
