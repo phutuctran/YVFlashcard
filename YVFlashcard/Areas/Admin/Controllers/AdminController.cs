@@ -20,6 +20,7 @@ namespace YVFlashcard.Areas.Admin.Controllers
         DataHelper dataHelper;
         LessionInfoService lessionInfoService;
         WordService wordService;
+        UserInfoService userInfoService;
 
         public AdminController()
         {
@@ -27,17 +28,28 @@ namespace YVFlashcard.Areas.Admin.Controllers
             dataHelper = new DataHelper();
             lessionInfoService = new LessionInfoService();
             wordService = new WordService();
+            userInfoService = new UserInfoService();
         }
         public ActionResult Index()
         {
-            if (Session["user"].ToString() != "admin")
+            if (Session["user"] != null)
+            {
+                if (Session["user"].ToString() != "admin")
+                {
+                    return RedirectToAction("SignIn", "Admin");
+                }
+            }
+            else
             {
                 return RedirectToAction("SignIn", "Admin");
             }
-            return View();
+
+            var users = userInfoService.GetAll();
+            return View(users);
         }
         public ActionResult SignIn()
         {
+            Session.Remove("user");
             return View();
         }
 
@@ -49,18 +61,40 @@ namespace YVFlashcard.Areas.Admin.Controllers
                 Session.Add("user", username);
                 return RedirectToAction("Index", "Admin");
             }
+
             return View();
         }
 
 
         public ActionResult Vocabulary()
         {
-            
+            if (Session["user"] != null)
+            {
+                if (Session["user"].ToString() != "admin")
+                {
+                    return RedirectToAction("SignIn", "Admin");
+                }
+            }
+            else
+            {
+                return RedirectToAction("SignIn", "Admin");
+            }
             return View();
         }
 
         public ActionResult wordList(int ThemeId)
         {
+            if (Session["user"] != null)
+            {
+                if (Session["user"].ToString() != "admin")
+                {
+                    return RedirectToAction("SignIn", "Admin");
+                }
+            }
+            else
+            {
+                return RedirectToAction("SignIn", "Admin");
+            }
             var allLession = lessionInfoService.GetByThemeId(ThemeId);
             ViewBag.ThemeId = ThemeId;
             return View(allLession);
@@ -74,7 +108,12 @@ namespace YVFlashcard.Areas.Admin.Controllers
         public ActionResult GetAllTheme()
         {
             var allTheme = themeService.GetAll();
-            return Json(allTheme, JsonRequestBehavior.AllowGet);    
+            return Json(allTheme, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetAllUser()
+        {
+            var users = userInfoService.GetAll();
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

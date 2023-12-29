@@ -1,4 +1,5 @@
-﻿
+﻿@using YVFlashcard.Core.DTO;
+@model List<UserInfoDTO>
 @{
     ViewBag.Title = "Index";
 }
@@ -16,7 +17,6 @@
                 <thead>
                     <tr class="text-dark">
                         <th scope="col">No</th>
-                        <th scope="col">Creation Date</th>
                         <th scope="col">User Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Gender</th>
@@ -25,33 +25,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>01 Jan 2023</td>
-                        <td>john</td>
-                        <td>nam@gmail.com</td>
-                        <td>Male</td>
-                        <td>Active</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>01 Jan 2023</td>
-                        <td>Tom</td>
-                        <td>nguyen213@ghmail.com</td>
-                        <td>Male</td>
-                        <td>Active</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>06 Jan 2023</td>
-                        <td>Jennie</td>
-                        <td>hongle@gmail.com</td>
-                        <td>$123</td>
-                        <td>Paid</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>
+                    @{
+                            int count = 0;
+                            foreach (var item in Model)
+                            {
+                            ++count;
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.fullName</td>
+                                <td>@item.email</td>
+                                <td>@item.gender</td>
+                                <td>Active</td>
+                                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                            </tr>
+                         }
+                    }
+
+
 
                 </tbody>
             </table>
