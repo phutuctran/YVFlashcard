@@ -24,6 +24,29 @@ namespace YVFlashcard.Core.Service
         {
             throw new NotImplementedException();
         }
+        public int GetTotalLearnesWordsByUsername(string username)
+        {
+            Dictionary<int, int> learnedWordLesson = new Dictionary<int, int>();
+            var lessons = GetHistoriesByUserName(username);
+            foreach (var item in lessons)
+            {
+                if (learnedWordLesson.ContainsKey((int)item.lessionInfoId))
+                {
+                    learnedWordLesson[(int)item.lessionInfoId] = Math.Max(learnedWordLesson[(int)item.lessionInfoId], (int)item.numLearnedWord);
+                }
+                else
+                {
+                    learnedWordLesson.Add((int)item.lessionInfoId, (int)item.numLearnedWord);
+                }
+            }
+
+            int totalLearnedWord = 0;
+            foreach (var item in learnedWordLesson)
+            {
+                totalLearnedWord += item.Value;
+            }
+            return totalLearnedWord;
+        }
 
         public List<StudyHistoryDTO> GetHistoriesByTypeAndUserName(string type, string username)
         {

@@ -1,9 +1,14 @@
 ﻿var DATA = []
+var username = document.getElementById("currentUsername").value;
 function getAllData() {
+    _data = {
+        username: username,
+    }
     const container = document.getElementById("lessonU-container");
     $.ajax({
-        url: '/Home/GetAllUserLessonInfo',
-        type: 'GET', // Phương thức HTTP
+        url: '/Home/GetUserLessonByUsername',
+        type: 'POST', // Phương thức HTTP
+        data: _data,
         success: function (data) {
             DATA = data;
             for (let i = 0; i < data.length; i++) {

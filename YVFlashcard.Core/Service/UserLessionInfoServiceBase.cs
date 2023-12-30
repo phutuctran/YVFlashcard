@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using YVFlashcard.Core.DTO;
@@ -17,6 +18,22 @@ namespace YVFlashcard.Core.Service
             userWordService = new UserWordServiceBase();
         }
 
+        public int GetTotalWordsByUsername(string username)
+        {
+            var lessons = GetLessonByUsername(username);
+            int total = 0;
+            foreach(var item in lessons)
+            {
+                total += userWordService.GetTotalWordsByLesson(item.lessionInfoId);
+            }
+            return total;
+        }
+
+        public int GetTotalLessonByUsername(string username)
+        {
+            var total = GetLessonByUsername(username).Count();
+            return total;
+        }
 
         public int GetTotalLesson()
         {

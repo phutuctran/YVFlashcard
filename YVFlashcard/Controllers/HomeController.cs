@@ -261,7 +261,7 @@ namespace YVFlashcard.Controllers
                 if (his.Count > 0)
                 {
                     Session["needToTest"] = "Notest";
-                    var CERFSTART = his[0].numLearnedWord;
+                    var CERFSTART = his[0].lessionInfoId;
                     for (int i = 1; i <= 6; i++)
                     {
                         foreach (var item in themeDTO)
@@ -331,6 +331,7 @@ namespace YVFlashcard.Controllers
             return Json(lessons, JsonRequestBehavior.AllowGet);
         }
 
+
         [HttpPost]
         public ActionResult GetUserLessonByUsername(string username)
         {
@@ -344,6 +345,7 @@ namespace YVFlashcard.Controllers
             userLessonInfoService.Insert(userLessionInfoDTO);
             return Json(true);
         }
+
 
 
         [HttpPost]
@@ -387,13 +389,14 @@ namespace YVFlashcard.Controllers
         }
 
         [HttpPost]
-        public ActionResult SetStartCERF(int index, string username)
+        public ActionResult SetStartCERF(int index, string username, int num)
         {
             StudyHistoryDTO studyHistoryDTO = new StudyHistoryDTO()
             {
                 username = username,
                 type = "TESTCERF",
-                numLearnedWord = index,
+                lessionInfoId = index,
+                numLearnedWord = num
             };
             studyHistoryService.Insert(studyHistoryDTO);
             ///1: A1 --> 6: C2
@@ -479,5 +482,49 @@ namespace YVFlashcard.Controllers
             userWordService.DeleteAllWordByLessonId(lessonId);
             return Json(true);
         }
+
+
+        [HttpPost]
+        public ActionResult GetDataForHistory(string username)
+        {
+            var totalLearnedWordUser = userStudyHistoryService.GetTotalLearnesWordsByUsername(username);
+            var totalLearnedWordSystem = studyHistoryService.GetTotalLearnesWordsByUsername(username);
+            var totalWordsEntered = userLessonInfoService.GetTotalWordsByUsername(username);
+            var totalUserLesson = userLessonInfoService.GetTotalLessonByUsername(username);
+            List<int> data = new List<int>();
+            data.Add(totalLearnedWordUser);
+            data.Add(totalLearnedWordSystem);
+            data.Add(totalWordsEntered);
+            data.Add(totalUserLesson);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetLearnedHistorySystem(string username)
+        {
+            var lessons = studyHistoryService.GetHistoriesByUserName(username);
+            foreach (var lesson in lessons)
+            {
+                if (lesson.type == "quiz")
+                {
+                    lesson.username = lessionInfoService.GetById((int)lesson.lessionInfoId).name;
+                }
+                
+            }
+            return Json(lessons, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetLearnedHistoryUser(string username)
+        {
+            var lessons = userStudyHistoryService.GetHistoriesByUserName(username);
+            foreach (var lesson in lessons)
+            {
+                lesson.username = userLessonInfoService.GetById((int)lesson.lessionInfoId).name;
+            }
+            return Json(lessons, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

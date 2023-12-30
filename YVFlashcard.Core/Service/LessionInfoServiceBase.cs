@@ -31,6 +31,7 @@ namespace YVFlashcard.Core.Service
             }
         }
 
+
         public int GetTotalLessonByThemeId(int themeId)
         {
             using (var context = new YVFlashCardEntities1())

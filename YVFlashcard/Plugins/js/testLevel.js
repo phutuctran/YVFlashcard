@@ -693,6 +693,7 @@ function showRightAnswers(){
     var data = {
         index: level,
         username: username,
+        num: temp1,
     }
 
     $.ajax({

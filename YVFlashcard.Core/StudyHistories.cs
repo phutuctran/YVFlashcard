@@ -20,8 +20,7 @@ namespace YVFlashcard.Core
         public string username { get; set; }
         public Nullable<int> lessionInfoId { get; set; }
         public Nullable<int> numLearnedWord { get; set; }
-    
-        public virtual LessionInfoes LessionInfoes { get; set; }
+
         public virtual UserInfoes UserInfoes { get; set; }
     }
 }
